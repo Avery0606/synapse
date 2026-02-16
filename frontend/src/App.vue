@@ -25,7 +25,7 @@
             v-model="newCategory"
             placeholder="类别 (可选)"
           />
-          <el-button type="success" @click="handleAddMemory" :disabled="!workspace || !newMemory">
+          <el-button type="success" @click="handleAddMemory" :disabled="!workspace || !newMemory || addingLoading" :loading="addingLoading">
             添加记忆
           </el-button>
         </div>
@@ -42,6 +42,7 @@
         :memories="displayMemories"
         :loading="loading"
         @refresh="loadMemories"
+        @loading="(val) => loading = val"
       />
     </div>
   </div>
@@ -63,6 +64,7 @@ const allMemories = ref([])
 const displayMemories = ref([])
 const categories = ref([])
 const loading = ref(false)
+const addingLoading = ref(false)
 const isSearching = ref(false)
 const initializing = ref(true)
 
@@ -129,6 +131,7 @@ const handleSearch = (params) => {
 const handleAddMemory = async () => {
   if (!workspace.value || !newMemory.value) return
 
+  addingLoading.value = true
   try {
     const metadata = newCategory.value ? { category: newCategory.value } : null
     await addMemories(workspace.value, [{ role: 'user', content: newMemory.value }], metadata)
@@ -139,6 +142,8 @@ const handleAddMemory = async () => {
     loadMemories()
   } catch (error) {
     ElMessage.error('添加失败: ' + error.message)
+  } finally {
+    addingLoading.value = false
   }
 }
 </script>

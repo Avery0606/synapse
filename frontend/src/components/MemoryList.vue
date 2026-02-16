@@ -25,22 +25,14 @@
           <el-button size="small" type="primary" @click="startEdit(item)">编辑</el-button>
           <el-button size="small" type="danger" @click="confirmDelete(item.id)">删除</el-button>
         </div>
-
-        <MemoryEdit
-          v-if="editingId === item.id"
-          :memory="item"
-          @save="handleSave"
-          @cancel="cancelEdit"
-        />
       </el-card>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, h } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
-import MemoryEdit from './MemoryEdit.vue'
 import { updateMemory, deleteMemory } from '../api'
 
 defineProps({
@@ -54,9 +46,7 @@ defineProps({
   }
 })
 
-const emit = defineEmits(['refresh'])
-
-const editingId = ref(null)
+const emit = defineEmits(['refresh', 'loading'])
 
 const formatTime = (timeStr) => {
   if (!timeStr) return ''
@@ -65,20 +55,39 @@ const formatTime = (timeStr) => {
 }
 
 const startEdit = (item) => {
-  editingId.value = item.id
-}
-
-const cancelEdit = () => {
-  editingId.value = null
+  const editContent = ref(item.memory || '')
+  
+  ElMessageBox.confirm(
+    h('div', { style: 'width: 100%;' }, [
+      h('textarea', {
+        value: editContent.value,
+        onInput: (e) => { editContent.value = e.target.value },
+        placeholder: '编辑记忆内容...',
+        rows: 4,
+        style: 'width: 100%; padding: 8px; border: 1px solid #dcdfe6; border-radius: 4px; resize: vertical; font-size: 14px;'
+      })
+    ]),
+    '编辑记忆',
+    {
+      confirmButtonText: '保存',
+      cancelButtonText: '取消',
+      type: 'warning',
+      distinguishCancelAndClose: true
+    }
+  ).then(() => {
+    handleSave({ memoryId: item.id, content: editContent.value })
+  }).catch(() => {})
 }
 
 const handleSave = async ({ memoryId, content }) => {
+  emit('loading', true)
   try {
     await updateMemory(memoryId, content)
-    editingId.value = null
     emit('refresh')
   } catch (error) {
     ElMessage.error('更新失败: ' + error.message)
+  } finally {
+    emit('loading', false)
   }
 }
 
@@ -93,11 +102,14 @@ const confirmDelete = (memoryId) => {
 }
 
 const handleDelete = async (memoryId) => {
+  emit('loading', true)
   try {
     await deleteMemory(memoryId)
     emit('refresh')
   } catch (error) {
     ElMessage.error('删除失败: ' + error.message)
+  } finally {
+    emit('loading', false)
   }
 }
 </script>
