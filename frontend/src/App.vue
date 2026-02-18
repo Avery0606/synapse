@@ -315,7 +315,7 @@ const handleAddMemory = async () => {
   min-width: 0;
   animation: fadeInUp 0.6s ease;
   animation-delay: 0.2s;
-  height: calc(100vh - 80px);
+  height: calc(90vh - 80px);
   display: flex;
   flex-direction: column;
   overflow: hidden;
