@@ -122,8 +122,8 @@ cd mcp-server
 # 安装依赖
 npm install
 
-# 启动服务
-npm start
+# 启动服务 (必须指定 workSpace 参数)
+node src/index.js --workSpace <workspace-name>
 ```
 
 ### 6. 访问系统
@@ -132,12 +132,12 @@ npm start
 
 ## MCP 服务器
 
-MCP 服务器提供两个工具供 AI 客户端使用：
+MCP 服务器提供两个工具供 AI 客户端使用。**注意**：服务器在启动时绑定单一 workspace，所有操作都在该 workspace 范围内。
 
 | 工具 | 功能 | 参数 |
 |------|------|------|
-| `get_memory` | 查询记忆 | `workSpace`, `query?`, `threshold?`, `category?` |
-| `add_memory` | 添加记忆 | `workSpace`, `content`, `metadata?` |
+| `get_memory` | 查询记忆 | `query?`, `threshold?`, `category?` |
+| `add_memory` | 添加记忆 | `content`, `metadata?` |
 
 ### Claude Desktop / Cursor 配置
 
@@ -146,7 +146,7 @@ MCP 服务器提供两个工具供 AI 客户端使用：
   "mcpServers": {
     "memory": {
       "command": "node",
-      "args": ["path/to/mcp-server/src/index.js"]
+      "args": ["path/to/mcp-server/src/index.js", "--workSpace", "your-workspace"]
     }
   }
 }

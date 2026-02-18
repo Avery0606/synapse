@@ -7,19 +7,34 @@ import {
 import axios from 'axios';
 import { z } from 'zod';
 
+// Parse command line arguments for workSpace
+const args = process.argv.slice(2);
+let WORKSPACE = null;
+
+for (let i = 0; i < args.length; i++) {
+  if (args[i] === '--workSpace' && args[i + 1]) {
+    WORKSPACE = args[i + 1];
+    break;
+  }
+}
+
+if (!WORKSPACE) {
+  console.error('Error: --workSpace parameter is required');
+  console.error('Usage: node src/index.js --workSpace <workspace-name>');
+  process.exit(1);
+}
+
 // Backend API base URL - can be overridden via environment variable
 const API_BASE_URL = process.env.API_BASE_URL || 'http://localhost:8000';
 
 // Tool input schemas
 const GetMemorySchema = z.object({
-  workSpace: z.string().describe('Workspace name for memory storage'),
   query: z.string().optional().describe('Semantic search query'),
   threshold: z.number().min(0).max(1).optional().describe('Similarity threshold (0-1)'),
   category: z.string().optional().describe('Filter by metadata category'),
 });
 
 const AddMemorySchema = z.object({
-  workSpace: z.string().describe('Workspace name for memory storage'),
   content: z.string().describe('Memory content to store'),
   metadata: z.record(z.any()).optional().describe('Optional metadata (e.g., {category: "..."})'),
 });
@@ -56,14 +71,10 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
     tools: [
       {
         name: 'get_memory',
-        description: 'Query memories from the memory storage. Use this to retrieve stored memories. You can search by query string, filter by category, or get all memories in a workspace.',
+        description: 'Query memories from the memory storage. Use this to retrieve stored memories. You can search by query string, filter by category.',
         inputSchema: {
           type: 'object',
           properties: {
-            workSpace: {
-              type: 'string',
-              description: 'Workspace name for memory storage',
-            },
             query: {
               type: 'string',
               description: 'Semantic search query (optional)',
@@ -77,7 +88,6 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
               description: 'Filter by metadata category (optional)',
             },
           },
-          required: ['workSpace'],
         },
       },
       {
@@ -86,10 +96,6 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
         inputSchema: {
           type: 'object',
           properties: {
-            workSpace: {
-              type: 'string',
-              description: 'Workspace name for memory storage',
-            },
             content: {
               type: 'string',
               description: 'Memory content to store',
@@ -100,7 +106,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
               additionalProperties: true,
             },
           },
-          required: ['workSpace', 'content'],
+          required: ['content'],
         },
       },
     ],
@@ -116,7 +122,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
       const params = GetMemorySchema.parse(args);
       
       const requestBody = {
-        workSpace: params.workSpace,
+        workSpace: WORKSPACE,
       };
       
       if (params.query) requestBody.query = params.query;
@@ -139,7 +145,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
       const params = AddMemorySchema.parse(args);
       
       const requestBody = {
-        workSpace: params.workSpace,
+        workSpace: WORKSPACE,
         messages: [
           { role: 'user', content: params.content }
         ],
