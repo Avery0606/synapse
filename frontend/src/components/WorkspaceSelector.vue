@@ -1,18 +1,25 @@
 <template>
   <div class="workspace-selector">
-    <span>工作区：</span>
-    <el-input
-      v-model="workspace"
-      placeholder="输入工作区名称"
-      @keyup.enter="handleConfirm"
-      style="width: 200px;"
-    />
-    <el-button type="primary" @click="handleConfirm" :disabled="!workspace">确定</el-button>
+    <div class="selector-card">
+      <span class="selector-icon">🏢</span>
+      <span class="selector-label">工作区</span>
+      <el-input
+        v-model="workspace"
+        placeholder="输入工作区名称"
+        @keyup.enter="handleConfirm"
+        class="workspace-input"
+      />
+      <el-button type="primary" @click="handleConfirm" :disabled="!workspace" class="confirm-btn">
+        <el-icon><Check /></el-icon>
+        进入
+      </el-button>
+    </div>
   </div>
 </template>
 
 <script setup>
 import { ref, onMounted } from 'vue'
+import { Check } from '@element-plus/icons-vue'
 
 const workspace = ref('default-workspace')
 
@@ -35,13 +42,41 @@ const emit = defineEmits(['update:workspace'])
 
 <style scoped>
 .workspace-selector {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
 }
 
-.workspace-selector span {
-  font-weight: bold;
+.selector-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--bg-card);
+  backdrop-filter: blur(10px);
+  padding: 16px 20px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-light);
+  box-shadow: var(--shadow-card);
+  transition: all 0.3s ease;
+}
+
+.selector-card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.selector-icon {
+  font-size: 24px;
+}
+
+.selector-label {
+  font-weight: 600;
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+
+.workspace-input {
+  width: 240px;
+}
+
+.confirm-btn {
+  padding: 0 20px;
 }
 </style>
