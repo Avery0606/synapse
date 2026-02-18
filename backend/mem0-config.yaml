@@ -19,3 +19,6 @@ vector_store:
     port: 6333
     embedding_model_dims: 1024
     collection_name: agentMemory
+
+# 自定义事实提取 prompt 文件路径 (相对于 backend 目录)
+custom_fact_extraction_prompt: prompts/project_memory_prompt.txt
