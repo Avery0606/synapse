@@ -43,6 +43,20 @@ def get_memories(req: GetMemoryRequest):
                 filters=filters if filters else None
             )
         
+        # 按创建时间降序排序（越新的排在前面）
+        if isinstance(result, dict) and "results" in result:
+            result["results"] = sorted(
+                result["results"],
+                key=lambda x: x.get("created_at", ""),
+                reverse=True
+            )
+        elif isinstance(result, list):
+            result = sorted(
+                result,
+                key=lambda x: x.get("created_at", ""),
+                reverse=True
+            )
+        
         return {
             "success": True,
             "data": result
