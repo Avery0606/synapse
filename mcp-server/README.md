@@ -82,7 +82,7 @@ Query memories from storage.
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
 | query | string | No | Semantic search query |
-| threshold | number | No | Similarity threshold (0-1) |
+| threshold | number | No | Similarity threshold (0-1), default 0.5 |
 | metadata | object | No | Filter by metadata fields (e.g., {category: "work", priority: "high"}) |
 
 ### add_memory

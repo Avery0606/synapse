@@ -30,7 +30,7 @@ const API_BASE_URL = process.env.API_BASE_URL || 'http://localhost:8000';
 // Tool input schemas
 const GetMemorySchema = z.object({
   query: z.string().optional().describe('Semantic search query'),
-  threshold: z.number().min(0).max(1).optional().describe('Similarity threshold (0-1)'),
+  threshold: z.number().min(0).max(1).default(0.5).describe('Similarity threshold (0-1), default 0.5'),
   metadata: z.record(z.any()).optional().describe('Filter by metadata fields (e.g., {category: "work", type: "important"})'),
 });
 
@@ -81,7 +81,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
             },
             threshold: {
               type: 'number',
-              description: 'Similarity threshold 0-1 (optional)',
+              description: 'Similarity threshold 0-1, default 0.5',
             },
             metadata: {
               type: 'object',
