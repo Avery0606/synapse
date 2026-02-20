@@ -1,0 +1,6 @@
+{
+  "backendUrl": "http://localhost:8000",
+  "workspace": "agentMemory",
+  "injectCategory": "basicInfos",
+  "similarityThreshold": 0.6
+}
