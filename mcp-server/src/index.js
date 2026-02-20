@@ -110,6 +110,14 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
           required: ['content'],
         },
       },
+      {
+        name: 'get_metadata_fields',
+        description: 'Query available metadata field names and values used in this workspace. Use this before adding or filtering memories to know which metadata fields are available (e.g., category values like "frontend", "backend", priority values like "high", "medium", "low").',
+        inputSchema: {
+          type: 'object',
+          properties: {},
+        },
+      },
     ],
   };
 });
@@ -155,7 +163,24 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
       if (params.metadata) requestBody.metadata = params.metadata;
 
       const result = await callBackend('/api/addMemories', requestBody);
-      
+       
+      return {
+        content: [
+          {
+            type: 'text',
+            text: JSON.stringify(result, null, 2),
+          },
+        ],
+      };
+    }
+
+    if (name === 'get_metadata_fields') {
+      const requestBody = {
+        workSpace: WORKSPACE,
+      };
+
+      const result = await callBackend('/api/getMetadataFields', requestBody);
+       
       return {
         content: [
           {

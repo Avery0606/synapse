@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
-from app.routes import addMemories, getMemories, updateMemory, deleteMemory, init
+from app.routes import addMemories, getMemories, updateMemory, deleteMemory, init, getMetadataFields
 
 # 加载 .env 文件
 load_dotenv()
@@ -21,6 +21,7 @@ app.add_middleware(
 app.include_router(init.router, prefix="/api", tags=["Init"])
 app.include_router(addMemories.router, prefix="/api", tags=["Memories"])
 app.include_router(getMemories.router, prefix="/api", tags=["Memories"])
+app.include_router(getMetadataFields.router, prefix="/api", tags=["Memories"])
 app.include_router(updateMemory.router, prefix="/api", tags=["Memories"])
 app.include_router(deleteMemory.router, prefix="/api", tags=["Memories"])
 
