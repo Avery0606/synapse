@@ -1,18 +1,7 @@
 <template>
   <div id="app">
-    <!-- 初始化加载遮罩 -->
-    <div v-if="initializing" class="init-loading">
-      <div class="init-content">
-        <div class="init-icon">
-          <el-icon class="is-loading" :size="56"><Loading /></el-icon>
-        </div>
-        <p class="init-title">正在初始化</p>
-        <p class="init-subtitle">正在连接 Synapse...</p>
-      </div>
-    </div>
-    
     <!-- 主内容 -->
-    <div v-else class="container">
+    <div class="container">
       <!-- 头部 -->
       <header class="app-header">
         <div class="header-content">
@@ -117,13 +106,13 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref } from 'vue'
 import { ElMessage } from 'element-plus'
-import { Loading, PriceTag } from '@element-plus/icons-vue'
+import { PriceTag } from '@element-plus/icons-vue'
 import WorkspaceSelector from './components/WorkspaceSelector.vue'
 import MemorySearch from './components/MemorySearch.vue'
 import MemoryList from './components/MemoryList.vue'
-import { getMemories, addMemories, init } from './api'
+import { getMemories, addMemories } from './api'
 
 const workspace = ref('')
 const newMemory = ref('')
@@ -136,16 +125,6 @@ const metadataKeyValues = ref({})  // { key: [value1, value2, ...] }
 const loading = ref(false)
 const addingLoading = ref(false)
 const isSearching = ref(false)
-const initializing = ref(true)
-
-onMounted(async () => {
-  try {
-    await init()
-    initializing.value = false
-  } catch (error) {
-    ElMessage.error('初始化失败: ' + error.message)
-  }
-})
 
 const handleWorkspaceChange = (ws) => {
   workspace.value = ws
@@ -279,52 +258,6 @@ const handleAddMemory = async () => {
 </script>
 
 <style>
-/* 初始化加载遮罩 */
-.init-loading {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(135deg, #f0f4ff 0%, #fdf4ff 50%, #f0f9ff 100%);
-  z-index: 9999;
-}
-
-.init-content {
-  text-align: center;
-  animation: fadeInUp 0.6s ease;
-}
-
-.init-icon {
-  width: 100px;
-  height: 100px;
-  margin: 0 auto 24px;
-  background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
-  border-radius: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  box-shadow: 0 12px 40px rgba(99, 102, 241, 0.3);
-  animation: pulse 2s ease-in-out infinite;
-}
-
-.init-title {
-  font-size: 24px;
-  font-weight: 600;
-  color: var(--text-primary);
-  margin: 0 0 8px;
-}
-
-.init-subtitle {
-  font-size: 14px;
-  color: var(--text-muted);
-  margin: 0;
-}
-
 /* 主容器 */
 #app {
   font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;

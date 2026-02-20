@@ -5,11 +5,6 @@ const api = axios.create({
   timeout: 300000  // 5分钟超时
 })
 
-// 初始化
-export function init() {
-  return api.get('/init')
-}
-
 // 添加记忆
 export function addMemories(workSpace, messages, metadata = null) {
   return api.post('/addMemories', {
