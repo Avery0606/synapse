@@ -52,6 +52,16 @@ async function callBackend(endpoint, data) {
   }
 }
 
+// Fire-and-forget async call (no waiting for response)
+function callBackendAsync(endpoint, data) {
+  axios.post(`${API_BASE_URL}${endpoint}`, data, {
+    headers: { 'Content-Type': 'application/json' },
+  }).catch((error) => {
+    // Silent fail - log to stderr for debugging
+    console.error(`[Async] Backend API error: ${error.message}`);
+  });
+}
+
 // Create MCP server
 const server = new Server(
   {
@@ -162,13 +172,14 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
       
       if (params.metadata) requestBody.metadata = params.metadata;
 
-      const result = await callBackend('/api/addMemories', requestBody);
-       
+      // Async call - return immediately without waiting for backend response
+      callBackendAsync('/api/addMemories', requestBody);
+      
       return {
         content: [
           {
             type: 'text',
-            text: JSON.stringify(result, null, 2),
+            text: JSON.stringify({ success: true, message: 'Memory added (async)' }, null, 2),
           },
         ],
       };
