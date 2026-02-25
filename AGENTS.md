@@ -28,19 +28,17 @@
 
 | 工具名称 | 功能 | 调用方式 |
 |---------|------|---------|
-| `get_memory` | 查询记忆 | `skill_mcp(mcp_name="agent-memory-mcp-server", tool_name="get_memory", arguments={...})` |
-| `add_memory` | 添加记忆 | `skill_mcp(mcp_name="agent-memory-mcp-server", tool_name="add_memory", arguments={...})` |
-| `get_metadata_fields` | 查询可用字段 | `skill_mcp(mcp_name="agent-memory-mcp-server", tool_name="get_metadata_fields", arguments={})` |
+| `get_memory` | 查询记忆 | `mcp_name="agent-memory-mcp-server", tool_name="get_memory", arguments={...}` |
+| `add_memory` | 添加记忆 | `mcp_name="agent-memory-mcp-server", tool_name="add_memory", arguments={...}` |
+| `get_metadata_fields` | 查询可用字段 | `mcp_name="agent-memory-mcp-server", tool_name="get_metadata_fields", arguments={}` |
 
 ### 使用规则
 
-#### 优先级：记忆优先
-
-**核心原则**：任何时候都优先查询记忆，只有当记忆无法回答问题时才深入查看项目代码。
+**核心原则**：记忆永远是最优先的。只要记忆能够**最低程度解决问题**，就只查记忆，不翻代码仓。只有当记忆完全无法回答问题时，才去查看项目代码。
 
 ```
-记忆查询 → 如果有答案 → 使用记忆中的信息
-       → 如果没有答案 → 查看项目代码 → 将重要信息写入记忆
+记忆查询 → 记忆能最低程度解决问题 → 使用记忆，不翻代码
+        → 记忆完全不够 → 查看项目代码 → 将重要信息写入记忆
 ```
 
 #### 何时必须查询记忆
@@ -62,75 +60,24 @@
 5. **与团队相关的内容**
    - 查询团队的编码规范、命名习惯、工作流程偏好
 
-#### 何时写入记忆
+**写入时机**：一轮完整的对话完成后，才将重要信息写入记忆。**不要在对话过程中实时写入**。
 
-完成以下操作后，**应当**将重要信息写入记忆：
+在以下情况下，一轮对话结束后应当写入记忆：
 
 1. **完成重要的技术决策**
    - 记录决策原因、备选方案、最终选择
-   
+
 2. **解决一个复杂问题**
    - 记录问题根因、解决方案、避免再次踩坑的要点
-   
+
 3. **发现项目特殊规则**
    - 记录团队特有的编码规范、命名约定、工作流程
-   
+
 4. **添加新功能/模块**
    - 记录架构设计思路、依赖关系、关键实现点
-   
+
 5. **代码审查意见**
    - 记录有价值的审查反馈，供后续参考
-
-#### 写入格式建议
-
-```javascript
-// 添加记忆示例
-await skill_mcp({
-  mcp_name: "agent-memory-mcp-server",
-  tool_name: "add_memory",
-  mcp_name: "memory",
-  tool_name: "add_memory",
-  arguments: {
-    content: "记录要保存的信息，包含上下文和关键细节",
-    metadata: {
-      category: "技术决策",    // 分类：技术决策/团队流程/业务知识/问题记录
-      priority: "high",       // 优先级：high/medium/low
-      tags: ["api", "认证"],  // 可选标签
-      related_file: "src/auth/middleware.ts"  // 可选：关联文件
-    }
-  }
-});
-```
-
-#### 查询格式建议
-
-```javascript
-// 查询记忆示例
-await skill_mcp({
-  mcp_name: "agent-memory-mcp-server",
-  tool_name: "get_memory",
-  mcp_name: "memory",
-  tool_name: "get_memory",
-  arguments: {
-    query: "关于用户认证的相关记录",
-    threshold: 0.6,  // 可选：提高阈值获得更精确的结果
-    metadata: {
-      category: "技术决策"  // 可选：按分类筛选
-    }
-  }
-});
-
-// 先查看可用的元数据字段
-await skill_mcp({
-  mcp_name: "agent-memory-mcp-server",
-  tool_name: "get_metadata_fields",
-  mcp_name: "memory",
-  tool_name: "get_metadata_fields",
-  arguments: {}
-});
-```
-
----
 
 ## 行为准则
 
