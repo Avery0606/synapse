@@ -132,7 +132,64 @@ node src/index.js --workSpace <workspace-name>
 
 ## MCP 服务器
 
-MCP 服务器提供两个工具供 AI 客户端使用。**注意**：服务器在启动时绑定单一 workspace，所有操作都在该 workspace 范围内。
+MCP 服务器提供四个工具供 AI 客户端使用。**注意**：服务器在启动时绑定单一 workspace，所有操作都在该 workspace 范围内。
+
+| 工具 | 功能 | 参数 |
+|------|------|------|
+| `add_memory` | 添加记忆 | `content`, `metadata?` |
+| `delete_memory` | 删除记忆 | `memoryId` |
+| `update_memory` | 更新记忆 | `memoryId`, `content` |
+
+### Claude Desktop / Cursor 配置
+
+```json
+{
+  "mcpServers": {
+    "memory": {
+      "command": "node",
+      "args": ["path/to/mcp-server/src/index.js", "--workSpace", "your-workspace"]
+    }
+  }
+}
+```
+## API 接口
+
+| 接口 | 方法 | 路径 | 说明 |
+|------|------|------|------|
+| init | GET | `/api/init` | 初始化 mem0 客户端 |
+| addMemories | POST | `/api/addMemories` | 添加记忆 |
+| getMemories | POST | `/api/getMemories` | 获取/搜索记忆 |
+| updateMemory | POST | `/api/updateMemory` | 更新记忆 |
+| deleteMemory | POST | `/api/deleteMemory` | 删除记忆 |
+
+### 接口详情
+## API 接口
+| `add_memory` | 添加记忆 | `content`, `metadata?` |
+| `update_memory` | 更新记忆 | `memoryId`, `content` |
+
+### Claude Desktop / Cursor 配置
+
+```json
+{
+  "mcpServers": {
+    "memory": {
+      "command": "node",
+      "args": ["path/to/mcp-server/src/index.js", "--workSpace", "your-workspace"]
+    }
+  }
+}
+```
+
+## API 接口
+
+### Claude Desktop / Cursor 配置
+| `update_memory` | 更新记忆 | `memoryId`, `content` |
+
+| 工具 | 功能 | 参数 |
+|------|------|------|
+| `get_memory` | 查询记忆 | `query?`, `threshold?`, `metadata?` |
+| `add_memory` | 添加记忆 | `content`, `metadata?` |
+| `delete_memory` | 删除记忆 | `memoryId` |
 
 | 工具 | 功能 | 参数 |
 |------|------|------|

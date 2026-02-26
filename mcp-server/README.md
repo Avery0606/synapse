@@ -6,6 +6,8 @@ MCP server for memory management - provides tools to query and add memories to y
 
 - **get_memory**: Query memories from storage with optional semantic search
 - **add_memory**: Add new memories to storage
+- **delete_memory**: Delete specific memory by ID
+- **update_memory**: Update existing memory content
 
 **Important**: The MCP server is bound to a single workspace configured at startup. All operations are scoped to that workspace.
 
@@ -94,6 +96,23 @@ Add a new memory to storage.
 | content | string | Yes | Memory content |
 | metadata | object | No | Optional metadata |
 
+### delete_memory
+
+Delete a specific memory from storage by memory ID.
+
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| memoryId | string | Yes | The memory ID to delete |
+
+### update_memory
+
+Update the content of an existing memory.
+
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| memoryId | string | Yes | The memory ID to update |
+| content | string | Yes | New memory content |
+
 ## Example
 
 ```javascript
@@ -115,5 +134,16 @@ await get_memory({
 await add_memory({
   content: "Remember to review the quarterly report",
   metadata: { category: "work", priority: "high" }
+});
+
+// Delete a memory by ID
+await delete_memory({
+  memoryId: "abc-123-def"
+});
+
+// Update memory content
+await update_memory({
+  memoryId: "abc-123-def",
+  content: "Updated memory content"
 });
 ```
