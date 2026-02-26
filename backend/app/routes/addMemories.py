@@ -23,6 +23,7 @@ def add_memories(req: AddMemoryRequest):
     - metadata: 可选的元数据(如category)
     """
     try:
+        print("[记忆] 记忆添加中...")
         m = get_memory_client()
         
         messages_list = [msg.model_dump() for msg in req.messages]
@@ -31,7 +32,7 @@ def add_memories(req: AddMemoryRequest):
             user_id=req.workSpace,
             metadata=req.metadata if req.metadata else {}
         )
-
+        print("[记忆] 记忆添加完成")
         return {
             "success": True,
             "data": result
