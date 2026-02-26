@@ -39,6 +39,15 @@ const AddMemorySchema = z.object({
   metadata: z.record(z.any()).optional().describe('Optional metadata (e.g., {category: "..."})'),
 });
 
+const DeleteMemorySchema = z.object({
+  memoryId: z.string().describe('Memory ID to delete'),
+});
+
+const UpdateMemorySchema = z.object({
+  memoryId: z.string().describe('Memory ID to update'),
+  content: z.string().describe('New memory content'),
+});
+
 // API helper functions
 async function callBackend(endpoint, data) {
   try {
@@ -128,6 +137,38 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
           properties: {},
         },
       },
+      {
+        name: 'delete_memory',
+        description: 'Delete a specific memory from the storage by memory ID. Use this to remove unwanted or outdated memories.',
+        inputSchema: {
+          type: 'object',
+          properties: {
+            memoryId: {
+              type: 'string',
+              description: 'The memory ID to delete',
+            },
+          },
+          required: ['memoryId'],
+        },
+      },
+      {
+        name: 'update_memory',
+        description: 'Update the content of an existing memory. Use this to correct or enhance existing memories.',
+        inputSchema: {
+          type: 'object',
+          properties: {
+            memoryId: {
+              type: 'string',
+              description: 'The memory ID to update',
+            },
+            content: {
+              type: 'string',
+              description: 'New memory content',
+            },
+          },
+          required: ['memoryId', 'content'],
+        },
+      },
     ],
   };
 });
@@ -192,6 +233,45 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 
       const result = await callBackend('/api/getMetadataFields', requestBody);
        
+      return {
+        content: [
+          {
+            type: 'text',
+            text: JSON.stringify(result, null, 2),
+          },
+        ],
+      };
+    }
+
+    if (name === 'delete_memory') {
+      const params = DeleteMemorySchema.parse(args);
+      
+      const requestBody = {
+        memoryId: params.memoryId,
+      };
+
+      const result = await callBackend('/api/deleteMemory', requestBody);
+      
+      return {
+        content: [
+          {
+            type: 'text',
+            text: JSON.stringify(result, null, 2),
+          },
+        ],
+      };
+    }
+
+    if (name === 'update_memory') {
+      const params = UpdateMemorySchema.parse(args);
+      
+      const requestBody = {
+        memoryId: params.memoryId,
+        content: params.content,
+      };
+
+      const result = await callBackend('/api/updateMemory', requestBody);
+      
       return {
         content: [
           {
