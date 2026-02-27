@@ -90,7 +90,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
     tools: [
       {
         name: 'get_memory',
-        description: 'Query memories from the memory storage. Use this to retrieve stored memories. You can search by query string, filter by metadata fields.',
+        description: 'Query memories from the memory storage. Use this to retrieve stored memories. You can search by query string, filter by metadata fields and Similarity threshold',
         inputSchema: {
           type: 'object',
           properties: {
@@ -112,7 +112,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
       },
       {
         name: 'add_memory',
-        description: 'Add a new memory to the memory storage. Use this to store important information that should be remembered.',
+        description: 'Add a new memory to the memory storage.',
         inputSchema: {
           type: 'object',
           properties: {
