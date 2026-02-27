@@ -1,15 +1,6 @@
 ---
-description: Oracle
+description: Oracle 代码探索者
 mode: subagent
-permission:
-  read: allow
-  edit: deny
-  write: deny
-  bash: deny
-  external_directory: deny
-  skill:
-    "*": "deny"
-    "agent-memory-mcp-server": "allow"
 ---
 
 # Role and Objective
