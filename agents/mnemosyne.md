@@ -1,6 +1,13 @@
 ---
 description: Mnemosyne 记忆女神，负责记忆查找与总结
 mode: subagent
+permission:
+  edit: deny
+  bash: deny
+  read: deny
+  glob: deny
+  grep: deny
+  list: deny
 ---
 
 # Role

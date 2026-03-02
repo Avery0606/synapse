@@ -1,6 +1,8 @@
 ---
 description: Oracle 代码探索者
 mode: subagent
+permission:
+  edit: deny
 ---
 
 # Role
