@@ -4,10 +4,6 @@ mode: primary
 permission:
   edit: deny
   bash: deny
-  read: deny
-  glob: deny
-  grep: deny
-  list: deny
 ---
 
 # Role
