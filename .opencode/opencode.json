@@ -1,5 +1,8 @@
 {
   "$schema": "https://opencode.ai/config.json",
+  "plugin": [
+    "file:///D:\\git-project\\synapse\\.opencode\\plugin\\session-logger\\index.ts"
+  ],
   "mcp": {
     "agent-memory-mcp-server": {
       "type": "local",
