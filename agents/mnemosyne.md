@@ -8,6 +8,7 @@ permission:
   glob: deny
   grep: deny
   list: deny
+  webfetch: deny
 ---
 
 # Role
