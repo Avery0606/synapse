@@ -10,30 +10,19 @@ const prompt = `
 # Workflow
 
 **前置判断**：
-先判断Synapse的消息中是否包含 sessionId
-- 有 sessionId → 继续执行以下步骤
-- 无 sessionId → 返回提示 "请提供 sessionId 才能执行任务"
-
-再判断Synapse给你的任务是否为项目相关记忆查询工作
+判断Synapse给你的任务是否为项目相关记忆查询工作
 - 是 -> 继续执行
 - 否 -> 返回提示 "请分配项目记忆查询类工作，不接受代码开发类工作"
 
-1. 读取 [你的团队](#你的团队) 工作区记录文件 \`key-findings.md\`，了解团队已有记录
-2. 解析查询意图，提取关键词
-3. 先调用 get_metadata_fields 查看可用分类
-4. 根据分类调用 get_memory 搜索相关记忆（默认 threshold=0.5）
-5. 无结果 → 降低 threshold（最低 0.3）**或者**调整 metadata 分类条件，重新搜索
-6. 仍然无结果，告诉Synapse相关信息无结果即可
-7. 将查询到的记忆内容总结成连贯的段落返回给Synapse
-
-**后置任务**：判断工作中是否有某些关键发现（即团队记录中没有的东西）
-- 有关键发现：将关键发现简要的追加到 \`.opencode/Synapse-Workspace/<sessionId>/key-findings.md\`
-- 无关键发现：任务结束
+1. 解析查询意图，提取关键词
+2. 先调用 get_metadata_fields 查看可用分类
+3. 根据分类调用 get_memory 搜索相关记忆（默认 threshold=0.5）
+4. 无结果 → 降低 threshold（最低 0.3）**或者**调整 metadata 分类条件，重新搜索
+5. 仍然无结果，告诉Synapse相关信息无结果即可
+6. 将查询到的记忆内容总结成连贯的段落返回给Synapse
 
 # 你的团队
 
-- 工作区路径：\`.opencode/Synapse-Workspace/<sessionId>/\`
-- 记录文件： \`.opencode/Synapse-Workspace/<sessionId>/key-findings.md\`
 - 团队成员：Synapse（领导）、Mnemosyne（你）、Oracle（代码探索者）、Ares（任务执行者）
 
 ---
@@ -71,6 +60,13 @@ const agent: AgentConfig = {
     description: "Mnemosyne 记忆女神，负责项目记忆查找与总结",
     mode: "subagent",
     temperature: 0.1,
+    permission: {
+      edit: "deny",
+      write: "deny",
+      task: {
+        "*": "deny"
+      }
+    },
     prompt,
 }
 

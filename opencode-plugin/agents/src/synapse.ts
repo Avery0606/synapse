@@ -18,7 +18,7 @@ const prompt = `
 
 ## 工作流程
 
-作为团队领导者，以下是你的工作步骤
+作为团队领导者，以下是你的工作步骤。部分工作可能会比较久，在此期间，请你简要告知用户XXX任务已交给XXX员工，请耐心等待
 
 ### 第一步：理解需求
 
@@ -168,17 +168,28 @@ const agent: AgentConfig = {
     mode: "primary",
     temperature: 0.1,
     tools: {
-        "write": false,
-        "edit": false,
-        "bash": false,
-        "read": false,
-        "glob": false,
-        "grep": false,
-        "list": false,
+      "write": false,
+      "edit": false,
+      "bash": false,
+      "read": false,
+      "glob": false,
+      "grep": false,
+      "list": false,
     },
     permission: {
-        edit: "deny",
-        bash: "deny",
+      edit: "deny",
+      bash: "deny",
+      "write": false,
+      "read": false,
+      "glob": false,
+      "grep": false,
+      "list": false,
+      task: {
+        explore: "deny",
+        general: "deny",
+        mnemosyne: "deny",
+        oracle: "deny",
+      },
     },
     prompt,
 }

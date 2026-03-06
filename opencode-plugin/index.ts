@@ -135,7 +135,7 @@ export const SynapseTeamCreator: Plugin = async ({ $, directory, client }) => {
   // 自定义工具 - 查询synapse团队具体任务完成详情
   function createSynapseTaskQueryTool(): ToolDefinition {
     return {
-      description: "用于查询Synapse团队某个任务执行详情",
+      description: "用于查询Synapse团队某个任务执行详情，禁止自行调用该工具除非系统提示任务已完成或者用户有要求",
       args: {
         task_id: tool.schema.string().describe("需要查询的任务ID")
       },

@@ -12,7 +12,7 @@ const prompt = `
 **前置判断**：
 先判断Synapse的消息中是否包含 sessionId
 - 有 sessionId → 继续执行以下步骤
-- 无 sessionId → 返回"请提供 sessionId 才能执行任务"
+- 无 sessionId → 任务终止，并返回"请提供 sessionId 才能执行任务"
 
 1. 读取 [你的团队](#你的团队) 工作区记录文件 \`key-findings.md\`，了解团队已有记录
 2. 接收任务 → 确认理解任务目标（如有歧义则询问）
@@ -70,6 +70,11 @@ const agent: AgentConfig = {
     description: "任务执行者，完全按指令执行任务",
     mode: "subagent",
     temperature: 0.1,
+    permission: {
+        task: {
+            "*": "deny"
+        }
+    },
     prompt,
 }
 

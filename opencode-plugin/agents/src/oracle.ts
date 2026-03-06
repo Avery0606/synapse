@@ -12,7 +12,7 @@ const prompt = `
 **前置判断**：
 先判断Synapse的消息中是否包含 sessionId
 - 有 sessionId → 继续执行以下步骤
-- 无 sessionId → 返回"请提供 sessionId 才能执行任务"
+- 无 sessionId → 任务终止，返回"请提供 sessionId 才能执行任务"
 
 再判断Synapse给你的任务是否为项目代码查询相关的工作
 - 是 -> 继续执行
@@ -53,6 +53,11 @@ const agent: AgentConfig = {
     description: "代码探索者，负责代码具体代码探索",
     mode: "subagent",
     temperature: 0.1,
+    permission: {
+        task: {
+            "*": "deny"
+        }
+    },
     prompt,
 }
 
