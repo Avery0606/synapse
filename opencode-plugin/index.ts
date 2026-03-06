@@ -2,6 +2,7 @@ import { existsSync } from "fs"
 import { type Plugin, tool, type ToolDefinition } from "@opencode-ai/plugin"
 import { type Config } from "@opencode-ai/sdk"
 import { SynapseTeam } from "./agents"
+import { SynapseCommand } from "./commands"
 
 export const SynapseTeamCreator: Plugin = async ({ $, directory, client }) => {
   // 工作区根目录
@@ -160,8 +161,19 @@ export const SynapseTeamCreator: Plugin = async ({ $, directory, client }) => {
 
   // 声明Synapse Agents Team
   function defineSynapseTeamAgents(config: Config) {
-    Object.keys(SynapseTeam).forEach(agentName => {
-      config.agent[agentName] = SynapseTeam[agentName]
+    Object.keys(SynapseTeam).forEach((agentName) => {
+      if (config.agent) {
+        config.agent[agentName as keyof typeof SynapseTeam] = SynapseTeam[agentName as keyof typeof SynapseTeam]
+      }
+    })
+  }
+
+  // 声明自定义Synapse指令
+  function defineSynapseCommand(config: Config) {
+    Object.keys(SynapseCommand).forEach((commandName) => {
+      if (config.command) {
+        config.command[commandName as keyof typeof SynapseCommand] = SynapseCommand[commandName as keyof typeof SynapseCommand]
+      }
     })
   }
 
@@ -172,6 +184,7 @@ export const SynapseTeamCreator: Plugin = async ({ $, directory, client }) => {
     },
     "config": async (config) => {
       defineSynapseTeamAgents(config)
+      defineSynapseCommand(config)
     },
     "chat.message": async (input, output) => {
       const { sessionID, agent } = input
