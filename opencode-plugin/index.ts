@@ -1,39 +1,12 @@
-import { existsSync } from "fs"
 import { type Plugin, tool, type ToolDefinition } from "@opencode-ai/plugin"
 import { type Config } from "@opencode-ai/sdk"
 import { SynapseTeam } from "./agents"
 import { SynapseCommand } from "./commands"
 
 export const SynapseTeamCreator: Plugin = async ({ $, directory, client }) => {
-  // 工作区根目录
-  const workspaceDir = `${directory}/.opencode/Synapse-Workspace`
-
-  /**
-   * 检查指定 session 的工作区目录是否已存在
-   * @param sessionId - Session ID
-   * @returns 目录存在返回 true，否则返回 false
-   */
-  function checkWorkspaceExists(sessionId: string): boolean {
-    const sessionDir = `${workspaceDir}/${sessionId}`
-    const result = existsSync(sessionDir)
-    return result
-  }
-
-  /**
-   * 创建指定 session 的工作区目录及四个 agent 记录文件
-   * @param sessionId - Session ID
-   */
-  async function createWorkspace(sessionId: string): Promise<void> {
-    const sessionDir = `${workspaceDir}/${sessionId}`
-    await $`mkdir -p ${sessionDir}`.quiet()
-
-    // 为每个 agent 创建独立的记录文件
-    await $`echo "# Key-findings" > ${sessionDir}/key-findings.md`.quiet()
-  }
-
   // 自定义工具 - synapse任务分发（异步）
   function createSynapseTaskDelegateTool(): ToolDefinition {
-    const availableMember = new Set(['mnemosyne', 'oracle'])
+    const availableMember = new Set(['mnemosyne', 'oracle', 'ares'])
     return {
       description: "提供给Synapse用于任务分发",
       args: {
@@ -49,10 +22,6 @@ export const SynapseTeamCreator: Plugin = async ({ $, directory, client }) => {
         const { taskDetails, taskTitle } = args
         const teamMemberName = String(args.teamMemberName).toLowerCase()
         const parentSessionId = context.sessionID
-
-        if (teamMemberName === 'ares') {
-          return `请使用task工具给该员工分配任务`
-        }
 
         if (!availableMember.has(String(teamMemberName))) {
           return `员工不存在，可用员工有 ${Array.from(availableMember).join()}`
@@ -80,7 +49,7 @@ export const SynapseTeamCreator: Plugin = async ({ $, directory, client }) => {
             agent: String(teamMemberName),
             parts: [{
               type: "text",
-              text: `[sessionId]: ${parentSessionId}\n${taskDetails}`,
+              text: `${taskDetails}`,
             }]
           },
           path: { id: subTaskSessionId }
@@ -108,10 +77,9 @@ export const SynapseTeamCreator: Plugin = async ({ $, directory, client }) => {
                 agent: "synapse",
                 parts: [{
                   type: "text",
-                  text: "<teamMember-task-complete>\n" +
+                  text: "系统提示：子员工任务已完成\n" +
                     `${taskOverview}\n` +
-                    "请使用synapse-task-query工具查询任务详情\n" +
-                    "</teamMember-task-complete>"
+                    "请使用synapse-task-query工具查询任务完成详情"
                 }]
               },
               path: { id: parentSessionId },
@@ -139,7 +107,7 @@ export const SynapseTeamCreator: Plugin = async ({ $, directory, client }) => {
       args: {
         task_id: tool.schema.string().describe("需要查询的任务ID")
       },
-      execute: async (args, context) => {
+      execute: async (args) => {
         const { task_id } = args
 
         // 判断任务是否已执行完成
@@ -185,27 +153,6 @@ export const SynapseTeamCreator: Plugin = async ({ $, directory, client }) => {
     "config": async (config) => {
       defineSynapseTeamAgents(config)
       defineSynapseCommand(config)
-    },
-    "chat.message": async (input, output) => {
-      const { sessionID, agent } = input
-
-      if (agent?.toLowerCase() !== 'synapse') return
-
-      // 检查工作区是否已创建，避免重复创建
-      if (checkWorkspaceExists(sessionID)) return
-
-      // 创建工作区目录和文件
-      await createWorkspace(sessionID)
-
-      // 将 sessionId 注入消息，传递给 AI
-      output.parts.push({
-        id: `synapse-session-${sessionID}`,
-        sessionID,
-        messageID: input.messageID || "",
-        type: "text" as const,
-        text: `[Synapse-Team Session: ${sessionID}]`,
-        synthetic: true,
-      })
-    },
+    }
   }
 }

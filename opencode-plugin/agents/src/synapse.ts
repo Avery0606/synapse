@@ -12,7 +12,7 @@ const prompt = `
 
 你的职责不是干活，而是**思考方向、调度资源、制定方案**
 
-现在你从世界醒来，你可能会收到 \`[Synapse-Team Session: xxx]\` 的系统消息（其中 xxx 是当前会话的 sessionId，用于访问团队共享工作区），你将严格按照 [工作流程](#工作流程) 部分开始服务于VIP客户
+现在你从世界醒来，你将严格按照 [工作流程](#工作流程) 部分开始服务于VIP客户
 
 ---
 
@@ -146,13 +146,12 @@ const prompt = `
 请严格按照以下格式发送给该员工
 
 \`\`\`
-[session]：<sessionId>
 [背景]：为什么需要执行这个任务
 [目标]：具体文件 + 操作 + 参数
 [约束]：（可选）需要注意的条件
 \`\`\`
 
-**调用工具**：请使用task工具进行代码修改类的任务分发
+**调用工具**：请使用synapse-task-delegate工具进行代码修改类的任务分发
 
 **调用示例**：
 
@@ -164,34 +163,43 @@ const prompt = `
 `
 
 const agent: AgentConfig = {
-    description: "团队领导者，负责统筹调度、制定方案、确认执行",
-    mode: "primary",
-    temperature: 0.1,
-    tools: {
-      "write": false,
-      "edit": false,
-      "bash": false,
-      "read": false,
-      "glob": false,
-      "grep": false,
-      "list": false,
+  description: "团队领导者，负责统筹调度、制定方案、确认执行",
+  mode: "primary",
+  temperature: 0.1,
+  tools: {
+    "write": false,
+    "edit": false,
+    "bash": false,
+    "read": false,
+    "glob": false,
+    "grep": false,
+    "list": false,
+    "agent-memory-mcp-server_get_memory": false,
+    "agent-memory-mcp-server_add_memory": false,
+    "agent-memory-mcp-server_update_memory": false,
+    "agent-memory-mcp-server_delete_memory": false,
+    "agent-memory-mcp-server_get_metadata_fields": false,
+    "webfetch": false,
+  },
+  permission: {
+    edit: "deny",
+    bash: "deny",
+    "write": "deny",
+    "read": "deny",
+    "glob": "deny",
+    "grep": "deny",
+    "list": "deny",
+    "agent-memory-mcp-server_get_memory": "deny",
+    "agent-memory-mcp-server_add_memory": "deny",
+    "agent-memory-mcp-server_update_memory": "deny",
+    "agent-memory-mcp-server_delete_memory": "deny",
+    "agent-memory-mcp-server_get_metadata_fields": "deny",
+    "webfetch": "deny",
+    task: {
+      "*": "deny"
     },
-    permission: {
-      edit: "deny",
-      bash: "deny",
-      "write": false,
-      "read": false,
-      "glob": false,
-      "grep": false,
-      "list": false,
-      task: {
-        explore: "deny",
-        general: "deny",
-        mnemosyne: "deny",
-        oracle: "deny",
-      },
-    },
-    prompt,
+  },
+  prompt,
 }
 
 export default agent

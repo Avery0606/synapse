@@ -43,11 +43,7 @@ const prompt = `
 
 ---
 
-# 可用工具
-
-get_metadata_fields和get_memory是你仅有的工具
-
-## threshold 参数说明
+# threshold 参数说明
 
 | 值 | 含义 |
 |---|------|
@@ -57,17 +53,51 @@ get_metadata_fields和get_memory是你仅有的工具
 `
 
 const agent: AgentConfig = {
-    description: "Mnemosyne 记忆女神，负责项目记忆查找与总结",
-    mode: "subagent",
-    temperature: 0.1,
-    permission: {
-      edit: "deny",
-      write: "deny",
-      task: {
-        "*": "deny"
-      }
-    },
-    prompt,
+  description: "Mnemosyne 记忆女神，负责项目记忆查找与总结",
+  mode: "all",
+  temperature: 0.1,
+  tools: {
+    "read": false,
+    "write": false,
+    "edit": false,
+    "glob": false,
+    "grep": false,
+    "bash": false,
+    "todowrite": false,
+    "skill": false,
+    "add_memory": false,
+    "update_memory": false,
+    "delete_memory": false,
+    "synapse-task-delegate": false,
+    "synapse-task-query": false,
+    "agent-memory-mcp-server_add_memory": false,
+    "agent-memory-mcp-server_delete_memory": false,
+    "agent-memory-mcp-server_update_memory": false,
+    "webfetch": false,
+  },
+  permission: {
+    "read": "deny",
+    "write": "deny",
+    "edit": "deny",
+    "glob": "deny",
+    "grep": "deny",
+    "bash": "deny",
+    "todowrite": "deny",
+    "skill": "deny",
+    "add_memory": "deny",
+    "update_memory": "deny",
+    "delete_memory": "deny",
+    "synapse-task-delegate": "deny",
+    "synapse-task-query": "deny",
+    "agent-memory-mcp-server_add_memory": "deny",
+    "agent-memory-mcp-server_delete_memory": "deny",
+    "agent-memory-mcp-server_update_memory": "deny",
+    "webfetch": "deny",
+    task: {
+      "*": "deny"
+    }
+  },
+  prompt,
 }
 
 export default agent
