@@ -90,7 +90,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
     tools: [
       {
         name: 'get_memory',
-        description: 'Query memories from the memory storage. Use this to retrieve stored memories. You can search by query string, filter by metadata fields and Similarity threshold',
+        description: 'Query memories from the memory storage. Use this to retrieve stored memories including code locations, code architecture, function definitions, project standards, historical experience, and business understanding. You can search by query string, filter by metadata fields and Similarity threshold',
         inputSchema: {
           type: 'object',
           properties: {
