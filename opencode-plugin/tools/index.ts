@@ -46,7 +46,8 @@ function loopUpdateSubSessionStatus({ client }: { client: OpencodeClient }) {
             agent: "synapse",
             parts: [{
               type: "text",
-              text: `系统提示：${sessionId} 任务已完成\n请使用synapse-task-query工具查询任务完成详情`
+              text: `系统提示：${sessionId} 任务已完成\n请使用synapse-task-query工具查询任务完成详情`,
+              synthetic: true
             }]
           },
           path: { id: targetSessionInstance.parentSessionId },
