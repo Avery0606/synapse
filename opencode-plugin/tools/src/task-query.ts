@@ -19,7 +19,7 @@ export function createTaskQueryTool({ client }: { client: OpencodeClient }): Too
         return '任务会话不存在'
       }
       if (targetSessionInstance.status !== "idle") {
-        return "任务执行中，请耐心等待系统提示后再进行任务详情查询"
+        return "请勿频繁查询，任务完成后系统会自动通知"
       }
 
       const taskMessages = await client.session.messages({ path: { id: String(subSessionId) } })
