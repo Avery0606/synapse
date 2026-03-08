@@ -1,6 +1,6 @@
 import { tool, type ToolDefinition } from "@opencode-ai/plugin"
 import { OpencodeClient } from "@opencode-ai/sdk"
-import { useStore } from '../store'
+import { useStore, type SubSession } from '../store'
 
 // 自定义工具 - 查询synapse团队具体任务完成详情
 export function createTaskQueryTool({ client }: { client: OpencodeClient }): ToolDefinition {
@@ -9,12 +9,12 @@ export function createTaskQueryTool({ client }: { client: OpencodeClient }): Too
     args: {
       subSessionId: tool.schema.string().describe("需要查询的子任务会话ID")
     },
-    execute: async (args) => {
+    execute: async (args: { subSessionId: string }) => {
       const { subSessionId } = args
       const { subSessionsStore } = useStore();
 
       // 判断任务是否已执行完成
-      const targetSessionInstance = subSessionsStore[subSessionId]
+      const targetSessionInstance: SubSession = subSessionsStore[subSessionId]
       if (!targetSessionInstance) {
         return '任务会话不存在'
       }
