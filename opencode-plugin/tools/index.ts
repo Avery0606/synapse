@@ -16,7 +16,7 @@ export const createTools = ({ client, directory }:
 
   return {
     "synapse-create-async-task": generateCreateAsyncTaskTool({ client, directory }),
-    "synapse-append-task-to-session": createAppendTaskToSessionTool({ client, directory }),
+    "synapse-append-task-to-session": createAppendTaskToSessionTool({ client }),
     "synapse-task-query": createTaskQueryTool({ client })
   }
 }
@@ -31,7 +31,7 @@ function loopUpdateSubSessionStatus({ client }: { client: OpencodeClient }) {
       const targetSessionInstance = subSessionsStore[sessionId]
       const oldStatus = targetSessionInstance.status
       const newSessionStatusResp = allSessionsStatus.data[sessionId]
-      let newStatus;
+      let newStatus: 'idle' | 'busy';
       if (!newSessionStatusResp || newSessionStatusResp.type === 'idle') {
         newStatus = 'idle'
       } else {
