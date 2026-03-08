@@ -30,7 +30,7 @@ function loopUpdateSubSessionStatus({ client }: { client: OpencodeClient }) {
     Object.keys(subSessionsStore).forEach(sessionId => {
       const targetSessionInstance = subSessionsStore[sessionId]
       const oldStatus = targetSessionInstance.status
-      const newSessionStatusResp = allSessionsStatus.data[sessionId]
+      const newSessionStatusResp = allSessionsStatus.data?.[sessionId]
       let newStatus: 'idle' | 'busy';
       if (!newSessionStatusResp || newSessionStatusResp.type === 'idle') {
         newStatus = 'idle'
@@ -49,7 +49,7 @@ function loopUpdateSubSessionStatus({ client }: { client: OpencodeClient }) {
               text: `[来自系统提示(非用户输入)] ${sessionId} 任务已完成\n请使用synapse-task-query工具查询任务完成详情`
             }]
           },
-          path: { id: targetSessionInstance.parentSessionId },
+          path: { id: targetSessionInstance.parentSessionId! },
         })
       }
     })
