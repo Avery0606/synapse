@@ -1,10 +1,12 @@
-// 存储所有子会话实例 sessionId - instance
-// status: idle || busy
-// tasks
-// member_type
-// sessionId
-// parentSessionId
-const subSessionsStore = {}
+export interface SubSession {
+  status: 'idle' | 'busy'
+  tasks: any[]
+  member_type: 'mnemosyne' | 'oracle' | 'ares'
+  sessionId: string
+  parentSessionId?: string
+}
+
+const subSessionsStore: Record<string, SubSession> = {}
 
 export const useStore = () => {
     return { subSessionsStore }

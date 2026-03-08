@@ -1,4 +1,5 @@
 import { tool, type ToolDefinition } from "@opencode-ai/plugin"
+import { SubSession } from '../store'
 import { OpencodeClient } from "@opencode-ai/sdk"
 import { useStore } from "../store"
 
@@ -53,7 +54,7 @@ export function generateCreateAsyncTaskTool(
         member_type,
         sessionId: subSessionId,
         parentSessionId
-      }
+      } as SubSession
 
       // 告知子员工任务详情
       client.session.promptAsync({
