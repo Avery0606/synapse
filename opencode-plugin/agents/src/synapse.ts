@@ -122,11 +122,6 @@ const agent: AgentConfig = {
   mode: "primary",
   temperature: 0.1,
   tools: {
-    "write": false,
-    "bash": false,
-    "glob": false,
-    "grep": false,
-    "list": false,
     "agent-memory-mcp-server_get_memory": false,
     "agent-memory-mcp-server_update_memory": false,
     "agent-memory-mcp-server_delete_memory": false,
@@ -134,17 +129,11 @@ const agent: AgentConfig = {
     "webfetch": false,
   },
   permission: {
-    bash: "deny",
-    "write": "deny",
-    glob: "deny",
-    grep: "deny",
-    list: "deny",
     "agent-memory-mcp-server_get_memory": "deny",
     "agent-memory-mcp-server_add_memory": "ask",
     "agent-memory-mcp-server_update_memory": "deny",
     "agent-memory-mcp-server_delete_memory": "deny",
     "agent-memory-mcp-server_get_metadata_fields": "deny",
-    webfetch: "deny",
     task: {
       "*": "deny"
     },
