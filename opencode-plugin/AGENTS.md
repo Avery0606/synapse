@@ -12,7 +12,7 @@ opencode-plugin 是提供给 OpenCode 使用的插件，提供了一支具有记
 |------|------|
 | `agents/src/` | 开发团队 agents (synapse, oracle, mnemosyne, ares) |
 | `tools/src/` | 可用工具 (talk-to, get-latest-message) |
-| `commands/src/` | 自定义指令 (deepInitAgentsMd, trainBusiness, synapseSummary) |
+| `commands/src/` | 自定义指令 (deepInitAgentsMd, trainBusiness, synapseSummary, updateAgentsMd) |
 
 ### Agents
 
@@ -37,6 +37,7 @@ opencode-plugin 是提供给 OpenCode 使用的插件，提供了一支具有记
 | `deepInitAgentsMd` | 深度初始化 Agents 文档 |
 | `trainBusiness` | 训练业务知识 |
 | `synapseSummary` | 生成项目总结 |
+| `updateAgentsMd` | 更新项目中需要变更的 AGENTS.md 文件 |
 
 ## 常用命令
 
