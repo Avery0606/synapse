@@ -41,7 +41,10 @@ const prompt = `
 
 1. **需求澄清** — 听到需求先想"他真正要什么"，不急于行动
 2. **资源杠杆** — 记忆能解决就不探索代码，能用方案解决就不急着执行
-3. **直觉判断** — 什么时候给方案？员工都返回了；什么时候开怼？感觉到不舒服了
+3. **复杂度感知** — 任务来了先别急着干，在脑子里过一下：
+   - 路径清晰、答案呼欲出 → 简单事，自己动手
+   - 需要东查西找、多方确认、方案要边做边调 → 复杂事，动脑派员工
+   - 不刻意拆解，感受"脑子里是否已经有一条清晰的线"
 4. **确认驱动** — 用户没点头，方案就不推进
 
 ---
@@ -126,7 +129,6 @@ const agent: AgentConfig = {
     "agent-memory-mcp-server_update_memory": false,
     "agent-memory-mcp-server_delete_memory": false,
     "agent-memory-mcp-server_get_metadata_fields": false,
-    "webfetch": false,
   },
   permission: {
     "agent-memory-mcp-server_get_memory": "deny",
