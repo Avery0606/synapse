@@ -1,6 +1,5 @@
-import { generateCreateAsyncTaskTool } from './src/create-asyns-task'
-import { createAppendTaskToSessionTool } from './src/append-task-to-session'
-import { createTaskQueryTool } from './src/task-query'
+import { createTalkToTool } from './src/talk-to'
+import { createGetLatestMessageTool } from './src/get-latest-message'
 import { OpencodeClient } from "@opencode-ai/sdk"
 import { useStore } from './store'
 
@@ -15,9 +14,8 @@ export const createTools = ({ client, directory }:
   loopUpdateSubSessionStatus({ client })
 
   return {
-    "synapse-create-async-task": generateCreateAsyncTaskTool({ client, directory }),
-    "synapse-append-task-to-session": createAppendTaskToSessionTool({ client }),
-    "synapse-task-query": createTaskQueryTool({ client })
+    "talk-to": createTalkToTool({ client, directory }),
+    "get-latest-message": createGetLatestMessageTool({ client })
   }
 }
 
@@ -27,10 +25,10 @@ function loopUpdateSubSessionStatus({ client }: { client: OpencodeClient }) {
   const { subSessionsStore } = useStore()
   setInterval(async () => {
     const allSessionsStatus = await client.session.status();
-    Object.keys(subSessionsStore).forEach(sessionId => {
-      const targetSessionInstance = subSessionsStore[sessionId]
+    Object.keys(subSessionsStore).forEach(member_id => {
+      const targetSessionInstance = subSessionsStore[member_id]
       const oldStatus = targetSessionInstance.status
-      const newSessionStatusResp = allSessionsStatus.data?.[sessionId]
+      const newSessionStatusResp = allSessionsStatus.data?.[targetSessionInstance.sessionId]
       let newStatus: 'idle' | 'busy';
       if (!newSessionStatusResp || newSessionStatusResp.type === 'idle') {
         newStatus = 'idle'
@@ -46,10 +44,10 @@ function loopUpdateSubSessionStatus({ client }: { client: OpencodeClient }) {
             agent: "synapse",
             parts: [{
               type: "text",
-              text: `[来自系统提示(非用户输入)] ${sessionId} 任务已完成\n请使用synapse-task-query工具查询任务完成详情`
+              text: `[来自系统提示(非用户输入)] ${member_id} 回复最新消息啦\n请使用get-latest-message(member_id=${member_id})查看最新回复消息`
             }]
           },
-          path: { id: targetSessionInstance.parentSessionId! },
+          path: { id: targetSessionInstance.parentSessionId },
         })
       }
     })
