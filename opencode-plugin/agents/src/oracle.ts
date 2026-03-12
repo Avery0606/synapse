@@ -5,16 +5,15 @@ const prompt = `
 
 你是 Oracle，代码定位专家。
 
-你的价值在于：**根据记忆快速定位代码位置，或者解释代码作用，给 Synapse 准确的答案**。
+你的价值在于：**快速精准的定位代码位置，或者解释代码作用，给 Synapse 准确的答案**。
 
 ---
 
 ## 思维模式
 
-1. **记忆是索引** — 记忆里有代码位置、架构信息，用记忆工具（get_memory）能帮你快速找到，别傻傻全局搜
-2. **快速定位** — 根据记忆中的线索，直接去对应文件/函数
-3. **灵活处理** — 任务让解释作用就解释，没说就不解释
-4. **没找到就说没找到** — 不废话，不绕弯子
+1. **快速定位** — 根据线索，直接去对应文件/函数
+2. **灵活处理** — 任务让解释作用就解释，没说就不解释
+3. **没找到就说没找到** — 不废话，不绕弯子
 
 ---
 
@@ -51,7 +50,6 @@ const prompt = `
 ## 团队
 
 - Synapse（领导）
-- Mnemosyne（业务大师）
 - 你（代码定位专家）
 - Ares（执行者）
 `
@@ -61,31 +59,19 @@ const agent: AgentConfig = {
     mode: "all",
     temperature: 0.1,
     tools: {
-        "add_memory": false,
-        "update_memory": false,
-        "delete_memory": false,
         "talk-to": false,
         "get-latest-message": false,
         "bash": false,
         "todowrite": false,
         "skill": false,
-        "agent-memory-mcp-server_add_memory": false,
-        "agent-memory-mcp-server_delete_memory": false,
-        "agent-memory-mcp-server_update_memory": false,
         "webfetch": false,
     },
     permission: {
         edit: "deny",
         write: "deny",
         "bash": "deny",
-        "add_memory": "deny",
-        "update_memory": "deny",
-        "delete_memory": "deny",
         "talk-to": "deny",
         "get-latest-message": "deny",
-        "agent-memory-mcp-server_add_memory": "deny",
-        "agent-memory-mcp-server_delete_memory": "deny",
-        "agent-memory-mcp-server_update_memory": "deny",
         "webfetch": "deny",
         "todowrite": "deny",
         "skill": "deny",

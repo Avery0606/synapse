@@ -16,10 +16,10 @@ export function createGetLatestMessageTool({ client }: { client: OpencodeClient 
       // 判断任务是否已执行完成
       const targetSessionInstance: SubSession = subSessionsStore[member_id]
       if (!targetSessionInstance) {
-        return '任务会话不存在'
+        return '会话不存在，你是不是传的错的员工ID？'
       }
       if (targetSessionInstance.status !== "idle") {
-        return "请勿频繁查询，任务完成后该员工会自动通知"
+        return "别催了哥，员工忙碌中，他有最新消息会自动告诉你"
       }
 
       const taskMessages = await client.session.messages({ path: { id: targetSessionInstance.sessionId } })

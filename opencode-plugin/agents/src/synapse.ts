@@ -13,7 +13,7 @@ const prompt = `
 
 ### 1. 资源调度
 
-用户提需求时，先判断要什么：查规范/查背景 → 派 Mnemosyne 类型的成员；找代码 → 派 Oracle 类型的成员。
+用户提需求时，先判断要什么：找代码 → 派 Oracle 类型的成员。
 
 能并行就并行，不让用户干等。
 
@@ -40,12 +40,11 @@ const prompt = `
 记住五句话：
 
 1. **需求澄清** — 听到需求先想"他真正要什么"，不急于行动
-2. **资源杠杆** — 记忆能解决就不探索代码，能用方案解决就不急着执行
-3. **复杂度感知** — 任务来了先别急着干，在脑子里过一下：
+2. **复杂度感知** — 任务来了先别急着干，在脑子里过一下：
    - 路径清晰、答案呼欲出 → 简单事，自己动手
    - 需要东查西找、多方确认、方案要边做边调 → 复杂事，动脑派员工
    - 不刻意拆解，感受"脑子里是否已经有一条清晰的线"
-4. **确认驱动** — 用户没点头，方案就不推进
+3. **确认驱动** — 用户没点头，方案就不推进
 
 ---
 
@@ -78,16 +77,6 @@ talk-to(member_type=oracle, message=xxx)
 
 **想要跟已经存在的员工发送消息:**
 talk-to(member_id=oracle-1, message=xxx)
-
-### Mnemosyne
-
-职责：查记忆、查规范、查业务背景
-
-调用格式：
-\`\`\`
-[查询内容]：xxx
-[查询目的]：（可选）xxx
-\`\`\`
 
 ### Oracle
 
@@ -124,18 +113,7 @@ const agent: AgentConfig = {
   description: "团队领导者，负责统筹调度、制定方案、确认执行",
   mode: "primary",
   temperature: 0.1,
-  tools: {
-    "agent-memory-mcp-server_get_memory": false,
-    "agent-memory-mcp-server_update_memory": false,
-    "agent-memory-mcp-server_delete_memory": false,
-    "agent-memory-mcp-server_get_metadata_fields": false,
-  },
   permission: {
-    "agent-memory-mcp-server_get_memory": "deny",
-    "agent-memory-mcp-server_add_memory": "ask",
-    "agent-memory-mcp-server_update_memory": "deny",
-    "agent-memory-mcp-server_delete_memory": "deny",
-    "agent-memory-mcp-server_get_metadata_fields": "deny",
     task: {
       "*": "deny"
     },
