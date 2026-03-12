@@ -1,53 +1,6 @@
-# Synapse
+# 项目简介
+**项目简要描述**: OpenCode 插件，提供一支高效的 AI 开发团队
+**主要业务**: 通过模拟专业化团队角色，帮助开发者提高编码效率。核心成员包括 Synapse（团队领导者）、Oracle（代码定位专家）、Ares（任务执行者）
 
-OpenCode 插件，提供一支高效的 AI 开发团队。
-
-## 项目业务背景
-
-Synapse 是一支 AI 开发团队，通过分工协作（协调、探索、执行）完成开发任务。
-
-## 项目结构
-
-```
-synapse/
-└── opencode-plugin/         # OpenCode 插件
-    ├── agents/              # 团队 Agents
-    │   ├── synapse.ts       # 团队领导者
-    │   ├── oracle.ts        # 代码定位专家
-    │   └── ares.ts          # 任务执行者
-    ├── commands/            # 自定义指令
-    │   ├── deepInitAgentsMd.ts
-    │   └── updateAgentsMd.ts
-    └── tools/               # 自定义工具
-        ├── talk-to.ts
-        └── get-latest-message.ts
-```
-
-### opencode-plugin/
-
-| 目录 | 说明 |
-|------|------|
-| `agents/` | 团队 Agents (synapse, oracle, ares) |
-| `commands/` | 自定义指令 |
-| `tools/` | 自定义工具 |
-
-## 技术栈
-
-- **语言**: TypeScript
-- **SDK**: @opencode-ai/plugin
-
-## 常用命令
-
-```bash
-cd opencode-plugin
-
-# 安装依赖
-npm install
-
-# 构建
-npm run build
-```
-
-## 文档
-
-详细说明见 [opencode-plugin/AGENTS.md](opencode-plugin/AGENTS.md)
+# 开发约束
+- 约束点1: 使用 TypeScript 进行插件开发

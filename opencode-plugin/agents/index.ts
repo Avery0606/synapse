@@ -1,10 +1,12 @@
-import Synapse from './src/synapse'
-import Oracle from './src/oracle'
-import Ares from './src/ares'
+import { type AgentConfig } from "@opencode-ai/sdk"
+import { createSynapse } from './src/synapse'
+import { createOracle } from './src/oracle'
+import { createAres } from './src/ares'
 
-
-export const SynapseTeam = {
-    "synapse": Synapse,
-    "oracle": Oracle,
-    "ares": Ares
+export function createSynapseTeam(directory: string): { [key: string]: AgentConfig } {
+    return {
+        "synapse": createSynapse(),
+        "oracle": createOracle(directory),
+        "ares": createAres()
+    }
 }

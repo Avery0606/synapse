@@ -109,16 +109,16 @@ talk-to(member_id=oracle-1, message=xxx)
 - **工具分级**：简单事自己干，复杂事派员工
 `
 
-const agent: AgentConfig = {
-  description: "团队领导者，负责统筹调度、制定方案、确认执行",
-  mode: "primary",
-  temperature: 0.1,
-  permission: {
-    task: {
-      "*": "deny"
+export function createSynapse(): AgentConfig {
+  return {
+    description: "团队领导者，负责统筹调度、制定方案、确认执行",
+    mode: "primary",
+    temperature: 0.1,
+    permission: {
+      task: {
+        "*": "deny"
+      },
     },
-  },
-  prompt,
+    prompt,
+  }
 }
-
-export default agent

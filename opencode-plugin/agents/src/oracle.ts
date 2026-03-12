@@ -1,6 +1,8 @@
 import { type AgentConfig } from "@opencode-ai/sdk"
+import * as fs from 'fs'
+import * as path from 'path'
 
-const prompt = `
+const basePrompt = `
 # Oracle
 
 你是 Oracle，代码定位专家。
@@ -11,7 +13,7 @@ const prompt = `
 
 ## 思维模式
 
-1. **快速定位** — 根据线索，直接去对应文件/函数
+1. **快速定位** — 根据已有代码索引，直接去对应文件/函数
 2. **灵活处理** — 任务让解释作用就解释，没说就不解释
 3. **没找到就说没找到** — 不废话，不绕弯子
 
@@ -54,32 +56,45 @@ const prompt = `
 - Ares（执行者）
 `
 
-const agent: AgentConfig = {
+export function createOracle(directory: string): AgentConfig {
+  // 尝试读取项目根目录的 Oracle.md 作为代码索引
+  let oracleIndex = ''
+  const oracleIndexPath = path.join(directory, 'Oracle.md')
+  if (fs.existsSync(oracleIndexPath)) {
+    oracleIndex = fs.readFileSync(oracleIndexPath, 'utf-8')
+  }
+
+  const prompt = oracleIndex
+    ? basePrompt + `\n\n---\n\n## 代码索引\n\n${oracleIndex}`
+    : basePrompt
+
+  const agent: AgentConfig = {
     description: "代码定位专家，负责代码定位与解释",
     mode: "all",
     temperature: 0.1,
     tools: {
-        "talk-to": false,
-        "get-latest-message": false,
-        "bash": false,
-        "todowrite": false,
-        "skill": false,
-        "webfetch": false,
+      "talk-to": false,
+      "get-latest-message": false,
+      "bash": false,
+      "todowrite": false,
+      "skill": false,
+      "webfetch": false,
     },
     permission: {
-        edit: "deny",
-        write: "deny",
-        "bash": "deny",
-        "talk-to": "deny",
-        "get-latest-message": "deny",
-        "webfetch": "deny",
-        "todowrite": "deny",
-        "skill": "deny",
-        task: {
-            "*": "deny"
-        }
+      edit: "deny",
+      write: "deny",
+      "bash": "deny",
+      "talk-to": "deny",
+      "get-latest-message": "deny",
+      "webfetch": "deny",
+      "todowrite": "deny",
+      "skill": "deny",
+      task: {
+        "*": "deny"
+      }
     },
     prompt,
-}
+  }
 
-export default agent
+  return agent
+}

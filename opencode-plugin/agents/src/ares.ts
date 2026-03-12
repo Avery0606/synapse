@@ -75,22 +75,22 @@ const prompt = `
 - "搞定了，还有下一单吗？"
 `
 
-const agent: AgentConfig = {
+export function createAres(): AgentConfig {
+  return {
     description: "任务执行者，完全按指令执行任务",
     mode: "all",
     temperature: 0.1,
     tools: {
-        "talk-to": false,
-        "get-latest-message": false,
+      "talk-to": false,
+      "get-latest-message": false,
     },
     permission: {
-        "talk-to": "deny",
-        "get-latest-message": "deny",
-        task: {
-            "*": "deny"
-        }
+      "talk-to": "deny",
+      "get-latest-message": "deny",
+      task: {
+        "*": "deny"
+      }
     },
     prompt,
+  }
 }
-
-export default agent
