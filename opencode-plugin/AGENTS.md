@@ -1,8 +1,10 @@
-# 目录简介
-**业务职责**: OpenCode 插件主体，提供 AI 开发团队的核心能力
-**核心功能**: 包含团队 Agents（Synapse/Oracle/Ares）、自定义指令（deepInitAgentsMd、updateAgentsMd 等）、自定义工具（talk-to、get-latest-message）
+# opencode-plugin/
 
-# 开发约束
-- 约束点1: 在 agents 目录下新增团队成员
-- 约束点2: 在 commands 目录下新增自定义指令
-- 约束点3: 在 tools 目录下新增自定义工具
+**目录简介**: 公共功能模块，OpenCode 插件的主目录，负责注册和管理 Agents、Commands、Tools
+
+# 关键架构列表
+- index.ts：插件入口文件，负责注册 Agents、Commands、Tools
+- package.json：插件包配置，定义依赖和元信息
+- agents/：团队智能体目录，包含 Synapse 团队成员定义
+- commands/：自定义指令目录，提供插件命令
+- tools/：自定义工具目录，提供功能工具
