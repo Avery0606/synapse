@@ -13,7 +13,9 @@
 - 工具开发：在 opencode-plugin/tools 定义 AI 开发团队的可用工具
 - 注册配置：在 opencode-plugin/index.ts 注册成员、指令以及工具
 - 代码格式化：代码修改后需要进行格式化，保持整个项目代码格式统一
-- 依赖管理：新增依赖需要在 opencode-plugin 目录下执行 npm install 和 npm run build
+- 类型检查：代码修改后执行 npx tsc --noEmit，确保无 TypeScript 问题
+  - 注：部分 SDK 类型定义不完整的错误（如 permission 字段）可以忽略，不影响运行
+- 依赖管理：新增依赖需要在 opencode-plugin 目录下执行 npm install
 
 # 开发约束
 - 技术栈：使用 TypeScript 进行代码开发
