@@ -9,12 +9,13 @@ export function createGetLatestMessageTool({ client }: { client: OpencodeClient 
     args: {
       member_id: tool.schema.string().describe("需要查询消息的子员工ID，如oracle-1, oracle-2")
     },
-    execute: async (args: { member_id: string }) => {
+    execute: async (args: { member_id: string }, context) => {
       const { member_id } = args
+      const parentSessionId = context.sessionID
       const { subSessionsStore } = useStore();
 
       // 判断任务是否已执行完成
-      const targetSessionInstance: SubSession = subSessionsStore[member_id]
+      const targetSessionInstance: SubSession = subSessionsStore[parentSessionId]?.[member_id]
       if (!targetSessionInstance) {
         return '会话不存在，你是不是传的错的员工ID？'
       }

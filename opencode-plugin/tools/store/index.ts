@@ -6,7 +6,8 @@ export interface SubSession {
   parentSessionId: string
 }
 
-const subSessionsStore: Record<string, SubSession> = {}
+// parentSessionId -> member_id -> SubSession
+const subSessionsStore: Record<string, Record<string, SubSession>> = {}
 
 export const useStore = () => {
   return { subSessionsStore }

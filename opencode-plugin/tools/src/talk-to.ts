@@ -47,7 +47,7 @@ export function createTalkToTool(
 
       // 向已有员工发送消息
       if (member_id?.length) {
-        const targetSession = subSessionsStore[member_id]
+        const targetSession = subSessionsStore[parentSessionId]?.[member_id]
 
         // 子员工不存在
         if (!targetSession) {
@@ -93,11 +93,17 @@ export function createTalkToTool(
       }
 
       const subSessionId = newMessageResult.data.id
-      const seenMemberIdList = Object.keys(subSessionsStore).filter(key => key.includes(member_type))
+      // 确保当前 parentSessionId 有对应的 map
+      if (!subSessionsStore[parentSessionId]) {
+        subSessionsStore[parentSessionId] = {}
+      }
+
+      const seenMemberIdList = Object.keys(subSessionsStore[parentSessionId]).filter(key => key.includes(member_type))
       const newMemberId = `${member_type}-${seenMemberIdList.length + 1}`;
-      subSessionsStore[newMemberId] = {
+      subSessionsStore[parentSessionId][newMemberId] = {
         status: 'busy',
         member_type,
+        member_id: newMemberId,
         sessionId: subSessionId,
         parentSessionId
       } as SubSession

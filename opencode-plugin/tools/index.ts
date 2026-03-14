@@ -25,31 +25,34 @@ function loopUpdateSubSessionStatus({ client }: { client: OpencodeClient }) {
   const { subSessionsStore } = useStore()
   setInterval(async () => {
     const allSessionsStatus = await client.session.status();
-    Object.keys(subSessionsStore).forEach(member_id => {
-      const targetSessionInstance = subSessionsStore[member_id]
-      const oldStatus = targetSessionInstance.status
-      const newSessionStatusResp = allSessionsStatus.data?.[targetSessionInstance.sessionId]
-      let newStatus: 'idle' | 'busy';
-      if (!newSessionStatusResp || newSessionStatusResp.type === 'idle') {
-        newStatus = 'idle'
-      } else {
-        newStatus = 'busy'
-      }
-      targetSessionInstance.status = newStatus
+    Object.keys(subSessionsStore).forEach(parentSessionId => {
+      const memberMap = subSessionsStore[parentSessionId]
+      Object.keys(memberMap).forEach(member_id => {
+        const targetSessionInstance = memberMap[member_id]
+        const oldStatus = targetSessionInstance.status
+        const newSessionStatusResp = allSessionsStatus.data?.[targetSessionInstance.sessionId]
+        let newStatus: 'idle' | 'busy';
+        if (!newSessionStatusResp || newSessionStatusResp.type === 'idle') {
+          newStatus = 'idle'
+        } else {
+          newStatus = 'busy'
+        }
+        targetSessionInstance.status = newStatus
 
-      // 任务完成，发送消息
-      if (oldStatus === 'busy' && newStatus === 'idle') {
-        client.session.promptAsync({
-          body: {
-            agent: "synapse",
-            parts: [{
-              type: "text",
-              text: `[来自系统提示(非用户输入)] ${member_id} 回复最新消息啦\n请使用get-latest-message(member_id=${member_id})查看最新回复消息`
-            }]
-          },
-          path: { id: targetSessionInstance.parentSessionId },
-        })
-      }
+        // 任务完成，发送消息
+        if (oldStatus === 'busy' && newStatus === 'idle') {
+          client.session.promptAsync({
+            body: {
+              agent: "synapse",
+              parts: [{
+                type: "text",
+                text: `[来自系统提示(非用户输入)] ${member_id} 回复最新消息啦\n请使用get-latest-message(member_id=${member_id})查看最新回复消息`
+              }]
+            },
+            path: { id: targetSessionInstance.parentSessionId },
+          })
+        }
+      })
     })
   }, loopTime)
 }
