@@ -1,5 +1,5 @@
 # 项目简介
-**项目简要描述**: OpenCode 插件，提供一支高效的 AI 代码开发团队，包含领导者(Synapse)、代码定位专家(Oracle)、任务执行者(Ares)三种角色
+**项目简要描述**: OpenCode 插件，提供一支高效的 AI 代码开发团队，包含领导者(Synapse)、代码定位专家(Oracle)、任务执行者(Ares)、代码检测员(Inspector)四种角色
 
 # 关键架构列表
 - opencode-plugin/：插件主目录，整个项目的入口
