@@ -4,21 +4,20 @@ import { OpencodeClient } from "@opencode-ai/sdk"
 import { useStore } from "../store"
 
 const toolDescription = `
-用于给指定员工发送聊天消息，例如指派该员工干活，闲聊，让员工返工以前的任务等
+给团队成员发消息。闲聊、派活、让员工返工都行。
 
-使用优先级：
-1. 每次调用此工具时，优先思考是否已有员工正在做类似的事情
-2. 有的话使用 member_id 继续派活（如 oracle-1、ares-2）
-3. 没有才使用 member_type 新建一个员工实例
+每个员工实例是独立跑的，跟主聊天完全隔离 —— 他看不到你们的对话，有啥背景直接发给他。
 
-使用示例：
-想要继续派活给已有员工时：传入member_id和message
-talk-to(member_id=oracle-1,message=这个查找代码的任务做的不好，请继续深入查找)
-会继续使用该员工处理
+发完消息，他干他的，你干你的，最后回来汇报。
 
-想要新建一个员工实例时：仅传入member_type和message
-talk-to(member_type=oracle,message=帮忙查找下代码实现)
-会返回一个新的员工ID（如 oracle-2）
+优先级：
+1. 先想有没有员工正在做类似的事
+2. 有 → 用 member_id 继续聊（如 oracle-1）
+3. 没有 → 用 member_type 新建实例（如 oracle）
+
+示例：
+- member_id=oracle-1, message=这个查找做得不好，请继续深入 → 继续用现有员工
+- member_type=oracle, message=帮忙查下代码实现 → 新建员工实例
 `
 
 // 创建异步任务
