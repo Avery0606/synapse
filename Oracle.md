@@ -26,6 +26,10 @@
   - 描述：Ares 任务执行者智能体
   - 定位关键词：任务执行、Ares 执行者、代码执行
 
+- 文件或目录：opencode-plugin/agents/src/inspector.ts
+  - 描述：Inspector 代码检测员智能体
+  - 定位关键词：代码检测、质量检查、Inspector 检测
+
 - 文件或目录：opencode-plugin/commands/
   - 描述：命令目录，包含各种插件命令
   - 定位关键词：命令集合、slash 命令、插件命令
