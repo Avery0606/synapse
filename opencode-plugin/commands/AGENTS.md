@@ -6,7 +6,7 @@
 - index.ts：命令注册入口
 - src/：指令实现源码目录
 - src/oracleIndex.ts：初始化/更新 Oracle.md 索引的命令
-- src/updateAgentsMd.ts：更新 AGENTS.md 的命令
+- src/selfImproving.ts：自动优化 AGENTS.md 的命令
 - src/deepInitAgentsMd.ts：深度初始化 AGENTS.md 的命令
 
 # 开发约束
