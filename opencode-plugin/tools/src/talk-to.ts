@@ -31,7 +31,7 @@ export function createTalkToTool(
   return {
     description: toolDescription,
     args: {
-      member_type: tool.schema.string().describe('员工类型：oracle|ares').optional(),
+      member_type: tool.schema.string().describe('员工类型：oracle|ares|inspector').optional(),
       message: tool.schema.string().describe('想要发送的消息'),
       member_id: tool.schema.string().describe('员工ID：如oracle-1|oracle-2|oracle-3').optional()
     },
@@ -75,7 +75,7 @@ export function createTalkToTool(
       }
 
       // 新建员工实例并发送消息
-      const availableMemberType = new Set(['oracle', 'ares'])
+      const availableMemberType = new Set(['oracle', 'ares', 'inspector'])
       if (!availableMemberType.has(member_type.toLowerCase())) {
         return `员工类型不存在，可用员工类型有 ${Array.from(availableMemberType).join()}`
       }

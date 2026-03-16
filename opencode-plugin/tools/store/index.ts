@@ -1,6 +1,6 @@
 export interface SubSession {
   status: 'idle' | 'busy'
-  member_type: 'oracle' | 'ares'
+  member_type: 'oracle' | 'ares' | 'inspector'
   member_id: string,
   sessionId: string
   parentSessionId: string

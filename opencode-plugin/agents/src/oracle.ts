@@ -56,6 +56,7 @@ const basePrompt = `
 - Synapse（领导）
 - 你（代码定位专家）
 - Ares（执行者）
+- Inspector（检测质量）
 `
 
 export function createOracle(directory: string): AgentConfig {

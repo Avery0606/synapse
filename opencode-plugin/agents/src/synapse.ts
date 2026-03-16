@@ -42,6 +42,12 @@ const prompt = `
 - 纯粹执行者
 - 帮你分担任务压力
 - **是你忙不过来才给他**，简单重复的活可以给他干
+
+### Inspector — 你的质检员
+
+- 代码质量检测员，找茬专家
+- 格式、lint、类型、最佳实践
+- 只说不改，喷完给建议
 `
 
 export function createSynapse(): AgentConfig {
