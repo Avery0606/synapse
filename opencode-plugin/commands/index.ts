@@ -1,9 +1,9 @@
 import DeepInitAgentsMd from "./src/deepInitAgentsMd"
 import UpdateAgentsMd from "./src/updateAgentsMd"
-import InitOracle from "./src/initOracle"
+import OracleIndex from "./src/oracleIndex"
 
 export const SynapseCommand = {
     "deep-init-agents-md": DeepInitAgentsMd,
     "update-agents-md": UpdateAgentsMd,
-    "init-oracle": InitOracle
+    "oracle-index": OracleIndex
 }

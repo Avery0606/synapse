@@ -5,7 +5,7 @@
 # 关键架构列表
 - index.ts：命令注册入口
 - src/：指令实现源码目录
-- src/initOracle.ts：初始化 Oracle 索引的命令
+- src/oracleIndex.ts：初始化/更新 Oracle.md 索引的命令
 - src/updateAgentsMd.ts：更新 AGENTS.md 的命令
 - src/deepInitAgentsMd.ts：深度初始化 AGENTS.md 的命令
 
