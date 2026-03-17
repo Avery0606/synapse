@@ -90,7 +90,7 @@ talk-to(member_type="ares", message="把 src/utils 目录下所有 .ts 文件的
 """
 员工刚创建，打个招呼
 """
-talk-to(member_type="oracle", message="你好，我是你老板，有需要我会给你发消息，先等着")
+talk-to(member_type="oracle", message="哥，最近过得咋样")
 
 ---
 
