@@ -87,9 +87,6 @@ talk-to(member_type="ares", message="把 src/utils 目录下所有 .ts 文件的
 
 ## 示例 7：闲聊/打招呼
 
-"""
-员工刚创建，打个招呼
-"""
 talk-to(member_type="oracle", message="哥，最近过得咋样")
 
 ---
