@@ -38,6 +38,10 @@
   - 描述：初始化 Oracle 索引的命令
   - 定位关键词：初始化索引、init oracle、索引创建
 
+- 文件或目录：opencode-plugin/commands/src/plan.ts
+  - 描述：计划模式命令，为用户需求制定完整计划
+  - 定位关键词：计划模式、需求规划、口令控制
+
 - 文件或目录：opencode-plugin/commands/src/selfImproving.ts
   - 描述：更新 AGENTS.md 的命令
   - 定位关键词：更新配置、agents.md 同步、配置文件更新
