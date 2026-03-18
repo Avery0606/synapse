@@ -89,13 +89,13 @@ const prompt = `
 - 需要了解数据是怎么流转的
 
 **派活示例**
-- "Oracle，帮我找一下 \`handleUserLogin\` 函数在哪里定义的"
-- "Oracle，查一下这个项目里谁在调用 \`fetchUserData\` 这个接口"
-- "Oracle，帮我看看 \`auth\` 模块的代码结构，依赖了哪些模块"
-- "Oracle，这段代码我没看懂，帮我解释一下 \`verifyToken\` 函数的逻辑"
-- "Oracle，用户说登录会闪退，你帮我定位一下可能出在哪里"
-- "Oracle，帮我搜一下哪里有 \`TODO\` 或 \`FIXME\`，看看有没有遗留的问题"
-- "Oracle，查找所有使用 \`axios\` 发请求的地方，我想看看接口调用规范"
+- talk-to(member_type="oracle", message="Oracle，帮我找一下 \`handleUserLogin\` 函数在哪里定义的")
+- talk-to(member_type="oracle", message="Oracle，查一下这个项目里谁在调用 \`fetchUserData\` 这个接口")
+- talk-to(member_type="oracle", message="Oracle，帮我看看 \`auth\` 模块的代码结构，依赖了哪些模块")
+- talk-to(member_type="oracle", message="Oracle，这段代码我没看懂，帮我解释一下 \`verifyToken\` 函数的逻辑")
+- talk-to(member_type="oracle", message="Oracle，用户说登录会闪退，你帮我定位一下可能出在哪里")
+- talk-to(member_type="oracle", message="Oracle，帮我搜一下哪里有 \`TODO\` 或 \`FIXME\`，看看有没有遗留的问题")
+- talk-to(member_type="oracle", message="Oracle，查找所有使用 \`axios\` 发请求的地方，我想看看接口调用规范")
 
 ### Ares — 你的打工人
 
@@ -119,13 +119,13 @@ const prompt = `
 - 需要批量安装或更新依赖
 
 **派活示例**
-- "Ares，把项目里所有的 \`userName\` 改成 \`username\`，注意区分大小写"
-- "Ares，给所有 \`export function\` 前面加上 JSDoc 注释模板"
-- "Ares，跑一下单元测试，把失败的用例列出来"
-- "Ares，把 \`src/components\` 目录下的所有 \`.js\` 文件改成 \`.tsx\`"
-- "Ares，批量删除所有 \`console.log\` 语句"
-- "Ares，帮我把这段代码复制到 20 个文件里"
-- "Ares，跑一下 \`npm run build\`，看看有没有报错"
+- talk-to(member_type="ares", message="Ares，把项目里所有的 \`userName\` 改成 \`username\`，注意区分大小写")
+- talk-to(member_type="ares", message="Ares，给所有 \`export function\` 前面加上 JSDoc 注释模板")
+- talk-to(member_type="ares", message="Ares，跑一下单元测试，把失败的用例列出来")
+- talk-to(member_type="ares", message="Ares，把 \`src/components\` 目录下的所有 \`.js\` 文件改成 \`.tsx\`")
+- talk-to(member_type="ares", message="Ares，批量删除所有 \`console.log\` 语句")
+- talk-to(member_type="ares", message="Ares，帮我把这段代码复制到 20 个文件里")
+- talk-to(member_type="ares", message="Ares，跑一下 \`npm run build\`，看看有没有报错")
 
 ### Inspector — 你的质检员
 
@@ -149,13 +149,13 @@ const prompt = `
 - 不确定某个逻辑边界有没有处理到位
 
 **派活示例**
-- "Inspector，帮我 review 一下刚写的 \`login.ts\`，有没有明显的 bug"
-- "Inspector，检查一下这段代码有没有安全风险"
-- "Inspector，看看这个函数有没有性能问题，循环嵌套太多了"
-- "Inspector，帮我检查一下代码风格是否符合 ESLint 规范"
-- "Inspector，看看这个组件有没有内存泄漏的风险"
-- "Inspector，检查一下刚改的代码有没有破坏 TypeScript 类型"
-- "Inspector，帮我看看这段异步代码有没有 promise 没 catch 的问题"
+- talk-to(member_type="inspector", message="Inspector，帮我 review 一下刚写的 \`login.ts\`，有没有明显的 bug")
+- talk-to(member_type="inspector", message="Inspector，检查一下这段代码有没有安全风险")
+- talk-to(member_type="inspector", message="Inspector，看看这个函数有没有性能问题，循环嵌套太多了")
+- talk-to(member_type="inspector", message="Inspector，帮我检查一下代码风格是否符合 ESLint 规范")
+- talk-to(member_type="inspector", message="Inspector，看看这个组件有没有内存泄漏的风险")
+- talk-to(member_type="inspector", message="Inspector，检查一下刚改的代码有没有破坏 TypeScript 类型")
+- talk-to(member_type="inspector", message="Inspector，帮我看看这段异步代码有没有 promise 没 catch 的问题")
 `
 
 export function createSynapse(): AgentConfig {
