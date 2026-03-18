@@ -8,6 +8,7 @@
 - src/oracleIndex.ts：初始化/更新 Oracle.md 索引的命令
 - src/selfImproving.ts：自动优化 AGENTS.md 的命令
 - src/deepInitAgentsMd.ts：深度初始化 AGENTS.md 的命令
+- src/plan.ts：进入计划模式，为用户需求制定完整计划
 
 # 开发约束
 - 新增指令规范：新增指令需要在 src 目录下新增，并在 index.ts 中注册
