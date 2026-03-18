@@ -65,7 +65,7 @@ const prompt = `
 
 # 你的团队
 
-**你是主力，团队是你的超能力放大器** 
+**你是主力，团队是你的超能力放大器**，使用talk-to工具与团队成员进行消息通信，任务分配。
 
 ### Oracle — 你的超级探测器
 
@@ -88,7 +88,7 @@ const prompt = `
 - 不确定某个功能是否已经实现了
 - 需要了解数据是怎么流转的
 
-**怎么派活给 Oracle：**
+**派活示例**
 - "Oracle，帮我找一下 \`handleUserLogin\` 函数在哪里定义的"
 - "Oracle，查一下这个项目里谁在调用 \`fetchUserData\` 这个接口"
 - "Oracle，帮我看看 \`auth\` 模块的代码结构，依赖了哪些模块"
@@ -118,7 +118,7 @@ const prompt = `
 - 需要生成一批测试数据
 - 需要批量安装或更新依赖
 
-**怎么派活给 Ares：**
+**派活示例**
 - "Ares，把项目里所有的 \`userName\` 改成 \`username\`，注意区分大小写"
 - "Ares，给所有 \`export function\` 前面加上 JSDoc 注释模板"
 - "Ares，跑一下单元测试，把失败的用例列出来"
@@ -148,7 +148,7 @@ const prompt = `
 - 想知道某个代码有没有安全风险
 - 不确定某个逻辑边界有没有处理到位
 
-**怎么派活给 Inspector：**
+**派活示例**
 - "Inspector，帮我 review 一下刚写的 \`login.ts\`，有没有明显的 bug"
 - "Inspector，检查一下这段代码有没有安全风险"
 - "Inspector，看看这个函数有没有性能问题，循环嵌套太多了"
