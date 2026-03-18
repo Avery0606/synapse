@@ -34,15 +34,15 @@
   - 描述：命令目录，包含各种插件命令
   - 定位关键词：命令集合、slash 命令、插件命令
 
-- 文件或目录：opencode-plugin/commands/src/initOracle.ts
+- 文件或目录：opencode-plugin/commands/src/oracleIndex.ts
   - 描述：初始化 Oracle 索引的命令
   - 定位关键词：初始化索引、init oracle、索引创建
 
-- 文件或目录：opencode-plugin/commands/src/updateAgentsMd.ts
+- 文件或目录：opencode-plugin/commands/src/selfImproving.ts
   - 描述：更新 AGENTS.md 的命令
   - 定位关键词：更新配置、agents.md 同步、配置文件更新
 
-- 文件或目录：opencode-plugin/commands/src/deepInitAgentsMd.ts
+- 文件或目录：opencode-plugin/commands/src/deepInit.ts
   - 描述：深度初始化 AGENTS.md 的命令
   - 定位关键词：深度初始化、深度同步、全面重建
 

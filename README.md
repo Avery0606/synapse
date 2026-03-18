@@ -10,10 +10,13 @@ synapse/
     ├── agents/              # 团队 Agents
     │   ├── synapse.ts       # 团队领导者
     │   ├── oracle.ts        # 代码定位专家
-    │   └── ares.ts          # 任务执行者
+    │   ├── ares.ts          # 任务执行者
+    │   └── inspector.ts     # 代码检测员
     ├── commands/            # 自定义指令
-    │   ├── deepInitAgentsMd.ts
-    │   └── updateAgentsMd.ts
+    │   ├── deepInit.ts      # 深度初始化 AGENTS.md
+    │   ├── selfImproving.ts # 自动优化 AGENTS.md
+    │   ├── oracleIndex.ts   # 初始化/更新 Oracle.md 索引
+    │   └── plan.ts          # 进入计划模式
     └── tools/               # 自定义工具
         ├── talk-to.ts
         └── get-latest-message.ts
