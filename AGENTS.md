@@ -7,16 +7,14 @@
 - opencode-plugin/commands/：自定义指令目录，提供插件命令
 - opencode-plugin/tools/：自定义工具目录，提供功能工具
 
-# 核心开发工作流程
+# 开发约束
+- [MUST] 类型检查：代码修改后必须执行 npx tsc --noEmit，确保无 TypeScript 问题
+  - 注：部分 SDK 类型定义不完整的错误（如 permission 字段）可以忽略，不影响运行
+- [MUST] 依赖管理：新增依赖必须在 opencode-plugin 目录下执行 npm install
+
+# 项目开发指南
+- 技术栈：使用 TypeScript 进行代码开发
 - 团队成员开发：在 opencode-plugin/agents 对 AI 开发团队进行修改、新增、删除团队成员
 - 指令定义：在 opencode-plugin/commands 定义自定义指令
 - 工具开发：在 opencode-plugin/tools 定义 AI 开发团队的可用工具
 - 注册配置：在 opencode-plugin/index.ts 注册成员、指令以及工具
-- 代码格式化：代码修改后需要进行格式化，保持整个项目代码格式统一
-- 类型检查：代码修改后执行 npx tsc --noEmit，确保无 TypeScript 问题
-  - 注：部分 SDK 类型定义不完整的错误（如 permission 字段）可以忽略，不影响运行
-- 依赖管理：新增依赖需要在 opencode-plugin 目录下执行 npm install
-
-# 开发约束
-- 技术栈：使用 TypeScript 进行代码开发
-- 代码质量：确保无 TypeScript 问题（无编译错误、无类型错误）

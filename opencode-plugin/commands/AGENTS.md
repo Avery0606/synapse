@@ -11,8 +11,7 @@
 - src/plan.ts：进入计划模式，为用户需求制定完整计划
 
 # 开发约束
-- 新增指令规范：新增指令需要在 src 目录下新增，并在 index.ts 中注册
-- deep-init 与 self-improving 同步要求：更新 deepInit.ts 指令时，需要注意同步更新 selfImproving.ts 相关部分（两者存在业务关联）
+- [MUST] 新增指令规范：新增指令必须在 src 目录下新增，并在 index.ts 中注册
 
 # 注意事项
-- 暂无
+- deep-init 与 self-improving 同步要求：更新 deepInit.ts 指令时，需要注意同步更新 selfImproving.ts 相关部分（两者存在业务关联）
