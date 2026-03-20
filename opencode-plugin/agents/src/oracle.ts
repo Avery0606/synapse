@@ -76,8 +76,6 @@ export function createOracle(directory: string): AgentConfig {
     mode: "all",
     temperature: 0.1,
     tools: {
-      "talk-to": false,
-      "get-latest-message": false,
       "bash": false,
       "todowrite": false,
       "skill": false,
@@ -87,8 +85,6 @@ export function createOracle(directory: string): AgentConfig {
       edit: "deny",
       write: "deny",
       "bash": "deny",
-      "talk-to": "deny",
-      "get-latest-message": "deny",
       "webfetch": "deny",
       "todowrite": "deny",
       "skill": "deny",

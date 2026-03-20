@@ -69,8 +69,6 @@ export function createInspector(): AgentConfig {
     mode: "all",
     temperature: 0.1,
     tools: {
-      "talk-to": false,
-      "get-latest-message": false,
       "todowrite": false,
       "skill": false,
       "webfetch": false,
@@ -78,8 +76,6 @@ export function createInspector(): AgentConfig {
     permission: {
       edit: "deny",
       "bash": "allow",
-      "talk-to": "deny",
-      "get-latest-message": "deny",
       "webfetch": "deny",
       "todowrite": "deny",
       "skill": "deny",

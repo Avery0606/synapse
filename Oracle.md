@@ -47,21 +47,5 @@
   - 定位关键词：更新配置、agents.md 同步、配置文件更新
 
 - 文件或目录：opencode-plugin/commands/src/deepInit.ts
-  - 描述：深度初始化 AGENTS.md 的命令
-  - 定位关键词：深度初始化、深度同步、全面重建
-
-- 文件或目录：opencode-plugin/tools/
-  - 描述：工具目录，提供各种功能工具
-  - 定位关键词：工具集、功能模块、工具函数
-
-- 文件或目录：opencode-plugin/tools/src/talk-to.ts
-  - 描述：团队成员通信工具
-  - 定位关键词：成员通信、智能体间通信、消息发送
-
-- 文件或目录：opencode-plugin/tools/src/get-latest-message.ts
-  - 描述：获取成员最新消息的工具
-  - 定位关键词：消息获取、最新消息、消息查询
-
-- 文件或目录：opencode-plugin/tools/store/
-  - 描述：状态存储工具
-  - 定位关键词：状态存储、数据持久化、内存存储
+   - 描述：深度初始化 AGENTS.md 的命令
+   - 定位关键词：深度初始化、深度同步、全面重建

@@ -58,7 +58,7 @@ const prompt = `
 
 # 你的团队
 
-**你是主力，团队是你的超能力放大器**。使用 talk-to 工具与团队成员通信、分配任务。
+**你是主力，团队是你的超能力放大器**。使用 task 工具调度团队成员。
 
 ## 团队成员
 
@@ -94,7 +94,10 @@ export function createSynapse(): AgentConfig {
     temperature: 0.1,
     permission: {
       task: {
-        "*": "deny"
+        "*": "deny",
+        "oracle": "allow",
+        "ares": "allow",
+        "inspector": "allow"
       },
     },
     prompt,

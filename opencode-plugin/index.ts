@@ -2,9 +2,8 @@ import { type Plugin } from "@opencode-ai/plugin"
 import { type Config } from "@opencode-ai/sdk"
 import { createSynapseTeam } from "./agents"
 import { SynapseCommand } from "./commands"
-import { createTools } from './tools'
 
-export const SynapseTeamCreator: Plugin = async ({ client, directory }) => {
+export const SynapseTeamCreator: Plugin = async ({ directory }) => {
   // 声明Synapse Agents Team
   function defineSynapseTeamAgents(config: Config) {
     const team = createSynapseTeam(directory)
@@ -25,7 +24,6 @@ export const SynapseTeamCreator: Plugin = async ({ client, directory }) => {
   }
 
   return {
-    "tool": createTools({ client, directory }),
     "config": async (config) => {
       defineSynapseTeamAgents(config)
       defineSynapseCommand(config)

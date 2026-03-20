@@ -11,15 +11,12 @@ synapse/
     │   ├── synapse.ts       # 团队领导者
     │   ├── oracle.ts        # 代码定位专家
     │   ├── ares.ts          # 任务执行者
-    │   └── inspector.ts     # 代码检测员
-    ├── commands/            # 自定义指令
-    │   ├── deepInit.ts      # 深度初始化 AGENTS.md
-    │   ├── selfImproving.ts # 自动优化 AGENTS.md
-    │   ├── oracleIndex.ts   # 初始化/更新 Oracle.md 索引
-    │   └── plan.ts          # 进入计划模式
-    └── tools/               # 自定义工具
-        ├── talk-to.ts
-        └── get-latest-message.ts
+    │   └── inspector.ts      # 代码检测员
+    └── commands/            # 自定义指令
+        ├── deepInit.ts      # 深度初始化 AGENTS.md
+        ├── selfImproving.ts # 自动优化 AGENTS.md
+        ├── oracleIndex.ts    # 初始化/更新 Oracle.md 索引
+        └── plan.ts          # 进入计划模式
 ```
 
 ## 快速开始
@@ -41,6 +38,7 @@ npm run build
 | Synapse | 团队领导者，负责统筹调度、制定方案 |
 | Oracle | 代码定位专家，负责代码查找与解释 |
 | Ares | 任务执行者，负责具体代码操作 |
+| Inspector | 代码检测员，负责代码质量检查 |
 
 ## 技术栈
 

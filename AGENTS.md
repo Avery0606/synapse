@@ -5,7 +5,6 @@
 - opencode-plugin/：插件主目录，整个项目的入口
 - opencode-plugin/agents/：团队智能体目录，包含 Synapse 团队成员定义
 - opencode-plugin/commands/：自定义指令目录，提供插件命令
-- opencode-plugin/tools/：自定义工具目录，提供功能工具
 
 # 开发约束
 - [MUST] 类型检查：代码修改后必须执行 npx tsc --noEmit，确保无 TypeScript 问题
@@ -16,5 +15,4 @@
 - 技术栈：使用 TypeScript 进行代码开发
 - 团队成员开发：在 opencode-plugin/agents 对 AI 开发团队进行修改、新增、删除团队成员
 - 指令定义：在 opencode-plugin/commands 定义自定义指令
-- 工具开发：在 opencode-plugin/tools 定义 AI 开发团队的可用工具
 - 注册配置：在 opencode-plugin/index.ts 注册成员、指令以及工具
