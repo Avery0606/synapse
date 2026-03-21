@@ -3,10 +3,10 @@ import { type Config } from "@opencode-ai/sdk"
 import { createSynapseTeam } from "./agents"
 import { SynapseCommand } from "./commands"
 
-export const SynapseTeamCreator: Plugin = async ({ directory }) => {
+export const SynapseTeamCreator: Plugin = async () => {
   // 声明Synapse Agents Team
   function defineSynapseTeamAgents(config: Config) {
-    const team = createSynapseTeam(directory)
+    const team = createSynapseTeam()
     Object.keys(team).forEach((agentName) => {
       if (config.agent) {
         config.agent[agentName as keyof typeof team] = team[agentName]

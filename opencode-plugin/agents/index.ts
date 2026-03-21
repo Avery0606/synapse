@@ -4,10 +4,10 @@ import { createOracle } from './src/oracle'
 import { createAres } from './src/ares'
 import { createInspector } from './src/inspector'
 
-export function createSynapseTeam(directory: string): { [key: string]: AgentConfig } {
+export function createSynapseTeam(): { [key: string]: AgentConfig } {
     return {
         "synapse": createSynapse(),
-        "oracle": createOracle(directory),
+        "oracle": createOracle(),
         "ares": createAres(),
         "inspector": createInspector()
     }

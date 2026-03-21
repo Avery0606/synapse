@@ -1,6 +1,4 @@
 import { type AgentConfig } from "@opencode-ai/sdk"
-import * as fs from 'fs'
-import * as path from 'path'
 
 const basePrompt = `
 # Oracle
@@ -59,18 +57,7 @@ const basePrompt = `
 - Inspector（检测质量）
 `
 
-export function createOracle(directory: string): AgentConfig {
-  // 尝试读取项目根目录的 Oracle.md 作为代码索引
-  let oracleIndex = ''
-  const oracleIndexPath = path.join(directory, 'Oracle.md')
-  if (fs.existsSync(oracleIndexPath)) {
-    oracleIndex = fs.readFileSync(oracleIndexPath, 'utf-8')
-  }
-
-  const prompt = oracleIndex
-    ? basePrompt + `\n\n---\n\n## 代码索引\n\n${oracleIndex}`
-    : basePrompt
-
+export function createOracle(): AgentConfig {
   const agent: AgentConfig = {
     description: "代码定位专家，负责代码定位与解释",
     mode: "all",
@@ -83,7 +70,6 @@ export function createOracle(directory: string): AgentConfig {
     },
     permission: {
       edit: "deny",
-      write: "deny",
       "bash": "deny",
       "webfetch": "deny",
       "todowrite": "deny",
@@ -92,7 +78,7 @@ export function createOracle(directory: string): AgentConfig {
         "*": "deny"
       }
     },
-    prompt,
+    prompt: basePrompt,
   }
 
   return agent

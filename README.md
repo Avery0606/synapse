@@ -7,7 +7,6 @@ OpenCode 插件，提供一支高效的 AI 开发团队。
 ```
 synapse/
 ├── AGENTS.md                # 项目主入口文档
-├── Oracle.md                # 代码索引文件
 └── opencode-plugin/         # OpenCode 插件
     ├── AGENTS.md             # 插件主目录文档
     ├── index.ts              # 插件入口文件
@@ -26,7 +25,6 @@ synapse/
     │   └── src/
     │       ├── deepInit.ts      # 深度初始化 AGENTS.md
     │       ├── selfImproving.ts # 自动优化 AGENTS.md
-    │       ├── oracleIndex.ts   # 初始化/更新 Oracle.md 索引
     │       └── plan.ts          # 进入计划模式
     └── skills/                # skill 存放目录
         ├── AGENTS.md           # skills 目录文档
