@@ -40,9 +40,18 @@ cd opencode-plugin
 
 # 安装依赖
 npm install
+```
 
-# 构建
-npm run build
+在 opencode.json 中添加插件：
+```json
+"plugin": [
+  "file:///<opencode-plugin/index.ts 绝对地址>"
+]
+```
+
+将 skills 目录下的所有 skill 复制到 `.opencode/skills/`（不覆盖已有文件）：
+```bash
+cp -rn "opencode-plugin/skills/"* ".opencode/skills/"
 ```
 
 ## 团队成员
