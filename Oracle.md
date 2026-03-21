@@ -34,6 +34,14 @@
   - 描述：命令目录，包含各种插件命令
   - 定位关键词：命令集合、slash 命令、插件命令
 
+- 文件或目录：opencode-plugin/skills/
+  - 描述：skill 存放目录
+  - 定位关键词：skill 目录、插件扩展
+
+- 文件或目录：opencode-plugin/skills/agents-md-creator/
+  - 描述：创建/更新 AGENTS.md 的 skill
+  - 定位关键词：AGENTS.md 创建、AGENTS.md 更新、skill 创建
+
 - 文件或目录：opencode-plugin/commands/src/oracleIndex.ts
   - 描述：初始化 Oracle 索引的命令
   - 定位关键词：初始化索引、init oracle、索引创建
