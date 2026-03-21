@@ -12,6 +12,10 @@
 - [MUST] 约束点2: 必须做到 xxx
 - [MUST NOT] 约束点3: 禁止做 xxx
 
+## 目录开发指南
+- 开发指南1: xxxxx
+- 开发指南2: xxxxx
+
 ## 注意事项
 - 注意1: xxxxx
 - 注意2: xxxxx

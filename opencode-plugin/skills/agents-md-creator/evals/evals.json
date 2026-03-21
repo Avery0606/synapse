@@ -10,7 +10,7 @@
     {
       "id": 2,
       "prompt": "在 opencode-plugin/commands 目录创建一个 AGENTS.md",
-      "expected_output": "在 opencode-plugin/commands 目录按 subdir.md 模板生成 AGENTS.md，包含目录功能背景、关键架构列表、开发约束、注意事项四个章节",
+      "expected_output": "在 opencode-plugin/commands 目录按 subdir.md 模板生成 AGENTS.md，包含目录简介、关键架构列表、开发约束、目录开发指南、注意事项五个章节",
       "files": []
     },
     {
