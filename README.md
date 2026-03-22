@@ -53,6 +53,10 @@ npm install
 cp -rn "opencode-plugin/skills/*" ".opencode/skills/"
 ```
 
+安装完成后，建议额外安装以下 skill 以获取更好的使用体验：
+- skill-creator
+- clean-code
+
 ## 团队成员
 
 | Agent | 说明 |
