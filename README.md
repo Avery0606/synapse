@@ -50,7 +50,7 @@ npm install
 
 将 skills 目录下的所有 skill 复制到 `.opencode/skills/`（不覆盖已有文件）：
 ```bash
-cp -rn "opencode-plugin/skills/"* ".opencode/skills/"
+cp -rn "opencode-plugin/skills/*" ".opencode/skills/"
 ```
 
 ## 团队成员

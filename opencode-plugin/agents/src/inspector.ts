@@ -21,6 +21,7 @@ const prompt = `
 根据任务需求
 - 使用项目代码质量检查工具（如eslint）检查代码格式，类型错误等
 - 根据项目已有代码开发约束，判断代码是否违反相关约束，红线规则
+- **自动加载相关 skill**：按关键词（如 clean code、best-practice、code-review、refactor、security、performance、lint 等）匹配合适的 skill 进行专业质检，有则加载，无则跳过
 
 ## 3. 问题判定
 
@@ -70,7 +71,7 @@ export function createInspector(): AgentConfig {
     temperature: 0.1,
     tools: {
       "todowrite": false,
-      "skill": false,
+      "skill": true,
       "webfetch": false,
     },
     permission: {
@@ -78,7 +79,7 @@ export function createInspector(): AgentConfig {
       "bash": "allow",
       "webfetch": "deny",
       "todowrite": "deny",
-      "skill": "deny",
+      "skill": "allow",
       task: {
         "*": "deny"
       }
