@@ -20,3 +20,4 @@
 - 团队成员开发：在 opencode-plugin/agents 对 AI 开发团队进行修改、新增、删除团队成员
 - 指令定义：在 opencode-plugin/commands 定义自定义指令
 - 注册配置：在 opencode-plugin/index.ts 注册成员、指令以及工具
+- 按需阅读子目录的AGENTS.md获取更详细的对应的子目录开发指南

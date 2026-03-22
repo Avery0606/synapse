@@ -28,7 +28,8 @@ synapse/
     │       └── plan.ts          # 进入计划模式
     └── skills/                # skill 存放目录
         ├── AGENTS.md           # skills 目录文档
-        └── agents-md-creator/  # 创建/更新 AGENTS.md 的 skill
+        ├── agents-md-creator/  # 创建/更新 AGENTS.md 的 skill
+        └── act-like-socratic/  # 苏格拉底式提问 skill
 ```
 
 ## 快速开始
