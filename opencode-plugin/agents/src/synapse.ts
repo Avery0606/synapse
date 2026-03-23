@@ -69,7 +69,6 @@ export function createSynapse(): AgentConfig {
     permission: {
       bash: {
         "git *": "allow",
-        "git add *": "ask",
         "git clean -fd": "ask",
         "git reset --hard": "ask",
         "git push --force": "ask",
