@@ -81,6 +81,18 @@ export function createAres(): AgentConfig {
     description: "任务执行者，完全按指令执行任务",
     mode: "all",
     temperature: 0.1,
+    permission: {
+      bash: {
+        "git *": "allow",
+        "git add *": "ask",
+        "git clean -fd": "ask",
+        "git reset --hard": "ask",
+        "git push --force": "ask",
+        "git rebase *": "ask",
+        "git checkout -f": "ask",
+        "rm -rf .git": "ask",
+      },
+    },
     prompt,
   }
 }

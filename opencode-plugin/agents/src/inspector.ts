@@ -76,10 +76,19 @@ export function createInspector(): AgentConfig {
     },
     permission: {
       edit: "deny",
-      "bash": "allow",
-      "webfetch": "deny",
-      "todowrite": "deny",
-      "skill": "allow",
+      bash: {
+        "git *": "allow",
+        "git add *": "ask",
+        "git clean -fd": "ask",
+        "git reset --hard": "ask",
+        "git push --force": "ask",
+        "git rebase *": "ask",
+        "git checkout -f": "ask",
+        "rm -rf .git": "ask",
+      },
+      webfetch: "deny",
+      todowrite: "deny",
+      skill: "allow",
       task: {
         "*": "deny"
       }

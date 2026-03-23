@@ -57,6 +57,16 @@ export function createSynapse(): AgentConfig {
     mode: "primary",
     temperature: 0.1,
     permission: {
+      bash: {
+        "git *": "allow",
+        "git add *": "ask",
+        "git clean -fd": "ask",
+        "git reset --hard": "ask",
+        "git push --force": "ask",
+        "git rebase *": "ask",
+        "git checkout -f": "ask",
+        "rm -rf .git": "ask",
+      },
       task: {
         "*": "deny",
         "oracle": "allow",
