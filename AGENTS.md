@@ -6,8 +6,20 @@
 ## 关键架构列表
 - opencode-plugin/：插件主目录，整个项目的入口
 - opencode-plugin/agents/：团队智能体目录，包含 Synapse 团队成员定义
+  - index.ts：团队创建入口，导出 createSynapseTeam 函数
+  - src/synapse.ts：Synapse 的系统提示词，定义领导者的调度原则与团队管理
+  - src/oracle.ts：Oracle 的系统提示词，定义代码定位专家的思维模式
+  - src/ares.ts：Ares 的系统提示词，定义任务执行者的工作流程
+  - src/inspector.ts：Inspector 的系统提示词，定义代码检测员的质量标准
 - opencode-plugin/commands/：自定义指令目录，提供插件命令
-- opencode-plugin/skills/：skill 存放目录
+  - index.ts：命令注册入口，导出 SynapseCommand 对象
+  - src/deepInit.ts：deep-init 指令的实现，用于深度初始化 AGENTS.md
+  - src/selfImproving.ts：self-improving 指令的实现，用于自动优化 AGENTS.md
+  - src/plan.ts：plan 指令的实现，用于进入计划模式制定开发计划
+  - src/apply-skill.ts：apply-skill 指令的实现，用于加载并执行指定 skill
+- opencode-plugin/skills/：skill 存放目录，按需加载
+  - agents-md-creator/：AGENTS.md 创建与更新的 skill，包含模板与示例
+  - act-like-socratic/：苏格拉底式提问的 skill，用于引导式思考
 
 ## 开发约束
 - [MUST] 类型检查：代码修改后必须执行 npx tsc --noEmit，确保无 TypeScript 问题
