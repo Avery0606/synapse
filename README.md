@@ -32,7 +32,7 @@ synapse/
         └── act-like-socratic/  # 苏格拉底式提问 skill
 ```
 
-## 快速开始
+## 前置准备
 
 ```bash
 # 一键安装根目录及 opencode-plugin 依赖
