@@ -35,10 +35,8 @@ synapse/
 ## 快速开始
 
 ```bash
-cd opencode-plugin
-
-# 安装依赖
-npm install
+# 一键安装根目录及 opencode-plugin 依赖
+npm run bootstrap
 ```
 
 在 opencode.json 中添加插件：
@@ -56,6 +54,20 @@ cp -rn "opencode-plugin/skills/*" ".opencode/skills/"
 安装完成后，建议额外安装以下 skill 以获取更好的使用体验：
 - skill-creator
 - clean-code
+
+## 插件使用流程
+
+按照以下顺序使用插件：
+
+**Step 1 - 初始化**：运行 `/deep-init` 深度初始化项目 AGENTS.md 文件，建立项目文档基础
+
+**Step 2 - 制定计划**：遇到复杂需求时，输入 `/plan` 进入计划模式，告诉 Synapse 你的需求，共同制定开发方案
+
+**Step 3 - 执行开发**：在计划模式下确认方案后，Synapse 调度团队成员（Oracle 查代码、Ares 执行、Inspector 检测）协作完成任务
+
+**Step 4 - 优化沉淀**：需求完成后，运行 `/self-improving` 提取会话内容，自动优化更新 AGENTS.md
+
+**Step 5 - 按需增强**：对话过程中，随时使用 `/apply-skill <skill-name>` 加载指定 skill（如 skill-creator、clean-code）增强特定能力
 
 ## 团队成员
 
