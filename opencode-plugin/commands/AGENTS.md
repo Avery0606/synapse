@@ -10,7 +10,7 @@
 - src/deepInit.ts：深度初始化 AGENTS.md 的命令
 - src/plan.ts：进入计划模式（默认版），为用户需求制定完整计划
 - src/plan-simple.ts：计划模式（第一性原理版），自动推断最小步骤
-- src/plan-deep.ts：计划模式（苏格拉底版），用追问帮你完善计划
+- src/plan-socratic.ts：计划模式（苏格拉底版），用追问帮你完善计划
 
 ## 开发约束
 - [MUST] 新增指令规范：新增指令必须在 src 目录下新增，并在 index.ts 中注册

@@ -17,7 +17,7 @@
   - src/selfImproving.ts：self-improving 指令的实现，用于自动优化 AGENTS.md
   - src/plan.ts：plan 指令的实现，用于进入计划模式制定开发计划（默认版）
   - src/plan-simple.ts：计划模式（第一性原理版），自动推断最小步骤
-  - src/plan-deep.ts：计划模式（苏格拉底版），用追问帮你完善计划
+  - src/plan-socratic.ts：计划模式（苏格拉底版），用追问帮你完善计划
   - src/apply-skill.ts：apply-skill 指令的实现，用于加载并执行指定 skill
 - opencode-plugin/skills/：skill 存放目录，按需加载
   - agents-md-creator/：AGENTS.md 创建与更新的 skill，包含模板与示例
