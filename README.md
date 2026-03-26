@@ -25,7 +25,9 @@ synapse/
     │   └── src/
     │       ├── deepInit.ts      # 深度初始化 AGENTS.md
     │       ├── selfImproving.ts # 自动优化 AGENTS.md
-    │       └── plan.ts          # 进入计划模式
+    │       ├── plan.ts          # 进入计划模式（默认版）
+    │       ├── plan-simple.ts   # 计划模式（第一性原理版）
+    │       └── plan-deep.ts     # 计划模式（苏格拉底版）
     └── skills/                # skill 存放目录
         ├── AGENTS.md           # skills 目录文档
         ├── agents-md-creator/  # 创建/更新 AGENTS.md 的 skill
@@ -61,7 +63,10 @@ cp -rn "opencode-plugin/skills/*" ".opencode/skills/"
 
 **Step 1 - 初始化**：运行 `/deep-init` 深度初始化项目 AGENTS.md 文件，建立项目文档基础
 
-**Step 2 - 制定计划**：遇到复杂需求时，输入 `/plan` 进入计划模式，告诉 Synapse 你的需求，共同制定开发方案
+**Step 2 - 制定计划**：遇到复杂需求时，输入以下命令之一进入计划模式：
+- `/plan <口令>` — 默认版，综合评估需求后制定完整计划
+- `/plan-simple <口令>` — 第一性原理版，自动推断最小步骤，不多做不多说
+- `/plan-deep <口令>` — 苏格拉底版，用追问帮你把计划做得更完善
 
 **Step 3 - 执行开发**：在计划模式下确认方案后，Synapse 调度团队成员（Oracle 查代码、Ares 执行、Inspector 检测）协作完成任务
 

@@ -13,7 +13,7 @@ const template = `
 `
 
 const command = {
-    description: "进入计划模式，为用户需求制定完整开发计划",
+    description: "进入计划模式（默认版），为用户需求制定完整开发计划。支持传入一个参数 <口令>，说指定口令确认计划后开始执行",
     template,
 }
 
