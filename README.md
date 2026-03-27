@@ -50,7 +50,7 @@ npm run bootstrap
 
 将 skills 目录下的所有 skill 复制到 `.opencode/skills/`（不覆盖已有文件）：
 ```bash
-cp -rn "opencode-plugin/skills/*" ".opencode/skills/"
+npm run setup-skills
 ```
 
 安装完成后，建议额外安装以下 skill 以获取更好的使用体验：
