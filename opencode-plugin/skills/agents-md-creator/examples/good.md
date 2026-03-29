@@ -32,6 +32,8 @@ opencode-plugin/
 - [MUST NOT] 禁止直接修改 node_modules 内的文件，所有依赖调整必须通过 package.json 管理
 - [MUST] 关键目录变更时需同步更新 README.md：涉及核心架构调整时，确保文档与代码保持一致
 - [MUST] 新增团队成员必须在 agents/index.ts 中注册，并在对应的 src/*.ts 中定义系统提示词
+- [SHOULD] 团队成员调度优先通过 task 工具进行，保持职责边界清晰
+- [MAY] 复杂任务可拆分为多个子任务并行执行，提升效率
 
 ## 项目开发指南
 - 技术栈：使用 TypeScript 进行代码开发，充分利用类型系统保证代码质量

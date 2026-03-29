@@ -13,6 +13,8 @@
 - [MUST] 约束点1: 必须做到 xxx
 - [MUST] 约束点2: 必须做到 xxx
 - [MUST NOT] 约束点3: 禁止做 xxx
+- [SHOULD] 约束点4: 建议做 xxx
+- [MAY] 约束点5: 可选做 xxx
 
 ## 目录开发指南
 - 开发指南1: xxxxx
