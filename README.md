@@ -5,11 +5,7 @@
 [![Build Status](https://img.shields.io/github/actions/workflow/status/your-repo/synapse/ci.yml)](https://github.com/your-repo/synapse/actions)
 
 ```
- ____  _   _   _   _   ____   _____
-/ ___|| \ | | | | | / ___| | ____|
-\___ \|  \| | | | | \___ \ |  _|
- ___) | |\  | | | |  ___) || |___
-|____/|_| \_| |_| |_| |____/ |_____|
+S Y N A P S E
 ```
 
 ## 🚀 革新您的编码工作流程
