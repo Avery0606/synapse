@@ -1,89 +1,171 @@
 # Synapse
 
-OpenCode 插件，提供一支高效的 AI 开发团队。
-
-## 项目结构
-
 ```
-synapse/
-├── AGENTS.md                # 项目主入口文档
-└── opencode-plugin/         # OpenCode 插件
-    ├── AGENTS.md             # 插件主目录文档
-    ├── index.ts              # 插件入口文件
-    ├── package.json          # 插件包配置
-    ├── agents/               # 团队 Agents
-    │   ├── AGENTS.md         # agents 目录文档
-    │   ├── index.ts          # 团队创建入口
-    │   └── src/
-    │       ├── synapse.ts    # Synapse 团队领导者
-    │       ├── oracle.ts     # Oracle 代码定位专家
-    │       ├── ares.ts       # Ares 任务执行者
-    │       └── inspector.ts  # Inspector 代码检测员
-    ├── commands/             # 自定义指令
-    │   ├── AGENTS.md         # commands 目录文档
-    │   ├── index.ts          # 命令注册入口
-    │   └── src/
-    │       ├── deepInit.ts      # 深度初始化 AGENTS.md
-    │       ├── selfImproving.ts # 自动优化 AGENTS.md
-    │       ├── plan.ts          # 进入计划模式（默认版）
-    │       ├── plan-simple.ts   # 计划模式（第一性原理版）
-    │       └── plan-socratic.ts     # 计划模式（苏格拉底版）
-    └── skills/                # skill 存放目录
-        ├── AGENTS.md           # skills 目录文档
-        ├── agents-md-creator/  # 创建/更新 AGENTS.md 的 skill
-        └── act-like-socratic/  # 苏格拉底式提问 skill
+   _____                       ____
+   / ___/____  ____  ____ ___  / __/
+   \__ \/ __ \/ __ \/ __ `__ \/ /_
+  ___/ / /_/ / /_/ / / / / / / __/
+ /____/\____/\____/_/ /_/ /_/_/
 ```
 
-## 前置准备
+## 🚀 革新您的编码工作流程
 
-```bash
-# 一键安装根目录及 opencode-plugin 依赖
-npm run bootstrap
-```
+**Synapse** 是一个创新的 OpenCode 插件，它组建了一个高效的 AI 开发团队，以提升您的编码体验。配备智能角色，如领导者（Synapse）、代码定位专家（Oracle）、执行者（Ares）和检查员（Inspector），它将复杂的开发任务转化为流畅的协作过程。
 
-在 opencode.json 中添加插件：
-```json
-"plugin": [
-  "file:///<opencode-plugin/index.ts 绝对地址>"
-]
-```
+无论您是在构建新功能、重构代码还是调试问题，Synapse 都能确保每一步的精确性、高效性和质量。
 
-将 skills 目录下的所有 skill 复制到 `.opencode/skills/`（不覆盖已有文件）：
-```bash
-npm run setup-skills
-```
+## ✨ 功能特性
 
-安装完成后，建议额外安装以下 skill 以获取更好的使用体验：
-- skill-creator
-- clean-code
+- **智能团队协作**：自动调度 AI 代理，实现无缝任务执行。
+- **代码定位**：通过 Oracle 进行精确的代码查找和解释。
+- **任务执行**：由 Ares 处理可靠的代码操作。
+- **质量保证**：由 Inspector 进行全面的代码审查。
+- **计划模式**：多种规划策略，包括默认、第一性原理和苏格拉底方法。
+- **技能集成**：可扩展的技能，用于专门任务，如清洁代码和 AGENTS.md 创建。
+- **深度初始化**：自动设置项目文档。
+- **自我改进**：基于交互的持续优化项目指南。
 
-## 插件使用流程
+## 🏁 快速开始
 
-按照以下顺序使用插件：
+1. **安装依赖**：
+   ```bash
+   npm run bootstrap
+   ```
 
-**Step 1 - 初始化**：运行 `/deep-init` 深度初始化项目 AGENTS.md 文件，建立项目文档基础
+2. **配置插件**：
+   添加到您的 `opencode.json`：
+   ```json
+   "plugin": [
+     "file:///D:/git-project/synapse/opencode-plugin/index.ts"
+   ]
+   ```
 
-**Step 2 - 制定计划**：遇到复杂需求时，输入以下命令之一进入计划模式：
-- `/plan <口令>` — 默认版，综合评估需求后制定完整计划
-- `/plan-simple <口令>` — 第一性原理版，自动推断最小步骤，不多做不多说
-- `/plan-socratic <口令>` — 苏格拉底版，用追问帮你把计划做得更完善
+3. **设置技能**：
+   ```bash
+   npm run setup-skills
+   ```
 
-**Step 3 - 执行开发**：在计划模式下确认方案后，Synapse 调度团队成员（Oracle 查代码、Ares 执行、Inspector 检测）协作完成任务
+4. **初始化项目**：
+   在您的 OpenCode 环境中运行 `/deep-init`。
 
-**Step 4 - 优化沉淀**：需求完成后，运行 `/self-improving` 提取会话内容，自动优化更新 AGENTS.md
+5. **开始开发**：
+   使用 `/plan <description>` 启动您的 AI 辅助编码会话！
 
-**Step 5 - 按需增强**：对话过程中，随时使用 `/apply-skill <skill-name>` 加载指定 skill（如 skill-creator、clean-code）增强特定能力
+## 📦 安装
 
-## 团队成员
+### 先决条件
 
-| Agent | 说明 |
-|-------|------|
-| Synapse | 团队领导者，负责统筹调度、制定方案 |
-| Oracle | 代码定位专家，负责代码查找与解释 |
-| Ares | 任务执行者，负责具体代码操作 |
-| Inspector | 代码检测员，负责代码质量检查 |
+- Node.js（版本 14 或更高）
+- OpenCode 环境
+- Git
 
-## 技术栈
+### 逐步安装
 
-- **语言**: TypeScript
-- **SDK**: @opencode-ai/plugin
+1. **克隆仓库**：
+   ```bash
+   git clone https://github.com/your-repo/synapse.git
+   cd synapse
+   ```
+
+2. **安装根目录和插件依赖**：
+   ```bash
+   npm run bootstrap
+   ```
+   此命令为根目录和 `opencode-plugin` 子目录安装依赖。
+
+3. **配置 OpenCode**：
+   找到您的 `opencode.json` 文件并添加插件：
+   ```json
+   {
+     "plugin": [
+       "file:///D:/git-project/synapse/opencode-plugin/index.ts"
+     ]
+   }
+   ```
+   将路径替换为实际绝对路径。
+
+4. **设置技能目录**：
+   ```bash
+   npm run setup-skills
+   ```
+   这会将所有技能从 `opencode-plugin/skills/` 复制到您的 `.opencode/skills/` 目录，而不覆盖现有文件。
+
+5. **可选：安装额外技能**：
+   为增强功能，安装这些推荐技能：
+   - `skill-creator`
+   - `clean-code`
+
+6. **验证安装**：
+   重新启动您的 OpenCode 环境，并在命令面板中检查 Synapse 命令。
+
+## 📖 使用指南
+
+### 工作流程概述
+
+遵循此流畅过程以获得最佳结果：
+
+1. **初始化**：运行 `/deep-init` 以深度初始化项目 AGENTS.md 文件，建立坚实的文档基础。
+
+2. **规划**：对于复杂需求，使用以下之一进入计划模式：
+   - `/plan <description>` — 全面规划与完整评估。
+   - `/plan-simple <description>` — 基于第一性原理的最小步骤。
+   - `/plan-socratic <description>` — 通过苏格拉底提问进行交互式规划。
+
+3. **执行**：确认您的计划，让 Synapse 协调团队：
+   - **Oracle**：定位和解释代码。
+   - **Ares**：执行代码更改。
+   - **Inspector**：审查和验证代码质量。
+
+4. **优化**：完成后，运行 `/self-improving` 以提取见解并自动更新 AGENTS.md。
+
+5. **增强**：在对话期间，使用 `/apply-skill <skill-name>` 加载如 `clean-code` 或 `agents-md-creator` 等技能。
+
+### 团队角色
+
+| 代理     | 角色描述 |
+|-----------|------------------|
+| Synapse   | 协调调度和策略的团队领导者。 |
+| Oracle    | 用于精确定位和解释的代码专家。 |
+| Ares      | 处理代码操作的任务执行者。 |
+| Inspector | 确保代码标准的质量检查员。 |
+
+### 命令参考
+
+- `/deep-init`：初始化 AGENTS.md 文件。
+- `/plan <desc>`：进入默认规划模式。
+- `/plan-simple <desc>`：第一性原理规划。
+- `/plan-socratic <desc>`：苏格拉底规划。
+- `/self-improving`：优化项目文档。
+- `/apply-skill <name>`：加载特定技能。
+
+## 🤝 贡献
+
+我们欢迎社区的贡献！以下是您如何参与的方式：
+
+### 开发设置
+
+1. Fork 仓库。
+2. 创建功能分支：`git checkout -b feature/your-feature`。
+3. 进行更改并确保 TypeScript 检查通过：`npx tsc --noEmit`。
+4. 提交更改：`git commit -m "Add your feature"`。
+5. 推送到您的分支：`git push origin feature/your-feature`。
+6. 打开拉取请求。
+
+### 指南
+
+- 遵循现有的代码风格和结构。
+- 为新功能添加测试。
+- 根据需要更新文档。
+- 如果需要，确保所有提交都已签名。
+
+### 报告问题
+
+发现错误？有功能请求？在 GitHub 上打开问题，并提供详细信息。
+
+## 📄 许可证
+
+本项目根据 MIT 许可证授权 - 有关详细信息，请参阅 [LICENSE](LICENSE) 文件。
+
+---
+
+*由 Synapse 团队用 ❤️ 构建*
