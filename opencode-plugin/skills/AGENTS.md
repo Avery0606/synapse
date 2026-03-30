@@ -4,8 +4,9 @@
 **目录简介**: skill 存放目录
 
 ## 关键架构列表
-- agents-md-creator/：用于创建或更新 AGENTS.md 的 skill
-- act-like-socratic/：苏格拉底式提问 skill，通过追问帮助对方自己发现答案
+skills/
+├── agents-md-creator/  # 用于创建或更新 AGENTS.md 的 skill
+└── act-like-socratic/  # 苏格拉底式提问 skill，通过追问帮助对方自己发现答案
 
 ## 开发约束
 - [MUST] SKILL开发必须要包含测试用例 evals
