@@ -23,9 +23,10 @@ opencode-plugin/
 │       ├── plan-simple.ts  # 计划模式（第一性原理版），自动推断最小步骤
 │       ├── plan-socratic.ts # 计划模式（苏格拉底版），用追问帮你完善计划
 │       └── apply-skill.ts  # apply-skill 指令的实现，用于加载并执行指定 skill
-└── skills/                 # skill 存放目录，按需加载
-    ├── agents-md-creator/  # AGENTS.md 创建与更新的 skill，包含模板与示例
-    └── act-like-socratic/  # 苏格拉底式提问的 skill，用于引导式思考
+ └── skills/                 # skill 存放目录，按需加载
+     ├── agents-md-creator/  # AGENTS.md 创建与更新的 skill，包含模板与示例
+     ├── act-like-socratic/  # 苏格拉底式提问的 skill，用于引导式思考
+     └── test-case-generator/ # 生成结构化测试用例的 skill（严格模板 + 可选XMind）
 
 ## 开发约束
 - [MUST] 类型检查：代码修改后必须执行 npx tsc --noEmit，确保无 TypeScript 问题

@@ -14,6 +14,7 @@ skills/
 
 ## 目录开发指南
 - 使用skill-creator skill完成一个skill的开发或更新
+- Skill 优化使用 skill-creator 进行 evals 迭代
 
 ## 注意事项
 - 修改 agents-md-creator skill 时，注意检查 deepInit.ts 或 selfImproving.ts 是否需要同步调整
