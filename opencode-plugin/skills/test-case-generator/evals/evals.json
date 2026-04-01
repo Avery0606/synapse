@@ -1,0 +1,23 @@
+{
+  "skill_name": "test-case-generator",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "帮我生成用户登录功能的测试用例",
+      "expected_output": "生成一个符合template结构的Markdown测试用例文件，包含正常登录和异常登录场景，ST步骤具体可执行",
+      "files": ["test-cases-login.md"]
+    },
+    {
+      "id": 2,
+      "prompt": "为商品搜索功能写测试用例，要求步骤清晰",
+      "expected_output": "输出结构正确的测试用例MD文件，ST和EX都符合前端测试要求",
+      "files": ["test-cases-search.md"]
+    },
+    {
+      "id": 3,
+      "prompt": "生成一个购物车功能的测试文档",
+      "expected_output": "必须严格使用template中的标签结构，不能随意增删标签",
+      "files": ["test-cases-cart.md"]
+    }
+  ]
+}
