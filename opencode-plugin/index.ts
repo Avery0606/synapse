@@ -1,5 +1,4 @@
-import { type Plugin } from "@opencode-ai/plugin"
-import { type Config } from "@opencode-ai/sdk"
+import { type Plugin, type Config } from "@opencode-ai/plugin"
 import { createSynapseTeam } from "./agents"
 import { SynapseCommand } from "./commands"
 
