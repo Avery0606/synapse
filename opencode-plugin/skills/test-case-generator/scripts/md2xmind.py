@@ -1,11 +1,8 @@
 #!/usr/bin/env python
 """
-md2xmind: Convert Markdown tree structure to XMind (.xmind) files.
+将 Markdown 列表结构转换为 XMind 文件。
 
-Creates XMind files from markdown bullet lists, preserving the hierarchical 
-structure as topics and subtopics in a mind map format.
-
-Examples:
+用法:
   md2xmind file.md output.xmind
   md2xmind --title "My Mind Map" input.md output.xmind
 """
@@ -16,213 +13,124 @@ import json
 import re
 import sys
 import zipfile
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any
 from uuid import uuid4
 
 
-def eprint(*args: object) -> None:
+def error(*args: object) -> None:
     print(*args, file=sys.stderr)
 
 
-def generate_id() -> str:
-    """Generate a unique ID for XMind topics."""
+def new_id() -> str:
     return str(uuid4())
 
 
-def parse_markdown_line(line: str) -> Tuple[int, str]:
-    """Parse a markdown line to extract depth and content.
+def parse_line(line: str) -> tuple[int, str] | None:
+    """解析 Markdown 行，返回 (缩进层级, 内容) 或 None。
     
-    Returns (depth, content) where depth is 0-based.
-    Supports both spaces (2 per level) and tabs for indentation.
+    缩进: 2空格或1tab为一级，0-based。
     """
-    # Remove leading spaces/tabs and count indentation
     stripped = line.lstrip()
     if not stripped.startswith('-'):
-        return -1, ""  # Not a bullet point
+        return None
     
-    # Count indentation level
-    indent_chars = len(line) - len(stripped)
-    # Assume 2 spaces per level, but also handle tabs
-    if '\t' in line[:indent_chars]:
-        depth = line[:indent_chars].count('\t')
-    else:
-        depth = indent_chars // 2
+    # 计算缩进层级
+    indent = len(line) - len(stripped)
+    depth = line[:indent].count('\t') if '\t' in line[:indent] else indent // 2
     
-    # Extract content after the dash and any numbering
-    content = stripped[1:].strip()
-    
-    # Remove hierarchical numbering if present (e.g., "1.2.3 Title" -> "Title")
-    content = re.sub(r'^\d+(\.\d+)*\s+', '', content)
+    # 提取内容（去掉 "- " 前缀和层级编号）
+    content = re.sub(r'^(\d+\.)+\s*', '', stripped[1:].strip())
     
     return depth, content
 
 
-def parse_markdown_to_tree(content: str) -> List[Dict[str, Any]]:
-    """Parse markdown content into a tree structure suitable for XMind."""
-    lines = content.strip().split('\n')
+def build_tree(markdown: str) -> list[dict]:
+    """将 Markdown 解析为 XMind 风格的树结构。"""
+    root_topics: list[dict] = []
+    stack: list[dict] = []  # 维护从根到当前节点的路径
     
-    # Stack to keep track of parents at each level
-    stack: List[Dict[str, Any]] = []
-    roots: List[Dict[str, Any]] = []
-    
-    for line in lines:
+    for line in markdown.strip().split('\n'):
         line = line.rstrip()
         if not line:
             continue
-            
-        depth, text = parse_markdown_line(line)
-        if depth == -1 or not text:
+        
+        result = parse_line(line)
+        if not result:
             continue
-            
-        # Create new topic
-        topic = {
-            "id": generate_id(),
-            "title": text,
-            "children": {"attached": []}
-        }
+        depth, text = result
+        
+        topic = {"id": new_id(), "title": text, "children": {"attached": []}}
         
         if depth == 0:
-            # Root level topic
-            roots.append(topic)
+            root_topics.append(topic)
             stack = [topic]
         else:
-            # Adjust stack to current depth
-            while len(stack) > depth:
-                stack.pop()
-            
-            # Ensure we have a parent at depth-1
-            if len(stack) == depth and stack:
-                parent = stack[-1]
-                parent["children"]["attached"].append(topic)
+            # 保持 stack 长度与当前深度匹配
+            stack = stack[:depth]
+            if stack:
+                stack[-1]["children"]["attached"].append(topic)
                 stack.append(topic)
-            elif len(stack) < depth:
-                # Handle case where indentation jumps levels
-                # Add to the deepest available parent
-                if stack:
-                    parent = stack[-1]
-                    parent["children"]["attached"].append(topic)
-                    # Fill the stack to match current depth
-                    while len(stack) < depth + 1:
-                        stack.append(topic)
-                else:
-                    # No parent available, treat as root
-                    roots.append(topic)
-                    stack = [topic]
             else:
-                # len(stack) == depth + 1, normal case
-                parent = stack[depth - 1]
-                parent["children"]["attached"].append(topic)
-                stack = stack[:depth + 1]
-                stack[depth] = topic
+                root_topics.append(topic)
+                stack = [topic]
     
-    return roots
+    return root_topics
 
 
-def create_xmind_content(topics: List[Dict[str, Any]], title: str = "Mind Map") -> Dict[str, Any]:
-    """Create the JSON content structure for XMind file."""
+def build_content(topics: list[dict], title: str = "Mind Map") -> list[dict]:
+    """构建 XMind 文件的 JSON 结构。"""
     if not topics:
-        # Create a default empty topic if no content
-        topics = [{
-            "id": generate_id(),
-            "title": "Main Topic",
-            "children": {"attached": []}
-        }]
+        topics = [{"id": new_id(), "title": "Main Topic", "children": {"attached": []}}]
     
-    # If multiple root topics, create a wrapper root
-    if len(topics) > 1:
-        wrapper_root = {
-            "id": generate_id(),
-            "title": title,
-            "children": {"attached": topics}
-        }
-        root_topic = wrapper_root
-    else:
-        root_topic = topics[0]
-        # Update the title of single root if provided
-        if title != "Mind Map":
-            root_topic["title"] = title
-    
-    # XMind content structure
-    content = {
-        "id": generate_id(),
-        "title": title,
-        "rootTopic": root_topic,
-        "theme": "robust"
+    # 多根节点时用 title 包裹
+    root = topics[0] if len(topics) == 1 else {
+        "id": new_id(), "title": title, "children": {"attached": topics}
     }
+    if len(topics) == 1 and title != "Mind Map":
+        root["title"] = title
     
-    return [content]  # XMind expects an array of sheets
+    return [{"id": new_id(), "title": title, "rootTopic": root, "theme": "robust"}]
 
 
-def create_xmind_file(content: List[Dict[str, Any]], output_path: str) -> None:
-    """Create an XMind file with the given content."""
-    
-    # Create the content.json
-    content_json = json.dumps(content, indent=2, ensure_ascii=False)
-    
-    # Create manifest.json
-    manifest = {
-        "file-entries": {
-            "content.json": {},
-            "metadata.json": {}
-        }
-    }
-    manifest_json = json.dumps(manifest, indent=2)
-    
-    # Create metadata.json
+def write_xmind(content: list[dict], output_path: str) -> None:
+    """将内容写入 XMind（ZIP格式）。"""
+    manifest = {"file-entries": {"content.json": {}, "metadata.json": {}}}
     metadata = {
-        "creator": {
-            "name": "md2xmind",
-            "version": "1.0.0"
-        },
+        "creator": {"name": "md2xmind", "version": "1.0.0"},
         "created-time": "2025-01-10T00:00:00Z",
         "last-modified-time": "2025-01-10T00:00:00Z"
     }
-    metadata_json = json.dumps(metadata, indent=2)
     
-    # Create the XMind file (ZIP archive)
     with zipfile.ZipFile(output_path, 'w', zipfile.ZIP_DEFLATED) as zf:
-        zf.writestr('content.json', content_json)
-        zf.writestr('manifest.json', manifest_json)
-        zf.writestr('metadata.json', metadata_json)
+        zf.writestr('content.json', json.dumps(content, indent=2, ensure_ascii=False))
+        zf.writestr('manifest.json', json.dumps(manifest, indent=2))
+        zf.writestr('metadata.json', json.dumps(metadata, indent=2))
 
 
 def main() -> int:
-    ap = argparse.ArgumentParser(description="Convert Markdown tree to XMind (.xmind) file.")
-    ap.add_argument("input", help="Path to input Markdown file")
-    ap.add_argument("output", help="Path to output XMind file")
-    ap.add_argument("--title", default="Mind Map", help="Title for the mind map (default: Mind Map)")
+    ap = argparse.ArgumentParser(description="将 Markdown 树结构转换为 XMind 文件")
+    ap.add_argument("input", help="输入的 Markdown 文件路径")
+    ap.add_argument("output", help="输出的 XMind 文件路径")
+    ap.add_argument("--title", default="Mind Map", help="思维导图标题（默认: Mind Map）")
     args = ap.parse_args()
     
     try:
-        # Read input markdown file
-        with open(args.input, 'r', encoding='utf-8') as f:
-            markdown_content = f.read()
-    except Exception as ex:
-        eprint(f"Error reading input file: {ex}")
+        markdown = open(args.input, 'r', encoding='utf-8').read()
+    except Exception as e:
+        error(f"读取输入文件失败: {e}")
         return 1
     
     try:
-        # Parse markdown to tree structure
-        topics = parse_markdown_to_tree(markdown_content)
-        
+        topics = build_tree(markdown)
         if not topics:
-            eprint("Warning: No valid markdown bullet points found in input file.")
-            eprint("Expected format:")
-            eprint("- Root topic")
-            eprint("  - Child topic")
-            eprint("    - Grandchild topic")
+            error("未找到有效的 Markdown 列表项（格式: - 主题）")
+            return 1
         
-        # Create XMind content structure
-        xmind_content = create_xmind_content(topics, args.title)
-        
-        # Create XMind file
-        create_xmind_file(xmind_content, args.output)
-        
-        print(f"Successfully created XMind file: {args.output}")
+        write_xmind(build_content(topics, args.title), args.output)
+        print(f"已生成 XMind 文件: {args.output}")
         return 0
-        
-    except Exception as ex:
-        eprint(f"Error creating XMind file: {ex}")
+    except Exception as e:
+        error(f"生成 XMind 文件失败: {e}")
         return 2
 
 
