@@ -20,7 +20,7 @@ opencode-plugin/
 │       ├── deepInit.ts     # deep-init 指令的实现，用于深度初始化 AGENTS.md
 │       ├── selfImproving.ts # self-improving 指令的实现，用于自动优化 AGENTS.md
 │       ├── plan.ts         # plan 指令的实现，用于进入计划模式制定开发计划（默认版）
-│       ├── plan-simple.ts  # 计划模式（第一性原理版），自动推断最小步骤
+│       ├── plan-atomic.ts  # 计划模式（原子版），自动推断最小步骤
 │       ├── plan-socratic.ts # 计划模式（苏格拉底版），用追问帮你完善计划
 │       └── apply-skill.ts  # apply-skill 指令的实现，用于加载并执行指定 skill
  └── skills/                 # skill 存放目录，按需加载

@@ -10,7 +10,7 @@ commands/
     ├── selfImproving.ts # 自动优化 AGENTS.md 的命令
     ├── deepInit.ts     # 深度初始化 AGENTS.md 的命令
     ├── plan.ts         # 进入计划模式（默认版），为用户需求制定完整计划
-    ├── plan-simple.ts  # 计划模式（第一性原理版），自动推断最小步骤
+    ├── plan-atomic.ts  # 计划模式（原子版），自动推断最小步骤
     └── plan-socratic.ts # 计划模式（苏格拉底版），用追问帮你完善计划
 
 ## 开发约束

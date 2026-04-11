@@ -91,7 +91,7 @@ S Y N A P S E
 
 2. **规划**：对于复杂需求，使用以下之一进入计划模式：
    - `/plan <description>` — 全面规划与完整评估。
-   - `/plan-simple <description>` — 基于第一性原理的最小步骤。
+   - `/plan-atomic <description>` — 基于第一性原理的最小步骤。
    - `/plan-socratic <description>` — 通过苏格拉底提问进行交互式规划。
 
 3. **执行**：确认您的计划，让 Synapse 协调团队：
@@ -116,7 +116,7 @@ S Y N A P S E
 
 - `/deep-init`：初始化 AGENTS.md 文件。
 - `/plan <desc>`：进入默认规划模式。
-- `/plan-simple <desc>`：第一性原理规划。
+- `/plan-atomic <desc>`：第一性原理规划。
 - `/plan-socratic <desc>`：苏格拉底规划。
 - `/self-improving`：优化项目文档。
 - `/apply-skill <name>`：加载特定技能。
