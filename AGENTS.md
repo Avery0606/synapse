@@ -22,6 +22,7 @@ opencode-plugin/
 │       ├── plan.ts         # plan 指令的实现，用于进入计划模式制定开发计划（默认版）
 │       ├── plan-atomic.ts  # 计划模式（原子版），自动推断最小步骤
 │       ├── plan-socratic.ts # 计划模式（苏格拉底版），用追问帮你完善计划
+│       └── plan-clarify.ts  # 计划模式（澄清版），融合维特根斯坦/苏格拉底/波兰尼三层思维系统
 │       └── apply-skill.ts  # apply-skill 指令的实现，用于加载并执行指定 skill
  └── skills/                 # skill 存放目录，按需加载
      ├── agents-md-creator/  # AGENTS.md 创建与更新的 skill，包含模板与示例
