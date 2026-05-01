@@ -8,10 +8,10 @@ OpenCode AI 开发团队插件，内置 Synapse（领导者）、Oracle（代码
 npm install synapse-code-team
 ```
 
-安装后执行一次 skills 初始化：
+安装后在项目根目录执行一次 skills 初始化：
 
 ```bash
-npx synapse-setup-skills
+npm run setup-skills
 ```
 
 ## 配置
@@ -38,10 +38,10 @@ npx synapse-setup-skills
 
 插件自带多个实用 skills（AGENTS.md 创建、测试用例生成、代码清洁等）。
 
-安装后请务必运行：
+安装后请在项目根目录执行：
 
 ```bash
-npx synapse-setup-skills
+npm run setup-skills
 ```
 
 ## 更多文档

@@ -1,6 +1,6 @@
 {
   "name": "synapse-code-team",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "OpenCode AI development team plugin with Synapse, Oracle, Ares, and Inspector agents",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -10,15 +10,11 @@
       "types": "./dist/index.d.ts"
     }
   },
-  "bin": {
-    "synapse-setup-skills": "./scripts/setup-skills.js"
-  },
   "files": [
     "dist",
-    "scripts",
-    "skills",
     "README.md",
-    "LICENSE"
+    "LICENSE",
+    "CHANGELOG.md"
   ],
   "scripts": {
     "build": "tsc",

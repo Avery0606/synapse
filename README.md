@@ -40,7 +40,6 @@ S Y N A P S E
 
 ```bash
 npm install synapse-code-team
-npx synapse-setup-skills
 ```
 
 然后在项目根目录的 `opencode.json` 中添加：
@@ -49,6 +48,12 @@ npx synapse-setup-skills
 {
   "plugin": ["synapse-code-team"]
 }
+```
+
+安装完成后，在项目根目录执行一次：
+
+```bash
+npm run setup-skills
 ```
 
 #### 开发者本地安装
