@@ -9,26 +9,26 @@ opencode-plugin/
 ├── package.json            # 项目依赖配置
 ├── agents/                 # 团队智能体目录，包含 Synapse 团队成员定义
 │   ├── index.ts            # 团队创建入口，导出 createSynapseTeam 函数
-│   └── src/                # 团队成员系统提示词目录
-│       ├── synapse.ts      # Synapse 的系统提示词，定义领导者的调度原则与团队管理
-│       ├── oracle.ts       # Oracle 的系统提示词，定义代码定位专家的思维模式
-│       ├── ares.ts         # Ares 的系统提示词，定义任务执行者的工作流程
-│       └── inspector.ts    # Inspector 的系统提示词，定义代码检测员的质量标准
+│   └── src/                # 智能体实现源码目录
+│       ├── synapse.ts      # Synapse 领导者智能体，负责统筹调度和决策
+│       ├── oracle.ts       # Oracle 代码定位专家，负责代码搜索与解释
+│       ├── ares.ts         # Ares 任务执行者，负责具体代码操作
+│       └── inspector.ts    # Inspector 代码检测员，负责代码质量检查
 ├── commands/               # 自定义指令目录，提供插件命令
-│   ├── index.ts            # 命令注册入口，导出 SynapseCommand 对象
-│   └── src/                # 指令实现目录
-│       ├── deepInit.ts     # deep-init 指令的实现，用于深度初始化 AGENTS.md
-│       ├── selfImproving.ts # self-improving 指令的实现，用于自动优化 AGENTS.md
-│       ├── plan.ts         # plan 指令的实现，用于进入计划模式制定开发计划（默认版）
-│       ├── plan-atomic.ts  # 计划模式（原子版），自动推断最小步骤
-│       ├── plan-socratic.ts # 计划模式（苏格拉底版），用追问帮你完善计划
-│       └── plan-clarify.ts  # 计划模式（澄清版），融合维特根斯坦/苏格拉底/波兰尼三层思维系统
-│       └── apply-skill.ts  # apply-skill 指令的实现，用于加载并执行指定 skill
- └── skills/                 # skill 存放目录，按需加载
-     ├── agents-md-creator/  # AGENTS.md 创建与更新的 skill，包含模板与示例
-     ├── act-like-socratic/  # 苏格拉底式提问的 skill，用于引导式思考
-     ├── test-case-generator/ # 生成结构化测试用例的 skill（严格模板 + 可选XMind）
-     └── skill-refiner/      # 迭代优化其他 skill 提示词与结构的 meta-skill（支持审查建议 + 多轮确认）
+│   ├── index.ts            # 命令注册入口
+│   └── src/                # 指令实现源码目录
+│       ├── selfImproving.ts # 自动优化 AGENTS.md 的命令
+│       ├── deepInit.ts     # 深度初始化 AGENTS.md 的命令
+│       ├── plan.ts         # 进入计划模式（默认版）
+│       ├── plan-atomic.ts  # 计划模式（原子版）
+│       ├── plan-socratic.ts # 计划模式（苏格拉底版）
+│       ├── plan-clarify.ts  # 计划模式（澄清版）
+│       └── apply-skill.ts   # apply-skill 指令的实现，用于加载并执行指定 skill
+└── skills/                 # skill 存放目录
+    ├── agents-md-creator/  # 用于创建或更新 AGENTS.md 的 skill
+    ├── act-like-socratic/  # 苏格拉底式提问 skill
+    ├── test-case-generator/  # 生成结构化前端测试用例的 skill
+    └── skill-refiner/      # 迭代优化其他 skill 提示词与结构的 meta-skill
 
 ## 开发约束
 - [MUST] 类型检查：代码修改后必须执行 npx tsc --noEmit，确保无 TypeScript 问题
