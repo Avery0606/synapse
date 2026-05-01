@@ -60,8 +60,10 @@ export function createOracle(): AgentConfig {
       edit: "deny",
       "bash": "deny",
       "webfetch": "deny",
+      // @ts-ignore - SDK types incomplete for custom tools
       "todowrite": "deny",
       "skill": "deny",
+      // @ts-ignore - SDK types incomplete for custom tools
       task: {
         "*": "deny"
       }

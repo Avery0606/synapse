@@ -1,8 +1,65 @@
 {
+  "name": "synapse-code-team",
+  "version": "0.1.0",
+  "description": "OpenCode AI development team plugin with Synapse, Oracle, Ares, and Inspector agents",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "bin": {
+    "synapse-setup-skills": "./scripts/setup-skills.js"
+  },
+  "files": [
+    "dist",
+    "scripts",
+    "skills",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "clean": "node -e \"require('fs').rmSync('dist', { recursive: true, force: true })\"",
+    "prepublishOnly": "npm run clean && npm run build",
+    "release": "npm run clean && npx tsc --noEmit && npm run build && npm publish --access public",
+    "test": "echo \"No tests yet\" && exit 0"
+  },
+  "keywords": [
+    "opencode",
+    "plugin",
+    "ai",
+    "agents",
+    "synapse",
+    "oracle",
+    "ares",
+    "inspector",
+    "code-team"
+  ],
+  "author": "Synapse Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Avery0606/synapse.git",
+    "directory": "opencode-plugin"
+  },
+  "bugs": {
+    "url": "https://github.com/Avery0606/synapse/issues"
+  },
+  "homepage": "https://github.com/Avery0606/synapse#readme",
   "dependencies": {
     "@opencode-ai/plugin": "1.14.31"
   },
   "devDependencies": {
-    "@types/node": "^25.6.0"
+    "@types/node": "^25.6.0",
+    "typescript": "^6.0.3"
+  },
+  "peerDependencies": {
+    "@opencode-ai/plugin": ">=1.14.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   }
 }

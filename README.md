@@ -1,8 +1,9 @@
 # Synapse
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![GitHub stars](https://img.shields.io/github/stars/your-repo/synapse.svg)](https://github.com/your-repo/synapse/stargazers)
-[![Build Status](https://img.shields.io/github/actions/workflow/status/your-repo/synapse/ci.yml)](https://github.com/your-repo/synapse/actions)
+[![npm version](https://img.shields.io/npm/v/synapse-code-team.svg)](https://www.npmjs.com/package/synapse-code-team)
+[![npm downloads](https://img.shields.io/npm/dm/synapse-code-team.svg)](https://www.npmjs.com/package/synapse-code-team)
+[![GitHub stars](https://img.shields.io/github/stars/Avery0606/synapse.svg)](https://github.com/Avery0606/synapse/stargazers)
 
 ```
 S Y N A P S E
@@ -33,42 +34,41 @@ S Y N A P S E
 - OpenCode 环境
 - Git
 
-### 安装步骤
+### 安装
 
-如果这是您首次使用：
+#### 推荐方式（npm 安装）
 
-1. **克隆仓库**：
-   ```bash
-   git clone https://github.com/your-repo/synapse.git
-   cd synapse
-   ```
+```bash
+npm install synapse-code-team
+npx synapse-setup-skills
+```
 
-2. **安装根目录和插件依赖**：
-   ```bash
-   npm run bootstrap
-   ```
-   此命令为根目录和 `opencode-plugin` 子目录安装依赖。
+然后在项目根目录的 `opencode.json` 中添加：
 
-3. **配置 OpenCode**：
-   找到您的 `opencode.json` 文件并添加插件：
-   ```json
-   {
-     "plugin": [
-       "file:///D:/git-project/synapse/opencode-plugin/index.ts"
-     ]
-   }
-   ```
-   将路径替换为实际绝对路径。
+```json
+{
+  "plugin": ["synapse-code-team"]
+}
+```
 
-4. **设置技能目录**：
-   ```bash
-   npm run setup-skills
-   ```
-   这会将所有技能从 `opencode-plugin/skills/` 复制到您的 `.opencode/skills/` 目录，而不覆盖现有文件。
+#### 开发者本地安装
 
-5. **可选：安装额外技能**：
-   为增强功能，安装这些推荐技能：
-  - `skill-creator`
+如果你需要修改源码或贡献代码：
+
+```bash
+git clone https://github.com/Avery0606/synapse.git
+cd synapse
+npm run bootstrap          # 安装依赖
+npm run setup-skills       # 复制 skills
+```
+
+本地开发时可在 `opencode.json` 中使用绝对路径：
+
+```json
+{
+  "plugin": ["file:///D:/git-project/synapse/opencode-plugin/index.ts"]
+}
+```
   - `clean-code`
   - `skill-refiner`（用于迭代优化其他 skill 的提示词与结构）
 
@@ -79,31 +79,20 @@ S Y N A P S E
 
 ### 快速开始
 
-1. 安装完成后，打开 OpenCode 并运行 `/deep-init` 初始化项目文档。
-2. 输入需求，如 "添加一个用户登录功能"，Synapse 会自动规划并执行。
-3. 团队角色协同工作：Oracle 定位代码，Ares 修改，Inspector 检查。
-4. 完成后，运行 `/self-improving` 优化文档。
+1. 安装并配置插件后，运行 `/deep-init` 初始化项目文档。
+2. 输入你的需求，例如：`添加用户登录功能`。
+3. Synapse 会自动进入规划模式，协调 Oracle（定位）、Ares（执行）、Inspector（检查）完成任务。
+4. 完成后运行 `/self-improving` 自动优化项目文档。
 
-### 工作流程概述
+### 常用命令
 
-遵循此流畅过程以获得最佳结果：
-
-1. **初始化**：运行 `/deep-init` 以深度初始化项目 AGENTS.md 文件，建立坚实的文档基础。
-
-2. **规划**：对于复杂需求，使用以下之一进入计划模式：
-   - `/plan <description>` — 全面规划与完整评估。
-   - `/plan-atomic <description>` — 基于第一性原理的最小步骤。
-   - `/plan-socratic <description>` — 通过苏格拉底提问进行交互式规划。
-   - `/plan-clarify <description>` — 融合维特根斯坦/苏格拉底/波兰尼三层思维系统，将模糊需求澄清为清晰计划。
-
-3. **执行**：确认您的计划，让 Synapse 协调团队：
-   - **Oracle**：定位和解释代码。
-   - **Ares**：执行代码更改。
-   - **Inspector**：审查和验证代码质量。
-
-4. **优化**：完成后，运行 `/self-improving` 以提取见解并自动更新 AGENTS.md。
-
-5. **增强**：在对话期间，使用 `/apply-skill <skill-name>` 加载如 `clean-code` 或 `agents-md-creator` 等技能。
+- `/deep-init` — 初始化 AGENTS.md
+- `/plan <需求>` — 默认规划模式
+- `/plan-atomic <需求>` — 第一性原理规划
+- `/plan-socratic <需求>` — 苏格拉底式交互规划
+- `/plan-clarify <需求>` — 澄清版规划
+- `/self-improving` — 自我优化文档
+- `/apply-skill <name>` — 加载指定 skill
 
 ### 团队角色
 

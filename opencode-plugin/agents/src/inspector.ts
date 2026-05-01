@@ -62,8 +62,10 @@ export function createInspector(): AgentConfig {
         "git log *": "allow",
       },
       webfetch: "deny",
+      // @ts-ignore - SDK types incomplete for custom tools
       todowrite: "deny",
       skill: "allow",
+      // @ts-ignore - SDK types incomplete for custom tools
       task: {
         "*": "deny"
       }

@@ -92,6 +92,7 @@ export function createSynapse(): AgentConfig {
         "git checkout -f": "ask",
         "rm -rf .git": "ask",
       },
+      // @ts-ignore - SDK types incomplete for custom tools
       task: {
         "*": "deny",
         "oracle": "allow",

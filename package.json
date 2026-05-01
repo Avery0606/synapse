@@ -1,7 +1,8 @@
 {
   "scripts": {
     "bootstrap": "npm install && cd opencode-plugin && npm install",
-    "setup-skills": "node scripts/setup-skills.js"
+    "setup-skills": "node opencode-plugin/scripts/setup-skills.js",
+    "release:plugin": "cd opencode-plugin && npm run release"
   },
   "devDependencies": {
     "@types/node": "^25.6.0",
