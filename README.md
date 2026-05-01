@@ -36,13 +36,7 @@ S Y N A P S E
 
 ### 安装
 
-#### 推荐方式（npm 安装）
-
-```bash
-npm install synapse-code-team
-```
-
-然后在项目根目录的 `opencode.json` 中添加：
+1. 在项目根目录的 `opencode.json` 中添加：
 
 ```json
 {
@@ -50,9 +44,16 @@ npm install synapse-code-team
 }
 ```
 
-安装完成后，在项目根目录执行一次：
+2. 克隆仓库：
 
 ```bash
+git clone https://github.com/Avery0606/synapse.git
+```
+
+3. 进入目录并复制skills到本地：
+
+```bash
+cd synapse
 npm run setup-skills
 ```
 
@@ -74,11 +75,6 @@ npm run setup-skills       # 复制 skills
   "plugin": ["file:///D:/git-project/synapse/opencode-plugin/index.ts"]
 }
 ```
-  - `clean-code`
-  - `skill-refiner`（用于迭代优化其他 skill 的提示词与结构）
-
-6. **验证安装**：
-   重新启动您的 OpenCode 环境，并在命令面板中检查 Synapse 命令。
 
 ## 📖 使用指南
 

@@ -4,24 +4,25 @@ OpenCode AI 开发团队插件，内置 Synapse（领导者）、Oracle（代码
 
 ## 安装
 
-```bash
-npm install synapse-code-team
-```
-
-安装后在项目根目录执行一次 skills 初始化：
-
-```bash
-npm run setup-skills
-```
-
-## 配置
-
-在你的 `opencode.json` 中添加：
+1. 在你的 `opencode.json` 中添加：
 
 ```json
 {
   "plugin": ["synapse-code-team"]
 }
+```
+
+2. 克隆仓库：
+
+```bash
+git clone https://github.com/Avery0606/synapse.git
+```
+
+3. 进入目录并复制skills到本地：
+
+```bash
+cd synapse
+npm run setup-skills
 ```
 
 ## 常用命令
@@ -33,16 +34,6 @@ npm run setup-skills
 - `/plan-clarify <需求>` — 澄清版规划
 - `/self-improving` — 自我优化项目文档
 - `/apply-skill <skill-name>` — 加载指定 skill
-
-## Skills
-
-插件自带多个实用 skills（AGENTS.md 创建、测试用例生成、代码清洁等）。
-
-安装后请在项目根目录执行：
-
-```bash
-npm run setup-skills
-```
 
 ## 更多文档
 
