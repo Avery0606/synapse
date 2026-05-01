@@ -3,15 +3,6 @@
 ## 目录简介
 **目录简介**: 团队智能体目录，包含 Synapse 开发团队的成员定义（Oracle/Oracle/Ares/Inspector），每个成员有独立的系统提示词、工具权限和工作流程，通过 index.ts 统一导出创建。
 
-## 关键架构列表
-agents/
-├── index.ts                # 团队创建入口，导出 createSynapseTeam 函数
-└── src/                    # 各成员系统提示词
-    ├── synapse.ts          # 领导者 Synapse：调度原则、团队管理、沟通风格
-    ├── oracle.ts           # 代码定位专家 Oracle：代码定位、逻辑解释
-    ├── ares.ts             # 任务执行者 Ares：批量修改、脚本执行
-    └── inspector.ts        # 代码检测员 Inspector：代码 review、质量检查
-
 ## 开发约束
 - [MUST] 新增成员必须同时创建 src/*.ts 系统提示词文件，并在 index.ts 中注册
 - [MUST] 系统提示词必须包含清晰的职责定义、可调用工具说明、输出格式规范
