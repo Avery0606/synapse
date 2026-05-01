@@ -8,7 +8,7 @@ OpenCode AI 开发团队插件，内置 Synapse（领导者）、Oracle（代码
 
 ```json
 {
-  "plugin": ["synapse-code-team"]
+  "plugin": ["synapse-code-team@latest"]
 }
 ```
 

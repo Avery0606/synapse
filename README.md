@@ -40,7 +40,7 @@ S Y N A P S E
 
 ```json
 {
-  "plugin": ["synapse-code-team"]
+  "plugin": ["synapse-code-team@latest"]
 }
 ```
 
