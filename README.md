@@ -68,8 +68,9 @@ S Y N A P S E
 
 5. **可选：安装额外技能**：
    为增强功能，安装这些推荐技能：
-   - `skill-creator`
-   - `clean-code`
+  - `skill-creator`
+  - `clean-code`
+  - `skill-refiner`（用于迭代优化其他 skill 的提示词与结构）
 
 6. **验证安装**：
    重新启动您的 OpenCode 环境，并在命令面板中检查 Synapse 命令。

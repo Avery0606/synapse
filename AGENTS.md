@@ -27,7 +27,8 @@ opencode-plugin/
  └── skills/                 # skill 存放目录，按需加载
      ├── agents-md-creator/  # AGENTS.md 创建与更新的 skill，包含模板与示例
      ├── act-like-socratic/  # 苏格拉底式提问的 skill，用于引导式思考
-     └── test-case-generator/ # 生成结构化测试用例的 skill（严格模板 + 可选XMind）
+     ├── test-case-generator/ # 生成结构化测试用例的 skill（严格模板 + 可选XMind）
+     └── skill-refiner/      # 迭代优化其他 skill 提示词与结构的 meta-skill（支持审查建议 + 多轮确认）
 
 ## 开发约束
 - [MUST] 类型检查：代码修改后必须执行 npx tsc --noEmit，确保无 TypeScript 问题
