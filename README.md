@@ -1,8 +1,6 @@
 # Synapse
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![npm version](https://img.shields.io/npm/v/synapse-code-team.svg)](https://www.npmjs.com/package/synapse-code-team)
-[![npm downloads](https://img.shields.io/npm/dm/synapse-code-team.svg)](https://www.npmjs.com/package/synapse-code-team)
 [![GitHub stars](https://img.shields.io/github/stars/Avery0606/synapse.svg)](https://github.com/Avery0606/synapse/stargazers)
 
 ```
@@ -36,44 +34,30 @@ S Y N A P S E
 
 ### 安装
 
-1. 在项目根目录的 `opencode.json` 中添加：
-
-```json
-{
-  "plugin": ["synapse-code-team@latest"]
-}
-```
-
-2. 克隆仓库：
+1. 克隆仓库：
 
 ```bash
 git clone https://github.com/Avery0606/synapse.git
 ```
 
-3. 进入目录并复制skills到本地：
+2. 在 `opencode.json` 中添加：
 
+```json
+{
+  "plugin": ["file:///<path-to>/synapse/opencode-plugin/index.ts"]
+}
+```
+
+4. 进入项目安装依赖
 ```bash
 cd synapse
+npm run bootstrap
+```
+
+3. 复制skills到本地：
+
+```bash
 npm run setup-skills
-```
-
-#### 开发者本地安装
-
-如果你需要修改源码或贡献代码：
-
-```bash
-git clone https://github.com/Avery0606/synapse.git
-cd synapse
-npm run bootstrap          # 安装依赖
-npm run setup-skills       # 复制 skills
-```
-
-本地开发时可在 `opencode.json` 中使用绝对路径：
-
-```json
-{
-  "plugin": ["file:///D:/git-project/synapse/opencode-plugin/index.ts"]
-}
 ```
 
 ## 📖 使用指南
