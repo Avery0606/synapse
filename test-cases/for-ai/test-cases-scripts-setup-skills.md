@@ -1,0 +1,36 @@
+- scripts/setup-skills.js 测试
+  - 【TS】正常场景
+    - 【TP】所有 skill 目录成功复制
+      - 【CO】skills 目录下存在 act-like-socratic、agents-md-creator、skill-refiner、test-case-generator 四个子目录
+        - 【ST】执行命令 `node scripts/setup-skills.js`
+          - 【EX】控制台输出 "Removed existing skill: xxx" 和 "Copied skill: xxx"，最后输出 "All skills updated in ~/.config/opencode/skills"
+        - 【ST】检查 ~/.config/opencode/skills/ 目录下是否存在这四个 skill 目录
+          - 【EX】四个目录均存在
+    - 【TP】AGENTS.md 文件被正确排除
+      - 【CO】skills 目录下存在包含 AGENTS.md 的 skill 目录
+        - 【ST】执行命令 `node scripts/setup-skills.js`
+          - 【EX】目标目录中不存在任何 AGENTS.md 文件
+    - 【TP】已存在的 skill 目录被覆盖
+      - 【CO】~/.config/opencode/skills/ 下已存在旧版本的 skill 目录
+        - 【ST】执行命令 `node scripts/setup-skills.js`
+          - 【EX】控制台输出 "Removed existing skill: xxx"，然后输出 "Copied skill: xxx"
+        - 【ST】检查目标目录中的 skill 内容是否为最新版本
+          - 【EX】skill 内容为最新版本，旧内容已被覆盖
+  - 【TS】异常场景
+    - 【TP】源目录不存在时脚本正确退出
+      - 【CO】当前工作目录下不存在 skills 目录
+        - 【ST】执行命令 `node scripts/setup-skills.js`
+          - 【EX】控制台输出 "Source directory not found: skills"，脚本以 exit code 1 退出
+    - 【TP】目标目录不存在时自动创建
+      - 【CO】~/.config/opencode/skills 目录不存在
+        - 【ST】执行命令 `node scripts/setup-skills.js`
+          - 【EX】目标目录被自动创建，脚本正常执行完成
+  - 【TS】边界场景
+    - 【TP】skills 目录下存在非目录文件
+      - 【CO】skills 目录下包含 AGENTS.md 文件（非目录）
+        - 【ST】执行命令 `node scripts/setup-skills.js`
+          - 【EX】脚本忽略 AGENTS.md 文件，只复制目录类型的条目，控制台输出正常的复制日志
+    - 【TP】skills 目录下子目录为空
+      - 【CO】某个 skill 子目录为空（如只有空目录结构）
+        - 【ST】执行命令 `node scripts/setup-skills.js`
+          - 【EX】空目录被复制到目标路径，脚本正常执行完成，无报错

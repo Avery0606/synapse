@@ -30,16 +30,20 @@ skills/                     # skill 存放目录
 ├── act-like-socratic/      # 苏格拉底式提问 skill
 ├── test-case-generator/    # 生成结构化前端测试用例的 skill
 └── skill-refiner/          # 迭代优化其他 skill 提示词与结构的 meta-skill
+test-cases/                 # 测试用例目录
+├── for-ai/                 # AI 可纯执行的测试用例（脚本/目录检查）
+└── for-human/              # 需要人工手动验证的测试用例
 
 ## 开发约束
 - [MUST] 类型检查：代码修改后必须执行 npx tsc --noEmit，确保无 TypeScript 问题
   - 注：部分 SDK 类型定义不完整的错误（如 permission 字段）可以忽略，不影响运行
 - [MUST] 依赖管理：新增依赖必须在 opencode-plugin 目录下执行 npm install
-- [MUST] 关键目录变更：涉及关键目录变更时，需检查 README.md、scripts/ 下脚本的硬编码路径是否需要同步更新
+- [SHOULD] 关键目录变更：涉及关键目录变更时，需检查 README.md、scripts/ 下脚本的硬编码路径是否需要同步更新
 
 ## 项目开发指南
 - 技术栈：使用 TypeScript 进行代码开发
 - 团队成员开发：在 opencode-plugin/agents 对 AI 开发团队进行修改、新增、删除团队成员
 - 指令定义：在 opencode-plugin/commands 定义自定义指令
 - 注册配置：在 opencode-plugin/index.ts 注册成员、指令以及工具
+- 测试用例：开发完成后，分配subagent执行 test-cases/for-ai 目录下相关的测试用例验证功能正常
 - 按需阅读子目录的AGENTS.md获取更详细的对应的子目录开发指南
