@@ -22,7 +22,7 @@ You do **not** blindly rewrite. You first diagnose the most critical problems us
 ## Workflow
 
 1. **Receive target**
-   - User gives a path like `skills/xxx/SKILL.md` or `opencode-plugin/skills/yyy/SKILL.md`.
+   - User gives a path like `skills/xxx/SKILL.md`.
    - Read the target file.
 
 2. **Load context**

@@ -24,17 +24,18 @@ opencode-plugin/
 │       ├── plan-socratic.ts # 计划模式（苏格拉底版）
 │       ├── plan-clarify.ts  # 计划模式（澄清版）
 │       └── apply-skill.ts   # apply-skill 指令的实现，用于加载并执行指定 skill
-└── skills/                 # skill 存放目录
-    ├── agents-md-creator/  # 用于创建或更新 AGENTS.md 的 skill
-    ├── act-like-socratic/  # 苏格拉底式提问 skill
-    ├── test-case-generator/  # 生成结构化前端测试用例的 skill
-    └── skill-refiner/      # 迭代优化其他 skill 提示词与结构的 meta-skill
+skills/                     # skill 存放目录
+├── AGENTS.md               # skills 开发指南
+├── agents-md-creator/      # 用于创建或更新 AGENTS.md 的 skill
+├── act-like-socratic/      # 苏格拉底式提问 skill
+├── test-case-generator/    # 生成结构化前端测试用例的 skill
+└── skill-refiner/          # 迭代优化其他 skill 提示词与结构的 meta-skill
 
 ## 开发约束
 - [MUST] 类型检查：代码修改后必须执行 npx tsc --noEmit，确保无 TypeScript 问题
   - 注：部分 SDK 类型定义不完整的错误（如 permission 字段）可以忽略，不影响运行
 - [MUST] 依赖管理：新增依赖必须在 opencode-plugin 目录下执行 npm install
-- [MUST] 关键目录变更：涉及关键目录变更时，需检查 README.md 是否需要同步更新
+- [MUST] 关键目录变更：涉及关键目录变更时，需检查 README.md、scripts/ 下脚本的硬编码路径是否需要同步更新
 
 ## 项目开发指南
 - 技术栈：使用 TypeScript 进行代码开发

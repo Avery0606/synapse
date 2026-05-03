@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const os = require('os');
 
-const src = 'opencode-plugin/skills';
+const src = 'skills';
 const dest = path.join(os.homedir(), '.config/opencode/skills');
 
 if (!fs.existsSync(src)) {

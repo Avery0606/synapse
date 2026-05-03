@@ -1,4 +1,4 @@
-# opencode-plugin/skills Guidelines
+# skills Guidelines
 
 ## 目录简介
 **目录简介**: skill 存放目录
