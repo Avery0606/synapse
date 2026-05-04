@@ -1,0 +1,23 @@
+{
+  "skill_name": "soul-refiner",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Here is my current SOUL.md for a GitHub PR reviewer agent. Can you refine it to make it much stronger? [paste a short/generic version of a code-reviewer SOUL here, but since no file, assume user provides one]",
+      "expected_output": "A significantly improved SOUL.md with stronger identity, 8-10 strict rules, detailed responsibilities including review checklist, output format templates for review comments, and 3 example interactions showing different scenarios (good PR, bad PR, security issue).",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Review and optimize this SOUL.md for a Notion workspace organizer. Focus on making rules stricter and adding output formats. [user provides the Tidy SOUL or a draft]",
+      "expected_output": "Refined version that adds specific non-destructive rules, health score calculation, weekly cleanup template, and before/after examples for tagging and database proposals.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "I want to create a new SOUL.md for a YouTube SEO optimizer from scratch. Help me write an awesome one.",
+      "expected_output": "A complete, high-quality SOUL.md following the awesome principles: cool name (e.g. Beacon), detailed SEO responsibilities, title/description/tag/thumbnail templates, competitor analysis workflow, and realistic example interactions with scores and recommendations.",
+      "files": []
+    }
+  ]
+}
