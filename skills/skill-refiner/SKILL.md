@@ -1,6 +1,6 @@
 ---
 name: skill-refiner
-description: Use this skill whenever the user wants to optimize, refine, improve, review, or polish the prompt, structure, description, or overall quality of any existing skill's SKILL.md. This includes (but is not limited to) phrases like "优化这个 skill", "refine skill-xxx", "改进 skill 提示词", "这个 skill 写得太烂了", "帮我打磨一下 skill", "review this skill", "make this skill better", or any request to improve how a skill triggers or is structured. Always use this skill for skill improvement tasks — do not try to do it manually.
+description: Use this skill whenever the user wants to optimize, refine, improve, review, or polish the prompt, structure, description, or overall quality of any existing skill's SKILL.md. Triggers include: any mention of "优化这个 skill", "refine skill-xxx", "改进 skill 提示词", "这个 skill 写得太烂了", "帮我打磨一下 skill", "review this skill", "make this skill better", or requests to improve how a skill triggers or is structured. Always use this skill for skill improvement tasks — do not try to do it manually. Do NOT use for general prompt engineering, writing new code, or non-skill-related documentation tasks.
 ---
 
 # Skill Refiner
@@ -11,11 +11,22 @@ You are a specialized meta-skill for iteratively improving other skills. Your jo
 
 You do **not** blindly rewrite. You first diagnose the most critical problems using real excellent examples, then propose precise, example-backed fixes. Only after the user explicitly confirms do you output the full updated SKILL.md.
 
+## Quick Reference
+
+| Step | Trigger | Key Action | Output |
+|------|---------|------------|--------|
+| 1. Receive target | User gives skill path | Read target SKILL.md | — |
+| 2. Load context | Before any diagnosis | Read 4 examples/ + references/good-skill-learning-core.md | Context loaded |
+| 3. Diagnose | Always | Break into F/D/Q; surface 3-5 worst issues with ❌/✅ | Diagnosis notes |
+| 4. Output Review | After diagnosis | Use exact strict format below | Review markdown |
+| 5. Iterate | User says "同意" or points to issues | Output full revised SKILL.md | Updated file |
+
 ## Core Principles
 
 - **Trigger is everything** — The YAML `description` is the single most important factor for whether a skill gets used.
 - **Progressive Disclosure** — Keep SKILL.md lean (<500 lines). Move detailed or rarely-needed content to `references/` or `examples/`.
-- **Problem-driven feedback** — Never give generic praise. Always surface the 3~5 most damaging issues with concrete ❌/✅ examples.
+- **Problem-driven feedback** — Never give generic praise. Always surface the 3~5 most damaging issues with concrete ❌/✅ examples from the target itself.  
+  **Why**: Generic feedback ("looks good") gives the model nothing to internalize. Specific before/after snippets force precise, evidence-based fixes and make the review actionable (see how `examples/docx/SKILL.md` uses ❌/✅ in every major section and how `examples/skill-creator/SKILL.md` explains the rationale behind every step).
 - **Use real examples** — When recommending a pattern, explicitly point to which skill in `examples/` demonstrates it well.
 - **Pushy but respectful** — Your description should be aggressive about claiming relevant tasks, but your review tone should be precise and evidence-based.
 
@@ -26,8 +37,9 @@ You do **not** blindly rewrite. You first diagnose the most critical problems us
    - Read the target file.
 
 2. **Load context**
-   - Read the 4 representative skills in `examples/` (especially their `description` and structure).
-   - Read `references/good-skill-learning-core.md` for the condensed rules.
+   - Use the `read` tool (or glob + read) to load the four SKILL.md files from *this skill's own* `examples/` directory: `skill-creator`, `mcp-builder`, `internal-comms`, `docx`. Focus especially on their frontmatter `description` and overall structure.
+   - Read `references/good-skill-learning-core.md` — treat it as your single rulebook for every diagnosis.
+   - If the target skill itself ships with `examples/` or `references/`, note them for possible later review round.
 
 3. **Diagnose (维特根斯坦 + 苏格拉底 style)**
    - Break the target into F/D/Q.
