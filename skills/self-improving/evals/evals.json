@@ -1,0 +1,23 @@
+{
+  "skill_name": "self-improving",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "请帮我检查并更新项目中需要变更的 AGENTS.md 文件。",
+      "expected_output": "Follow the six-step process, produce a Markdown table listing any AGENTS.md files that need updates, and wait for user confirmation before making changes.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "After adding a new custom command, run self-improving to see if the command registration and usage should be documented in AGENTS.md.",
+      "expected_output": "Analyze whether the new command introduces a new workflow or constraint that belongs in the root or commands/AGENTS.md, output the update table if needed.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "We just refactored the skill loading mechanism. Use self-improving to decide if this change should be recorded.",
+      "expected_output": "Determine if the refactoring created a new development constraint or directory development guideline that should be added to skills/AGENTS.md or root AGENTS.md.",
+      "files": []
+    }
+  ]
+}

@@ -10,4 +10,4 @@
 - 指令模板支持 `$1`、`$2` 等占位参数，用户输入指令时传递的参数会替换这些占位符
 
 ## 注意事项
-- 修改 deepInit.ts 或 selfImproving.ts 时，注意检查 agents-md-creator skill 是否需要同步调整
+- 修改 deepInit.ts 或 selfImproving.ts 时，注意检查 agents-md-creator skill 或 self-improving skill 是否需要同步调整（self-improving 逻辑已迁移至 skill）
