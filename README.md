@@ -79,7 +79,6 @@ npm run setup-skills
 - `/plan-socratic <需求>` — 苏格拉底式交互规划
 - `/plan-clarify <需求>` — 澄清版规划
 - `/self-improving` — 自我优化文档
-- `/apply-skill <name>` — 加载指定 skill
 
 ### 团队角色
 
@@ -98,7 +97,6 @@ npm run setup-skills
 - `/plan-socratic <desc>`：苏格拉底规划。
 - `/plan-clarify <desc>`：澄清版规划，融合三层思维系统。
 - `/self-improving`：优化项目文档。
-- `/apply-skill <name>`：加载特定技能。
 
 ## ❓ 常见问题 (FAQ)
 

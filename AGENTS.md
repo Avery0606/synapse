@@ -22,9 +22,8 @@ opencode-plugin/
 │       ├── plan.ts         # 进入计划模式（默认版）
 │       ├── plan-atomic.ts  # 计划模式（原子版）
 │       ├── plan-socratic.ts # 计划模式（苏格拉底版）
-│       ├── plan-clarify.ts  # 计划模式（澄清版）
-│       └── apply-skill.ts   # apply-skill 指令的实现，用于加载并执行指定 skill
-skills/                     # skill 存放目录
+│       └── plan-clarify.ts  # 计划模式（澄清版）
+ skills/                     # skill 存放目录
 ├── AGENTS.md               # skills 开发指南
 ├── agents-md-creator/      # 用于创建或更新 AGENTS.md 的 skill
 ├── self-improving/         # AGENTS.md 自我改进 skill（原 self-improving 命令的逻辑迁移）
