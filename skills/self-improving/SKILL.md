@@ -1,6 +1,6 @@
 ---
 name: self-improving
-description: Automatically check and update AGENTS.md files in the project according to the maintenance principles, judgment flow, and chapter boundaries. Use this skill whenever the user wants to perform self-improvement on the project's survival manual, or after completing tasks that may have introduced new patterns, constraints, or workflows worth recording. Always follow the six-step process and output the update list in the required Markdown table format before making any changes.
+description: Use this skill whenever the user says "self-improving", "update AGENTS.md", "self-improvement", "维护 AGENTS.md", or after any non-trivial task that may have introduced new patterns, constraints, workflows, or norms worth recording in the project's survival manual. Also use proactively when you notice AGENTS.md no longer matches actual work practices. Always follow the six-step process and present the update table for confirmation before editing any AGENTS.md.
 ---
 
 # Self-Improving Skill
@@ -11,6 +11,15 @@ This skill enables the AI to autonomously maintain and evolve the project's AGEN
 
 AGENTS.md records the **minimum necessary information** that lets a future AI work independently in this codebase. It is not a changelog, not a personal notebook, and not a place for temporary debugging notes.
 
+## Quick Reference
+
+| Situation                              | Action                                      | Output Required                          |
+|----------------------------------------|---------------------------------------------|------------------------------------------|
+| User explicitly says “self-improving”, “update AGENTS.md”, etc. | Run full 6-step process                    | Markdown update table + user confirmation |
+| Just finished a non-trivial task       | Analyze conversation + diff for new norms   | Table only if reusable pattern found     |
+| No new reusable information discovered | Do nothing                                  | Brief “No update needed – reason” note   |
+| Before writing any change to AGENTS.md | Present table to user                       | Explicit “同意” or corrections required  |
+
 ## When to Use This Skill
 
 - After completing a non-trivial task that introduced new patterns, constraints, or workflows
@@ -19,10 +28,7 @@ AGENTS.md records the **minimum necessary information** that lets a future AI wo
 
 ## Maintenance Principles
 
-- Only record information that a stronger AI would still benefit from
-- Never write redundant information (put it in code comments instead)
-- Never write inaccurate information (leave blank rather than guess)
-- Never write task-specific temporary information
+Only record information that a stronger AI would still benefit from. Never write redundant information (put it in code comments instead). Never write inaccurate information (leave blank rather than guess). Never write task-specific temporary information. These rules exist because AGENTS.md is a long-term reference, not a scratchpad — noise or guesswork actively harms future instances.
 
 ## No-Update Situations
 
@@ -32,6 +38,8 @@ Do not update AGENTS.md if any of the following are true:
 - The change fixes an obvious bug with no new norm
 - The detail belongs in code comments
 - The information is already present in existing AGENTS.md
+
+These situations are excluded because they either add no reusable value or belong elsewhere in the codebase.
 
 ## Chapter Boundaries (Strict)
 
@@ -73,9 +81,16 @@ Never create new chapters.
 |---------------|----------|-------------|
 | ... | ... | ... |
 
+**Example**:
+
+| AGENTS.md 路径                        | 更新章节     | 大致更新内容                          |
+|---------------------------------------|--------------|---------------------------------------|
+| `skills/self-improving/SKILL.md`      | 开发约束     | 新增 evals 必须要求                   |
+| `opencode-plugin/agents/src/synapse.ts` | 项目开发指南 | 增加 Ares 批量操作的注意事项          |
+
 ## Confirmation Requirement
 
-Before writing any changes to AGENTS.md files, you **must** present the table to the user and obtain explicit confirmation.
+AGENTS.md is the project’s long-term “survival manual.” A single inaccurate or noisy entry can mislead future instances for months. Therefore, **before writing any changes**, you must present the update table and receive explicit user approval (“同意” or corrections). This gate protects the document from temporary debugging notes, personal preferences, and over-documentation of one-off work.
 
 ## Output Format
 
