@@ -27,8 +27,6 @@ opencode-plugin/
 ├── AGENTS.md               # skills 开发指南
 ├── agents-md-creator/      # 用于创建或更新 AGENTS.md 的 skill
 ├── self-improving/         # AGENTS.md 自我改进 skill（原 self-improving 命令的逻辑迁移）
-├── act-like-socratic/      # 苏格拉底式提问 skill
-├── test-case-generator/    # 生成结构化前端测试用例的 skill
 ├── skill-refiner/          # 迭代优化其他 skill 提示词与结构的 meta-skill
 └── soul-refiner/           # 迭代优化 SOUL.md（AI 代理人格文件）的 meta-skill
 test-cases/                 # 测试用例目录
