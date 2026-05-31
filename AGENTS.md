@@ -25,7 +25,7 @@ opencode-plugin/
 │       └── plan-clarify.ts  # 计划模式（澄清版）
  skills/                     # skill 存放目录
 ├── AGENTS.md               # skills 开发指南
-├── agents-md-creator/      # 用于创建或更新 AGENTS.md 的 skill
+├── what-is-agentsmd/       # 教学型 skill，解释 AGENTS.md 的定义、作用、技术原理等
 ├── skill-refiner/          # 迭代优化其他 skill 提示词与结构的 meta-skill
 └── soul-refiner/           # 迭代优化 SOUL.md（AI 代理人格文件）的 meta-skill
 test-cases/                 # 测试用例目录
