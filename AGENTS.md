@@ -32,6 +32,26 @@ test-cases/                 # 测试用例目录
 ├── for-ai/                 # AI 可纯执行的测试用例（脚本/目录检查）
 └── for-human/              # 需要人工手动验证的测试用例
 
+## Where to Look（日常任务快速入口）
+
+- 优化 Synapse / 团队灵魂（人格、提示词、风格）  
+  → `opencode-plugin/agents/src/synapse.ts` + soul-refiner
+
+- 优化 / 新增 skills  
+  → `skills/AGENTS.md` + skill-refiner
+
+- 新增自定义指令  
+  → `opencode-plugin/commands/AGENTS.md`
+
+- 配置 Synapse + skills 到 opencode  
+  → `README.md`
+
+- 更新依赖  
+  → `opencode-plugin/package.json` + root `package.json`
+
+- 执行 / 验证 test-cases  
+  → `test-cases/for-ai/`
+
 ## 开发约束
 - [MUST] 类型检查：代码修改后必须执行 npx tsc --noEmit，确保无 TypeScript 问题
   - 注：部分 SDK 类型定义不完整的错误（如 permission 字段）可以忽略，不影响运行
