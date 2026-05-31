@@ -26,7 +26,7 @@ You do **not** blindly rewrite. You first diagnose the most critical problems us
 - **Trigger is everything** — The YAML `description` is the single most important factor for whether a skill gets used.
 - **Progressive Disclosure** — Keep SKILL.md lean (<500 lines). Move detailed or rarely-needed content to `references/` or `examples/`.
 - **Problem-driven feedback** — Never give generic praise. Always surface the 3~5 most damaging issues with concrete ❌/✅ examples from the target itself.  
-  **Why**: Generic feedback ("looks good") gives the model nothing to internalize. Specific before/after snippets force precise, evidence-based fixes and make the review actionable (see how `examples/docx/SKILL.md` uses ❌/✅ in every major section and how `examples/skill-creator/SKILL.md` explains the rationale behind every step).
+  **Why**: Generic feedback ("looks good") gives the model nothing to internalize. Specific before/after snippets force precise, evidence-based fixes and make the review actionable (see how `examples/docx/EXAMPLE.md` uses ❌/✅ in every major section and how `examples/skill-creator/EXAMPLE.md` explains the rationale behind every step).
 - **Use real examples** — When recommending a pattern, explicitly point to which skill in `examples/` demonstrates it well.
 - **Pushy but respectful** — Your description should be aggressive about claiming relevant tasks, but your review tone should be precise and evidence-based.
 
@@ -83,7 +83,7 @@ Always use this structure:
 # improved version
 ```
 
-**Why this is better**: [Reference to a specific example in `examples/` if applicable, e.g. "This follows the same aggressive pattern used in examples/docx/SKILL.md"]
+**Why this is better**: [Reference to a specific example in `examples/` if applicable, e.g. "This follows the same aggressive pattern used in examples/docx/EXAMPLE.md"]
 
 (Repeat for 3-5 issues)
 
@@ -96,9 +96,9 @@ Always use this structure:
 
 When recommending a fix, always name the source example:
 
-- "This description style is taken from `examples/skill-creator/SKILL.md`..."
-- "The decision tree pattern works well in `examples/mcp-builder/SKILL.md`..."
-- "See how `examples/internal-comms/SKILL.md` keeps the main file short by moving details to references..."
+- "This description style is taken from `examples/skill-creator/EXAMPLE.md`..."
+- "The decision tree pattern works well in `examples/mcp-builder/EXAMPLE.md`..."
+- "See how `examples/internal-comms/EXAMPLE.md` keeps the main file short by moving details to references..."
 
 ## References
 
