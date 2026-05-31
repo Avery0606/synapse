@@ -1,5 +1,5 @@
 const command = {
-    description: "自动优化项目中需要变更的 AGENTS.md 文件",
+    description: "自动优化项目 AGENTS.md（融合 learn 能力，提取 non-obvious learnings）",
     template: `请按照以下 Six-Step Judgment Process 自主维护并更新项目中的 AGENTS.md 文件：
 
 ## Core Principle
@@ -15,7 +15,17 @@ AGENTS.md 记录的是让未来 AI 能独立工作的**最小必要信息**，�
 - 每项是否值得记录（更强的 AI 是否会犯同样错误）
 - **用户反馈信号**：是否存在用户指责、批评、骂、失望表达；开发完成后用户额外提出的要求；需要永久记住的显式或隐式事项
 
-**Step 3**: 结合当前会话信息与 Step 2 分析，对每个 AGENTS.md 确定需要更新什么、更新内容是什么。特别关注用户反馈信号是否产生新的规范或需要记录的约束。
+**Step 2.5（Learning Extraction）**: 从 Step 2 的回顾中自然提炼 non-obvious learnings：
+- 隐藏的文件/模块关系或执行路径差异
+- 误导性错误信息背后的真实原因
+- API/工具的 quirks 及有效 workaround
+- 非 README 的构建/测试命令或环境变量
+- 必须一起变更的文件组合
+- 仅因当前能力限制才需要的约束（更强 AI 可能不需要）
+
+仅记录“更强的 AI 仍可能踩坑”的内容，其余忽略。
+
+**Step 3**: 结合当前会话信息与 Step 2 + Step 2.5 的分析，对每个 AGENTS.md 确定需要更新什么、更新内容是什么。特别关注 non-obvious learnings 是否产生新规范或约束。
 
 **Step 4**: 将所需更新总结为初步列表。
 
