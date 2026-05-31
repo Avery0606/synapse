@@ -11,4 +11,4 @@
 - 使用 skill-refiner 对一个skill进行问题审查与迭代改进
 
 ## 注意事项
-- 修改 agents-md-creator skill 或 self-improving skill 时，需检查两者是否需要同步调整（self-improving 负责 AGENTS.md 的持续自我维护，agents-md-creator 负责初始创建与结构化更新，两者存在关联关系）
+- 修改 agents-md-creator skill 时，需检查是否需要同步调整（agents-md-creator 负责 AGENTS.md 的初始创建与结构化更新）

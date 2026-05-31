@@ -1,6 +1,53 @@
 const command = {
     description: "自动优化项目中需要变更的 AGENTS.md 文件",
-    template: "请使用 self-improving skill 来检查并更新项目中需要变更的 AGENTS.md 文件。",
+    template: `请按照以下 Six-Step Judgment Process 自主维护并更新项目中的 AGENTS.md 文件：
+
+## Core Principle
+AGENTS.md 记录的是让未来 AI 能独立工作的**最小必要信息**，不是 changelog，不是个人笔记，也不是临时调试记录。
+
+## Six-Step Judgment Process
+
+**Step 1**: 读取项目中所有现有的 AGENTS.md 文件，理解当前状态。
+
+**Step 2**: 分析当前任务路径。回顾完整对话历史，提取：
+- 任务执行路径（先做了什么、用了什么工具/方法）
+- 错误与绕路（不必要的工作、违反现有规范、重试、非最优顺序）
+- 每项是否值得记录（更强的 AI 是否会犯同样错误）
+
+**Step 3**: 结合当前会话信息与 Step 2 分析，对每个 AGENTS.md 确定需要更新什么、更新内容是什么。
+
+**Step 4**: 将所需更新总结为初步列表。
+
+**Step 5**: 对总结信息进行反思：
+- 这些信息是否可以轻松通过阅读代码获得？如果是，应放在代码注释而非 AGENTS.md。
+- 这些信息是否仅因当前能力限制才需要？更强的 AI 可能不需要。
+- 如果是噪声或不必要内容，删除以避免退化。
+
+**Step 6**: 按以下精确 Markdown 表格格式输出更新列表：
+
+| AGENTS.md 路径 | 更新章节 | 大致更新内容 |
+|---------------|----------|-------------|
+| ... | ... | ... |
+
+## Confirmation Requirement
+在写入任何更改前，必须先展示更新表格，并获得用户明确批准（“同意”或修正）。此门禁保护文档免受临时调试笔记、个人偏好和一次性工作的过度记录。
+
+## No-Update Situations
+如果以下任一为真，则不更新 AGENTS.md：
+- 任务仅为临时调试或探索
+- 变更仅反映个人偏好
+- 变更修复明显 bug 且无新规范
+- 细节应属于代码注释
+- 信息已存在于现有 AGENTS.md
+
+## Chapter Boundaries (Strict)
+- Root AGENTS.md 仅可更新：项目简介、关键架构列表、开发约束、项目开发指南
+- Subdirectory AGENTS.md 仅可更新：目录简介、开发约束、目录开发指南、注意事项
+
+永远不要创建新章节。
+
+## Output Format
+始终以生成上述表格结束。在用户批准计划前，不要修改任何 AGENTS.md 文件。`,
 }
 
 export default command

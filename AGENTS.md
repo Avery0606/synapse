@@ -17,7 +17,7 @@ opencode-plugin/
 ├── commands/               # 自定义指令目录，提供插件命令
 │   ├── index.ts            # 命令注册入口
 │   └── src/                # 指令实现源码目录
-│       ├── selfImproving.ts # 极简委托命令（实际逻辑已迁移至 self-improving skill）
+│       ├── selfImproving.ts # 自我改进命令，自动优化项目 AGENTS.md
 │       ├── deepInit.ts     # 深度初始化 AGENTS.md 的命令
 │       ├── plan.ts         # 进入计划模式（默认版）
 │       ├── plan-atomic.ts  # 计划模式（原子版）
@@ -26,7 +26,6 @@ opencode-plugin/
  skills/                     # skill 存放目录
 ├── AGENTS.md               # skills 开发指南
 ├── agents-md-creator/      # 用于创建或更新 AGENTS.md 的 skill
-├── self-improving/         # AGENTS.md 自我改进 skill（原 self-improving 命令的逻辑迁移）
 ├── skill-refiner/          # 迭代优化其他 skill 提示词与结构的 meta-skill
 └── soul-refiner/           # 迭代优化 SOUL.md（AI 代理人格文件）的 meta-skill
 test-cases/                 # 测试用例目录
