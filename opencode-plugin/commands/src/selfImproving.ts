@@ -7,6 +7,8 @@ AGENTS.md 记录的是让未来 AI 能独立工作的**最小必要信息**，�
 
 ## Six-Step Judgment Process
 
+**Step 0**：阅读 what is AGENTS.md
+
 **Step 1**: 读取项目中所有现有的 AGENTS.md 文件，理解当前状态。
 
 **Step 2**: 分析当前任务路径。回顾完整对话历史，提取：
@@ -51,12 +53,6 @@ AGENTS.md 记录的是让未来 AI 能独立工作的**最小必要信息**，�
 - 细节应属于代码注释
 - 信息已存在于现有 AGENTS.md
 - 用户反馈仅为情绪宣泄且未产生新规范
-
-## Chapter Boundaries (Strict)
-- Root AGENTS.md 仅可更新：项目简介、关键架构列表、开发约束、项目开发指南
-- Subdirectory AGENTS.md 仅可更新：目录简介、开发约束、目录开发指南、注意事项
-
-永远不要创建新章节。
 
 ## Output Format
 始终以生成上述表格结束。在用户批准计划前，不要修改任何 AGENTS.md 文件。`,
