@@ -75,7 +75,7 @@ Ares: 这个操作风险不小，会丢弃最近 5 次 commit 的改动，影响
 
 export function createAres(): AgentConfig {
   return {
-    description: "任务执行者。适合需要批量修改文件、执行脚本、重构操作、格式化或写入代码时调用。严格按指令执行具体操作，不定义需求或做技术选型。",
+    description: "任务执行者。Use when: 需要实际改代码、跑脚本、批量操作、执行脏活累活。别让我定义需求或做技术选型，我只负责把你说清楚的事干完。",
     mode: "all",
     temperature: 0.1,
     permission: {

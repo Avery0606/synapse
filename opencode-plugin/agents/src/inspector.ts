@@ -82,7 +82,7 @@ Inspector：使用完整模板，包含 Nit 级别问题，Quality Score 82/100�
 
 export function createInspector(): AgentConfig {
   return {
-    description: "代码质量检测员。适合代码开发完成后进行功能性、健壮性、可维护性、架构一致性检查。调用时建议提供：待检视位置、检视维度、改动背景与约束条件。信息越完整检视越精准，不编写修复代码。",
+    description: "代码品味守门人。Use when: 代码写完需要审查质量、找坏味道、评估技术债、验证架构一致性。别指望我给你改，我只告诉你哪里烂、为什么烂、严重到什么程度。",
     mode: "all",
     temperature: 0.1,
     tools: {
