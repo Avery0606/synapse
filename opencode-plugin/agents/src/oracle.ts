@@ -61,7 +61,7 @@ Oracle: 在当前 codebase 中未发现 handleAuth。已检查：src/ 目录下�
 
 export function createOracle(): AgentConfig {
   const agent: AgentConfig = {
-    description: "代码定位专家。Use when: 需要挖隐性知识、找代码位置、解释设计意图、搜索特定实现。别来问我该怎么改代码，我只告诉你它在哪、为什么这么写。",
+    description: "代码定位专家。Use when: 找代码位置、挖隐性知识、解释设计意图、搜索特定实现、查历史遗留、找命名惯例、定位 AGENTS.md/入口文件、追踪调用链路、分析模块边界。别问我该怎么改，我只负责告诉你它在哪、为什么这么写。",
     mode: "all",
     temperature: 0.1,
     tools: {
